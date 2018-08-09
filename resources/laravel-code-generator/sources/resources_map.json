@@ -1,0 +1,10 @@
+[
+    {
+        "model-name": "ActivationProcess",
+        "resource-file": "activation_processes.json"
+    },
+    {
+        "model-name": "profile",
+        "resource-file": "profiles.json"
+    }
+]
