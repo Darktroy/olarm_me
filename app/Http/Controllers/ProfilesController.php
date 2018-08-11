@@ -9,6 +9,8 @@ use App\Models\TemplateLayout;
 use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Auth; 
     use Illuminate\Support\Facades\DB;
+    use App\Http\Controllers\helperVars;
+    use Validator;
 use Exception;
 
 class ProfilesController extends Controller
@@ -48,29 +50,51 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
      */
     public function store(Request $request)
     {
-            dd(public_path('/newsfeedImanges'));
+//        dd(helperVars::$picPath);
+            $user = Auth::user();
         try {
             DB::beginTransaction();
             $data = $this->getData($request);
+            $data = $this->getData($request);
+            if ($data->fails()) { 
+              return response()->json([
+              'status' => 'error','error'=>$data->errors(),'status-code'=>401],200);
+            }
+            $data = $request->all();
             $imageName='';
-            if (isset($data['imagepath']) &&!empty($data['imagepath'])){ 
-                    $imageName = 'news_feed_'.time().'.'.$data['imagepath']->getClientOriginalExtension();
-                    $data['imagepath']->move(public_path('/newsfeedImanges'), $imageName);
-                $data['imagepath'] =env('news_feed_main_image_url').$imageName;
+            
+            if ($request->hasFile('picture') && 
+                    is_file($data['picture'])){ 
+                
+                $file = $request->file('picture');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'profile_pic_'. md5($user->id).$ext;
+                    $data['picture']->move(public_path('/card_image'), $imageName);
+                $data['picture'] =helperVars::$picPath.$imageName;
             } 
-            profile::create($data);
+            if ($request->hasFile('logo') && is_file($data['logo'])){ 
+                $file = $request->file('logo');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'logo_'. md5($user->id).$ext;
+                    $data['logo']->move(public_path('/logo_image'), $imageName);
+                $data['logo'] =helperVars::$logoPath.$imageName;
+            } 
+            $data['user_id'] = $user->id;
+            $data['personal'] = 1; //0 for not person
+            $profilerow = profile::create($data);
+            $profile = profile::where('profile_id',$profilerow->profile_id)->first();
+//            dd($profile);
             DB::commit();
                     return response()->json([
-//                        'UserDetails' =>  $user,
+                        'data' =>  $profilerow,
                         'message' =>  'your account is Activated',
                         'status' => 'success','status-code'=>200,
-                        'data' => '',
                     ],200);
         } catch (Exception $exception) {
             DB::rollBack();
               return response()->json([
                         'status' => 'error',
-                        'data' => $ex->getMessage(),'status-code'=>403
+                        'data' => $exception->getMessage(),'status-code'=>403
                     ],200);
         }
     }
@@ -165,21 +189,19 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'profile_id' => 'nullable',
-            'user_id' => 'nullable',
-            'picture' => ['file','nullable'],
-            'gender' => 'string|min:1|nullable',
-            'country' => 'numeric|nullable',
-            'city' => 'string|min:1|nullable',
-            'district' => 'string|min:1|nullable',
-            'field' => 'string|min:1|nullable',
-            'industry' => 'string|min:1|nullable',
-            'specialty' => 'string|min:1|nullable',
-            'privacy' => 'string|min:1|nullable',
-            'template_layout_id' => 'nullable',
-            'logo' => 'string|min:1|nullable',
-            'about' => 'string|min:1|nullable',
-            'alias' => 'string|min:1|nullable',
+            'picture' => ['file','required'],
+            'gender' => 'required|string|min:4',
+            'country' => 'required|string|min:2',
+            'city' => 'required|string|min:2',
+            'district' => 'required|string|min:2',
+            'field' => 'required|string',
+            'industry' => 'required|string',
+            'specialty' => 'required|string',
+            'privacy' => 'required|integer|min:1',
+            'template_layout_id' => 'required|integer|min:1',
+            'logo' => ['file','required'],
+            'about' => 'required|string|min:1',
+            'alias' => 'required|string|min:1',
             'facebook_url' => 'string|min:1|nullable',
             'twitter_url' => 'string|min:1|nullable',
             'instagram_url' => 'string|min:1|nullable',
@@ -187,14 +209,26 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
      
         ];
         
-        $data = $request->validate($rules);
-        if ($request->has('custom_delete_picture')) {
-            $data['picture'] = null;
-        }
-        if ($request->hasFile('picture')) {
-            $data['picture'] = $this->moveFile($request->file('picture'));
-        }
-
+//        $data = $request->validate($rules);
+//        if ($request->has('custom_delete_picture')) {
+//            $data['picture'] = null;
+//        }
+//        if ($request->hasFile('picture')) {
+//            $data['picture'] = $this->moveFile($request->file('picture'));
+//        }
+//
+//        return $data;
+        
+        $messages =[
+            'serial.required' => 'Please Enter valid Serial',
+            'battery_status.required' => 'Please Enter battery status',
+            'network_type.required' => 'Please Enter network type',
+            'network_status.required' => 'Please Enter network status',
+            'wifi_status.required' => 'Please Enter wifi status',
+            'cellar_status.required' => 'Please Enter cellar status',
+            'last_connection_time.required' => 'Please Enter last connection time',
+        ];
+        $data = Validator::make($request->all(), $rules, $messages);
         return $data;
     }
   

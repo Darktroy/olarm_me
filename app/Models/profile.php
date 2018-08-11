@@ -28,24 +28,25 @@ class profile extends Model
      * @var array
      */
     protected $fillable = [
-                  'user_id',
-                  'picture',
-                  'gender',
-                  'country',
-                  'city',
-                  'district',
-                  'field',
-                  'industry',
-                  'specialty',
-                  'privacy',
-                  'template_layout_id',
-                  'logo',
-                  'about',
-                  'alias',
-                  'facebook_url',
-                  'twitter_url',
-                  'instagram_url',
-                  'youtube_url'
+                'user_id',
+                'picture',
+                'gender',
+                'country',
+                'city',
+                'district',
+                'field',
+                'industry',
+                'specialty',
+                'privacy',
+                'template_layout_id',
+                'logo',
+                'about',
+                'alias',
+                'facebook_url',
+                'twitter_url',
+                'instagram_url',
+                'youtube_url',
+                'personal'
               ];
 
     /**
