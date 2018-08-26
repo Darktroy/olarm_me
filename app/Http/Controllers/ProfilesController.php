@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use App\Models\profile;
+use App\Models\cards;
 use Illuminate\Http\Request;
 use App\Models\TemplateLayout;
 use App\Http\Controllers\Controller;
@@ -100,13 +101,79 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
                     return response()->json([
                         'data' =>  $profilerow,
                         'message' =>  'your account is Activated',
-                        'status' => 'success','status-code'=>200,
+                        'status' => 'success','status-code'=>200, 'code'=>200
                     ],200);
         } catch (Exception $exception) {
             DB::rollBack();
               return response()->json([
                         'status' => 'error',
-                        'data' => $exception->getMessage(),'status-code'=>403
+                        'data' => $exception->getMessage(),'status-code'=>403, 'code'=>100
+                    ],200);
+        }
+    }
+     
+    
+    public function updateMyProfile(Request $request)
+    {
+//        dd(url(helperVars::$picPath));
+            $user = Auth::user();
+            $userId = $user->id;
+            $st1 = str_replace(':', '', now());
+        $st2 = str_replace('-', '', $st1);
+        $st3 = str_replace(' ', '', $st2);
+        try {
+            DB::beginTransaction();
+            $data = $this->getData($request);
+            if ($data->fails()) { 
+              return response()->json([
+              'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
+            }
+            $isProfileExist = profile::where('user_id',$user->id)->get();
+            if(count($isProfileExist)==0){
+                return response()->json([
+                    'status' => 'error','error'=>'profile of this user not exist',
+                    'status-code'=>401,'code'=>100],200);
+                }
+            $data = $request->all();
+            $imageName='';
+            
+            if ($request->hasFile('picture') && is_file($data['picture'])){ 
+                $file = $request->file('picture');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'profile_pic_'.md5($st3).md5($user->id).'.'.$ext;
+                    $data['picture']->move(public_path('/card_image'), $imageName);
+//                $data['picture'] =helperVars::$picPath.$imageName;
+                $imageName = '/card_image/'.$imageName;
+                $data['picture'] =url($imageName);
+                cards::where('user_id',$userId)
+                        ->update(['picture' => $data['picture'],'last_name'=>$data['last_name'],
+                            'first_name'=>$data['first_name']]);
+                User::where('id',$userId)->update(['last_name'=>$data['last_name'],
+                            'first_name'=>$data['first_name']]);
+            }else{
+                cards::where('user_id',$userId)
+                        ->update(['last_name'=>$data['last_name'],
+                            'first_name'=>$data['first_name']]);
+                User::where('id',$userId)->update(['last_name'=>$data['last_name'],
+                            'first_name'=>$data['first_name']]);
+            } 
+            #cARD IMAGE MUST BE UPDATED TOO 
+            #user first name and last name must be updated too
+//            $data['personal'] = 1; //0 for not person
+            $profile = profile::where('user_id',$userId)->update($data);
+            $profile = profile::where('user_id',$userId)->get();
+//            dd($profile);
+            DB::commit();
+                    return response()->json([
+                        'data' =>  $profile[0],
+                        'message' =>  'your Profile Updated',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+        } catch (Exception $exception) {
+            DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403, 'code'=>100
                     ],200);
         }
     }
@@ -120,18 +187,18 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
                 return response()->json([
                     'data' =>  Null,
                     'message' =>  'No profile related to this user',
-                    'status' => 'success','status-code'=>200,
+                    'status' => 'success','status-code'=>200, 'code'=>200
                 ],200);
                 }
                    return response()->json([
                         'data' =>  $profilerow[0],
-                        'message' =>  'your account is Activated',
-                        'status' => 'success','status-code'=>200,
+                        'message' =>  'your Profile is Here',
+                        'status' => 'success','status-code'=>200, 'code'=>200
                     ],200);
         } catch (Exception $exception) {
               return response()->json([
                         'status' => 'error',
-                        'data' => $exception->getMessage(),'status-code'=>403
+                        'data' => $exception->getMessage(),'status-code'=>403 , 'code'=>100
                     ],200);
         }
     }
@@ -176,6 +243,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
      */
     public function update($id, Request $request)
     {
+        
         try {
             
             $data = $this->getData($request);

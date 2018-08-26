@@ -27,7 +27,8 @@ Route::middleware('auth:api')->group(function(){
             Route::post('/show-my-profile','ProfilesController@showProfile')->name('profiles.profile.show')->where('id', '[0-9]+');
             Route::get('/{profile}/edit','ProfilesController@edit')->name('profiles.profile.edit')->where('id', '[0-9]+');
             Route::post('/', 'ProfilesController@store')->name('profiles.profile.store');
-            Route::put('profile/{profile}', 'ProfilesController@update')->name('profiles.profile.update')->where('id', '[0-9]+');
+            Route::post('/profile-update', 'ProfilesController@updateMyProfile')->name('profiles.profile.update')->where('id', '[0-9]+');
+            Route::post('/profile-update2', 'ProfilesController@update')->name('profiles.profile.update')->where('id', '[0-9]+');
             Route::delete('/profile/{profile}','ProfilesController@destroy')->name('profiles.profile.destroy')->where('id', '[0-9]+');
         });
         
