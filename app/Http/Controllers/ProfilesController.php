@@ -50,37 +50,49 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
      */
     public function store(Request $request)
     {
-//        dd(helperVars::$picPath);
+//        dd(url(helperVars::$picPath));
             $user = Auth::user();
         try {
             DB::beginTransaction();
-            $data = $this->getData($request);
             $data = $this->getData($request);
             if ($data->fails()) { 
               return response()->json([
               'status' => 'error','error'=>$data->errors(),'status-code'=>401],200);
             }
+            $isProfileExist = profile::where('user_id',$user->id)->get();
+            if(count($isProfileExist)>0){
+                return response()->json([
+                    'status' => 'error','error'=>'profile of this user already exist',
+                    'status-code'=>401],200);
+                }
             $data = $request->all();
             $imageName='';
             
-            if ($request->hasFile('picture') && 
-                    is_file($data['picture'])){ 
-                
+            if ($request->hasFile('picture') && is_file($data['picture'])){ 
                 $file = $request->file('picture');
                 $ext = strtolower($file->getClientOriginalExtension());
-                    $imageName = 'profile_pic_'. md5($user->id).$ext;
+                    $imageName = 'profile_pic_'. md5($user->id).'.'.$ext;
                     $data['picture']->move(public_path('/card_image'), $imageName);
-                $data['picture'] =helperVars::$picPath.$imageName;
+//                $data['picture'] =helperVars::$picPath.$imageName;
+                $imageName = '/card_image/'.$imageName;
+                $data['picture'] =url($imageName);
             } 
+            /*
             if ($request->hasFile('logo') && is_file($data['logo'])){ 
                 $file = $request->file('logo');
                 $ext = strtolower($file->getClientOriginalExtension());
-                    $imageName = 'logo_'. md5($user->id).$ext;
+                    $imageName = 'logo_'. md5($user->id).'.'.$ext;
                     $data['logo']->move(public_path('/logo_image'), $imageName);
-                $data['logo'] =helperVars::$logoPath.$imageName;
+//                $data['logo'] =helperVars::$logoPath.$imageName;
+                $imageName = '/logo_image/'.$imageName;
+                $data['logo'] =url($imageName);
             } 
+            */
             $data['user_id'] = $user->id;
-            $data['personal'] = 1; //0 for not person
+            //,'last_name','first_name',
+            $data['last_name'] = $user->last_name;
+            $data['first_name'] = $user->first_name;
+//            $data['personal'] = 1; //0 for not person
             $profilerow = profile::create($data);
             $profile = profile::where('profile_id',$profilerow->profile_id)->first();
 //            dd($profile);
@@ -92,6 +104,31 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
                     ],200);
         } catch (Exception $exception) {
             DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403
+                    ],200);
+        }
+    }
+     
+    public function showProfile(Request $request)
+    {
+            $user = Auth::user();
+        try {
+            $profilerow = profile::where('user_id',$user->id)->get();
+            if(count($profilerow)==0){
+                return response()->json([
+                    'data' =>  Null,
+                    'message' =>  'No profile related to this user',
+                    'status' => 'success','status-code'=>200,
+                ],200);
+                }
+                   return response()->json([
+                        'data' =>  $profilerow[0],
+                        'message' =>  'your account is Activated',
+                        'status' => 'success','status-code'=>200,
+                    ],200);
+        } catch (Exception $exception) {
               return response()->json([
                         'status' => 'error',
                         'data' => $exception->getMessage(),'status-code'=>403
@@ -197,15 +234,15 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
             'field' => 'required|string',
             'industry' => 'required|string',
             'specialty' => 'required|string',
-            'privacy' => 'required|integer|min:1',
-            'template_layout_id' => 'required|integer|min:1',
-            'logo' => ['file','required'],
-            'about' => 'required|string|min:1',
-            'alias' => 'required|string|min:1',
-            'facebook_url' => 'string|min:1|nullable',
-            'twitter_url' => 'string|min:1|nullable',
-            'instagram_url' => 'string|min:1|nullable',
-            'youtube_url' => 'string|min:1|nullable',
+//            'privacy' => 'required|integer|min:1',
+//            'template_layout_id' => 'required|integer|min:1',
+//            'logo' => ['file','required'],
+//            'about' => 'string|min:1',
+//            'alias' => 'required|string|min:1',
+//            'facebook_url' => 'string|min:1|nullable',
+//            'twitter_url' => 'string|min:1|nullable',
+//            'instagram_url' => 'string|min:1|nullable',
+//            'youtube_url' => 'string|min:1|nullable',
      
         ];
         
@@ -220,13 +257,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
 //        return $data;
         
         $messages =[
-            'serial.required' => 'Please Enter valid Serial',
-            'battery_status.required' => 'Please Enter battery status',
-            'network_type.required' => 'Please Enter network type',
-            'network_status.required' => 'Please Enter network status',
-            'wifi_status.required' => 'Please Enter wifi status',
-            'cellar_status.required' => 'Please Enter cellar status',
-            'last_connection_time.required' => 'Please Enter last connection time',
+            'picture.required' => 'Please Enter valid picture',
         ];
         $data = Validator::make($request->all(), $rules, $messages);
         return $data;

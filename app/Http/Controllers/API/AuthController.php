@@ -79,6 +79,8 @@
                     }
                     $postArray = $request->all(); 
                     $postArray['name'] = $postArray['first_name'];
+                    $postArray['first_name'] = $postArray['first_name'];
+                    $postArray['last_name'] = $postArray['last_name'];
                     $postArray['password'] = bcrypt($postArray['password']); 
                     $user = User::create($postArray); 
                     $success['token'] =  $user->createToken('LaraPassport')->accessToken; 

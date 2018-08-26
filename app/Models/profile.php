@@ -37,16 +37,16 @@ class profile extends Model
                 'field',
                 'industry',
                 'specialty',
-                'privacy',
-                'template_layout_id',
-                'logo',
-                'about',
-                'alias',
-                'facebook_url',
-                'twitter_url',
-                'instagram_url',
-                'youtube_url',
-                'personal'
+//                'privacy',
+//                'template_layout_id',
+//                'logo',
+//                'about',
+//                'alias',
+//                'facebook_url',
+//                'twitter_url',
+//                'instagram_url',
+//                'youtube_url',
+                'personal','last_name','first_name',
               ];
 
     /**

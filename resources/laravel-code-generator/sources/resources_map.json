@@ -6,5 +6,13 @@
     {
         "model-name": "profile",
         "resource-file": "profiles.json"
+    },
+    {
+        "model-name": "cards",
+        "resource-file": "cards.json"
+    },
+    {
+        "model-name": "cards_holder",
+        "resource-file": "cards_holders.json"
     }
 ]
