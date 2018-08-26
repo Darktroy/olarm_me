@@ -37,7 +37,8 @@ class cards extends Model
                     'landline',
                     'fax','website_url','about_me',
                     'template_layout_id',
-                'picture','personal',
+                    'picture',
+                    'personal','card_holder_id',
                     'logo','alias','facebook_url',
                     'twitter_url','instagram_url','youtube_url'
               ];
