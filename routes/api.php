@@ -33,7 +33,8 @@ Route::middleware('auth:api')->group(function(){
         
         Route::post('showAllCards','CardsController@showAll')->name('cards.cards.show')->where('id', '[0-9]+');
         Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
-                
+        Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
+                  
         Route::group(
         [ 'prefix' => 'personal-card',], function () {
             Route::post('/', 'CardsController@store')->name('cards.cards.store');
@@ -42,7 +43,6 @@ Route::middleware('auth:api')->group(function(){
             Route::get('/show/{cards}','CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
             Route::post('/show-my-card','CardsController@showPersonal');
             Route::get('/{cards}/edit','CardsController@edit')->name('cards.cards.edit')->where('id', '[0-9]+');
-            Route::put('cards/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
             Route::delete('/cards/{cards}','CardsController@destroy')->name('cards.cards.destroy')->where('id', '[0-9]+');
 
         });

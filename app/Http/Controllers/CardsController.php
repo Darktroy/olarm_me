@@ -58,7 +58,7 @@ class CardsController extends Controller
                 $data = $this->getData($request);
                 if ($data->fails()) { 
                   return response()->json([
-                  'status' => 'error','error'=>$data->errors(),'status-code'=>401],200);
+                  'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
                 }
                 
                 $data = $request->all();
@@ -131,18 +131,19 @@ class CardsController extends Controller
                         'data' =>  Null,
                         'message' =>  'No Card related to this user',
                         'status' => 'success','status-code'=>200,
+                        'code'=>200
                     ],200);
                 }
                 return response()->json([
                     'data' =>  $personalCard[0],
                     'message' =>  'your account is Activated',
-                    'status' => 'success','status-code'=>200,
+                    'status' => 'success','status-code'=>200,'code'=>100
                 ],200);
         } catch (Exception $exception) {
               return response()->json([
                         'status' => 'error',
                         'data' => $exception->getMessage(),
-                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
                     ],200);
         }
     }
@@ -166,7 +167,6 @@ class CardsController extends Controller
     public function showAll() {
         
         $user = Auth::user();
-//        dd($user->id);
         $cards = cards::where('create_by',$user->id)->get();
                 return response()->json([
                     'data' =>  $cards,
@@ -200,20 +200,56 @@ class CardsController extends Controller
      */
     public function update($id, Request $request)
     {
+        $st1 = str_replace(':', '', now());
+        $st2 = str_replace('-', '', $st1);
+        $st3 = str_replace(' ', '', $st2);
         try {
-            
             $data = $this->getData($request);
-            
-            $cards = cards::findOrFail($id);
-            $cards->update($data);
+            if ($data->fails()) { 
+                  return response()->json([ 'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
+            }
+            $data = $request->all();
+            $user = Auth::user();
+            $cards = cards::where('create_by',$user->id)
+                    ->where('card_id',$id)
+                    ->get();
+            if(count($cards)==0){
+                return response()->json([
+                    'message' =>  'No card found',
+                    'status' => 'success','status-code'=>404,'code'=>100
+                ],200);
+            }
+            if ($request->hasFile('picture') && is_file($data['picture'])){ 
+                $file = $request->file('picture');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'profile_pic_notpersonal_'.md5($st3). md5($user->id).'.'.$ext;
+                    $data['picture']->move(public_path('/card_image'), $imageName);
+//                $data['picture'] =helperVars::$picPath.$imageName;
+                $imageName = '/card_image/'.$imageName;
+                $data['picture'] =url($imageName);
+            }
+            if ($request->hasFile('logo') && is_file($data['logo'])){ 
+                $file = $request->file('logo');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'logo_'.md5($st3). md5($user->id).'.'.$ext;
+                    $data['logo']->move(public_path('/logo_image'), $imageName);
+//                $data['logo'] =helperVars::$logoPath.$imageName;
+                $imageName = '/logo_image/'.$imageName;
+                $data['logo'] =url($imageName);
+            }
+            $cards[0]->update($data);
 
-            return redirect()->route('cards.cards.index')
-                             ->with('success_message', 'Cards was successfully updated!');
-
+            return response()->json([
+                    'data' =>  $cards[0],
+                    'message' =>  'success',
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
         } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
+            return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
+                    ],200);
         }        
     }
 
