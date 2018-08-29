@@ -49,8 +49,10 @@ Route::middleware('auth:api')->group(function(){
         });
   
         
+        Route::post('add-card-to-card-holder', 'UserCardsController@store');
         Route::group(
         [ 'prefix' => 'cards-holders', ], function () {
+            
             Route::get('/', 'CardsHoldersController@index')->name('cards_holders.cards_holder.index');
             Route::get('/create','CardsHoldersController@create')->name('cards_holders.cards_holder.create');
             Route::get('/show/{cardsHolder}','CardsHoldersController@show')->name('cards_holders.cards_holder.show')->where('id', '[0-9]+');

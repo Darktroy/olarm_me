@@ -14,5 +14,9 @@
     {
         "model-name": "cards_holder",
         "resource-file": "cards_holders.json"
+    },
+    {
+        "model-name": "user_cards",
+        "resource-file": "user_cards.json"
     }
 ]

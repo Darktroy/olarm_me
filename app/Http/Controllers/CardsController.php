@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\cards;
 use App\Models\profile;
+use App\Models\user_cards;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Auth; 
@@ -105,6 +106,10 @@ class CardsController extends Controller
                 } 
                 
                 $createdCard = cards::create($data);
+                
+                $user_cards = user_cards::create(array('user_id'=>$user->id,
+                    'card_holder_id'=>$data['card_holder_id'],'card_id'=>$createdCard->card_id));
+//                dd($createdCard);
                 DB::commit();
                 return response()->json([
                     'data' =>  $createdCard,
@@ -302,6 +307,7 @@ class CardsController extends Controller
             'twitter_url' => 'string|min:1|nullable',
             'instagram_url' => 'string|min:1|nullable',
             'youtube_url' => 'string|min:1|nullable',
+            'card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
      
         ];
         $messages =[

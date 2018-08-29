@@ -58,7 +58,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
             $data = $this->getData($request);
             if ($data->fails()) { 
               return response()->json([
-              'status' => 'error','error'=>$data->errors(),'status-code'=>401],200);
+              'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
             }
             $isProfileExist = profile::where('user_id',$user->id)->get();
             if(count($isProfileExist)>0){

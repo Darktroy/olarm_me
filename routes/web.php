@@ -48,3 +48,33 @@ Route::group(
 });
 
 
+
+Route::group(
+[ 'prefix' => 'user_cards',], function () {
+
+    Route::get('/', 'UserCardsController@index')
+         ->name('user_cards.user_cards.index');
+
+    Route::get('/create','UserCardsController@create')
+         ->name('user_cards.user_cards.create');
+
+    Route::get('/show/{userCards}','UserCardsController@show')
+         ->name('user_cards.user_cards.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{userCards}/edit','UserCardsController@edit')
+         ->name('user_cards.user_cards.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'UserCardsController@store')
+         ->name('user_cards.user_cards.store');
+               
+    Route::put('user_cards/{userCards}', 'UserCardsController@update')
+         ->name('user_cards.user_cards.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/user_cards/{userCards}','UserCardsController@destroy')
+         ->name('user_cards.user_cards.destroy')
+         ->where('id', '[0-9]+');
+
+});
