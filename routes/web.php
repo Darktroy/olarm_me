@@ -78,3 +78,67 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'interestes',
+], function () {
+
+    Route::get('/', 'InterestesController@index')
+         ->name('interestes.interestes.index');
+
+    Route::get('/create','InterestesController@create')
+         ->name('interestes.interestes.create');
+
+    Route::get('/show/{interestes}','InterestesController@show')
+         ->name('interestes.interestes.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{interestes}/edit','InterestesController@edit')
+         ->name('interestes.interestes.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'InterestesController@store')
+         ->name('interestes.interestes.store');
+               
+    Route::put('interestes/{interestes}', 'InterestesController@update')
+         ->name('interestes.interestes.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/interestes/{interestes}','InterestesController@destroy')
+         ->name('interestes.interestes.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'card_to_interests',
+], function () {
+
+    Route::get('/', 'CardToInterestsController@index')
+         ->name('card_to_interests.card_to_interests.index');
+
+    Route::get('/create','CardToInterestsController@create')
+         ->name('card_to_interests.card_to_interests.create');
+
+    Route::get('/show/{cardToInterests}','CardToInterestsController@show')
+         ->name('card_to_interests.card_to_interests.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{cardToInterests}/edit','CardToInterestsController@edit')
+         ->name('card_to_interests.card_to_interests.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'CardToInterestsController@store')
+         ->name('card_to_interests.card_to_interests.store');
+               
+    Route::put('card_to_interests/{cardToInterests}', 'CardToInterestsController@update')
+         ->name('card_to_interests.card_to_interests.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/card_to_interests/{cardToInterests}','CardToInterestsController@destroy')
+         ->name('card_to_interests.card_to_interests.destroy')
+         ->where('id', '[0-9]+');
+
+});
