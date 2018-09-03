@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\cards;
 use App\Models\profile;
 use App\Models\user_cards;
+use App\Models\cards_holder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Auth; 
@@ -114,14 +115,14 @@ class CardsController extends Controller
                 return response()->json([
                     'data' =>  $createdCard,
 //                    'message' =>  'your account is Activated',
-                    'status' => 'success','status-code'=>200,
+                    'status' => 'success','status-code'=>200,'code'=>200
                 ],200);
         } catch (Exception $exception) {
             DB::rollBack();
               return response()->json([
                         'status' => 'error',
                         'data' => $exception->getMessage(),
-                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
                     ],200);
         }
     }
@@ -130,7 +131,7 @@ class CardsController extends Controller
         $user = Auth::user();
         try {
                 
-                $personalCard = cards::where('user_id',$user->id)->get();
+                $personalCard = cards::where('user_id',$user->id)->with('interests')->get();
                 if(count($personalCard)==0){
                     return response()->json([
                         'data' =>  Null,
@@ -172,10 +173,13 @@ class CardsController extends Controller
     public function showAll() {
         
         $user = Auth::user();
-        $cards = cards::where('create_by',$user->id)->get();
+        $from_card_holder = user_cards::where('user_id',$user->id)->select('card_id')->get();
+//        $cards = cards::where('create_by',$user->id)->get();
+        $cards = cards::whereIn('card_id',$from_card_holder)
+                ->with('interests')
+                ->get();
                 return response()->json([
                     'data' =>  $cards,
-//                    'message' =>  'your account is Activated',
                     'status' => 'success','status-code'=>200,
                 ],200);
     }

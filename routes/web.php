@@ -112,8 +112,7 @@ Route::group(
 });
 
 Route::group(
-[
-    'prefix' => 'card_to_interests',
+['prefix' => 'card_to_interests',
 ], function () {
 
     Route::get('/', 'CardToInterestsController@index')

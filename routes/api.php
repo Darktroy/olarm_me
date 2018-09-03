@@ -17,6 +17,28 @@ Route::post('login', 'API\AuthController@login');
 Route::post('register', 'API\AuthController@register');
 Route::post('register-mobile', 'API\AuthController@registerMobile');
 Route::middleware('auth:api')->group(function(){
+    
+    
+Route::group(
+['prefix' => 'card_to_interests',
+], function () {
+
+    Route::get('/', 'CardToInterestsController@index');
+
+    Route::get('/create','CardToInterestsController@create');
+
+    Route::get('/show/{cardToInterests}','CardToInterestsController@show');
+
+    Route::get('/{cardToInterests}/edit','CardToInterestsController@edit');
+
+    Route::post('/add-interest-to-cards', 'CardToInterestsController@store');
+               
+    Route::put('card_to_interests/{cardToInterests}', 'CardToInterestsController@update');
+
+    Route::delete('/card_to_interests/{cardToInterests}','CardToInterestsController@destroy');
+
+});
+    
         Route::post('active-using-code', 'ActivationProcessesController@activeAccount');;
 
         Route::group([ 'prefix' => 'personal',], function () {
@@ -31,8 +53,7 @@ Route::middleware('auth:api')->group(function(){
             Route::post('/profile-update2', 'ProfilesController@update')->name('profiles.profile.update')->where('id', '[0-9]+');
             Route::delete('/profile/{profile}','ProfilesController@destroy')->name('profiles.profile.destroy')->where('id', '[0-9]+');
         });
-        
-        Route::post('showAllCards','CardsController@showAll')->name('cards.cards.show')->where('id', '[0-9]+');
+        Route::post('show-my-All-Cards','CardsController@showAll');
         Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
         Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
                   
@@ -64,6 +85,29 @@ Route::middleware('auth:api')->group(function(){
 
         });
 
+        
+        Route::group(
+[
+    'prefix' => 'interestes',
+], function () {
+
+    Route::post('/get-all', 'InterestesController@index');
+
+    Route::get('/create','InterestesController@create');
+
+    Route::get('/show/{interestes}','InterestesController@show');
+
+    Route::get('/{interestes}/edit','InterestesController@edit');
+
+    Route::post('/', 'InterestesController@store');
+               
+    Route::put('interestes/{interestes}', 'InterestesController@update');
+
+    Route::delete('/interestes/{interestes}','InterestesController@destroy');
+
+});
+
+        
 });
 //Auth::routes();
 Route::middleware('auth:api')->get('/user', function (Request $request) {

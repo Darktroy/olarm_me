@@ -28,11 +28,10 @@ class card_to_interests extends Model
      * @var array
      */
     protected $fillable = [
-                  'card_to_interest_id',
                   'interest_id',
                   'name',
                   'user_id',
-                  'private'
+                  'private','card_id'
               ];
 
     /**

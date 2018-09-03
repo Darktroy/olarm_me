@@ -28,7 +28,6 @@ class interestes extends Model
      * @var array
      */
     protected $fillable = [
-                  'interest_id',
                   'name'
               ];
 

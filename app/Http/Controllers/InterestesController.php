@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\interestes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\Auth; 
+    use Illuminate\Support\Facades\DB;
+    use App\Http\Controllers\helperVars;
+    use Validator;
 use Exception;
 
 class InterestesController extends Controller
@@ -17,9 +21,11 @@ class InterestesController extends Controller
      */
     public function index()
     {
-        $interestesObjects = interestes::paginate(25);
-
-        return view('interestes.index', compact('interestesObjects'));
+        $interestesObjects = interestes::all();
+        return response()->json([
+                    'data' =>  $interestesObjects,
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
     }
 
     /**

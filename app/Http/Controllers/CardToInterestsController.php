@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use App\Models\Interest;
 use Illuminate\Http\Request;
-use App\Models\CardToInterest;
 use App\Models\card_to_interests;
+use App\Models\interestes;
 use App\Http\Controllers\Controller;
+use App\Models\profile;
+use App\Models\TemplateLayout;
+    use Illuminate\Support\Facades\Auth; 
+    use Illuminate\Support\Facades\DB;
+    use Validator;
 use Exception;
 
 class CardToInterestsController extends Controller
@@ -48,19 +53,54 @@ $users = User::pluck('id','id')->all();
      */
     public function store(Request $request)
     {
-        try {
-            
-            $data = $this->getData($request);
-            
-            card_to_interests::create($data);
+        $user = Auth::user();
+         try {
+                DB::beginTransaction();
+                $data = $this->getData($request);
+                if ($data->fails()) { 
+                  return response()->json([
+                  'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
+                }
+                $createdint = [];
+                $data = $request->all();
+                foreach ($data['interests'] as $key => $value) {
+                    if($value['private']==0){
+                        $test_ifa_exist = interestes::where('interest_id',$value['interest_id'])->get();
+                        if(count($test_ifa_exist)==0){
+                            throw new Exception('Sorry interest not exist');
+                        }
+                        $temp = [];
+                        $temp['user_id'] = $user->id;
+                        $temp['card_id'] = $data['card_id'];
+                        $temp['interest_id'] = $value['interest_id'];
+                        $temp['name'] = $test_ifa_exist[0]['name'];
+                        $temp['private'] = 0;
+                        $createdint[] = card_to_interests::updateOrCreate($temp);
+                    }else{
+                        // especially for this user and not listed in my interests list
+                        $temp = [];
+                        $temp['user_id'] = $user->id;
+                        $temp['interest_id'] = 0;
+                        $temp['card_id'] = $data['card_id'];
+                        $temp['name'] = $value['name'];
+                        $temp['private'] = 1;
+                        $createdint[] = card_to_interests::Create($temp);
+                    }//else if($value['private']==0)
+                }
 
-            return redirect()->route('card_to_interests.card_to_interests.index')
-                             ->with('success_message', 'Card To Interests was successfully added!');
+            DB::commit();
+                return response()->json([
+                    'data' =>  $createdint,
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
 
         } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
+            DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
+                    ],200);
         }
     }
 
@@ -155,17 +195,13 @@ $users = User::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'card_to_interest_id' => 'nullable',
-            'interest_id' => 'nullable',
-            'name' => 'string|min:1|max:255|nullable',
-            'user_id' => 'nullable',
-            'private' => 'string|min:1|nullable',
+            'card_id' => 'integer|min:1|exists:cards,card_id',
      
         ];
-        
-        $data = $request->validate($rules);
-
-
+        $messages =[
+            'picture.required' => 'Please Enter valid picture',
+        ];
+        $data = Validator::make($request->all(), $rules, $messages);
         return $data;
     }
 

@@ -8,6 +8,7 @@ use App\Models\ActivationProcess;
 use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Auth; 
     use Illuminate\Support\Facades\DB;
+    use Validator;
 use Exception;
 
 class ActivationProcessesController extends Controller
@@ -62,6 +63,12 @@ class ActivationProcessesController extends Controller
         }
     }
 
+    public function processActivation($userId) {
+        $generatedKey = sha1(mt_rand(10000,99999).time().$userId);
+                DB::rollBack();
+        dd($generatedKey);
+    }
+    
     /**
      * Display the specified activation process.
      *

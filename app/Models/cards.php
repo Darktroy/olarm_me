@@ -71,6 +71,10 @@ class cards extends Model
     {
         return $this->belongsTo('App\Models\User','user_id');
     }
+    public function interests()
+    {
+        return $this->hasMany('App\Models\card_to_interests','card_id');
+    }
 
 
 
