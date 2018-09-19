@@ -43,7 +43,7 @@ class cards extends Model
                     'personal',
                     'card_holder_id',
                     'logo',
-                    'alias',
+                    'alias','email',
                     'facebook_url',
                     'twitter_url',
                     'instagram_url',    
@@ -76,6 +76,38 @@ class cards extends Model
         return $this->hasMany('App\Models\card_to_interests','card_id');
     }
 
+    public static function searching($term) {
+        
+        $profiles_rows = profile::where('industry', 'LIKE', '%' . $term . '%')
+                ->orWhere('specialty', 'LIKE', '%' . $term . '%')
+                ->orWhere('field', 'LIKE', '%' . $term . '%')
+                ->orWhere('district', 'LIKE', '%' . $term . '%')
+                ->orWhere('country', 'LIKE', '%' . $term . '%')
+                ->orWhere('city', 'LIKE', '%' . $term . '%')->select('user_id')->get()->toArray();
+        $ids = [];
+        foreach ($profiles_rows as $key => $value) {
+            $ids[]=$value['user_id'];
+        }
+        
+//        $searchingCARDSresult = self::where('personal', 1)
+        $searchingCARDSresult = self::where('first_name', 'LIKE', '%' . $term . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $term . '%')
+                ->orWhere('alias', 'LIKE', '%' . $term . '%')
+                ->orWhere('landline', 'LIKE', '%' . $term . '%')
+                ->orWhere('fax', 'LIKE', '%' . $term . '%')
+                ->orWhere('cell_phone_number', 'LIKE', '%' . $term . '%')
+                ->orWhere('position', 'LIKE', '%' . $term . '%')
+                ->orWhere('website_url', 'LIKE', '%' . $term . '%')
+                ->orWhere('company_name', 'LIKE', '%' . $term . '%')
+//                ->orWhere('`company_name` LIKE %"' . $term . '"% AND `personal` = 1') 
+                ->whereRaw('personal', 1)
+//                ->orWhereIn('user_id', $ids)
+                ->get()->toArray();
+        
+return $searchingCARDSresult;
+    }
 
-
+    
+    
+    
 }

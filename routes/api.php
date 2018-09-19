@@ -17,11 +17,23 @@ Route::post('login', 'API\AuthController@login');
 Route::post('register', 'API\AuthController@register');
 Route::post('register-mobile', 'API\AuthController@registerMobile');
 Route::middleware('auth:api')->group(function(){
+
+Route::group([ 'prefix' => 'requests',], function () {
+
+    Route::post('/show-my-All-rquests', 'RequestsController@index');
+    Route::post('', 'RequestsController@store');
+    Route::post('/approve-request', 'RequestsController@approveRequest');
+    Route::post('/delete-request', 'RequestsController@deleteRequest');
+    /*
+    Route::get('/create','RequestsController@create');
+    Route::get('/show/{requests}','RequestsController@show');
+    Route::get('/{requests}/edit','RequestsController@edit');
+    Route::put('requests/{requests}', 'RequestsController@update');
+    Route::delete('/requests/{requests}','RequestsController@destroy');
+*/
+});    
     
-    
-Route::group(
-['prefix' => 'card_to_interests',
-], function () {
+Route::group(['prefix' => 'card_to_interests',], function () {
 
     Route::get('/', 'CardToInterestsController@index');
 
@@ -39,7 +51,7 @@ Route::group(
 
 });
     
-        Route::post('active-using-code', 'ActivationProcessesController@activeAccount');;
+        Route::post('active-using-code', 'ActivationProcessesController@activeAccount');
 
         Route::group([ 'prefix' => 'personal',], function () {
 
@@ -64,6 +76,7 @@ Route::group(
             Route::get('/create','CardsController@create')->name('cards.cards.create');
             Route::get('/show/{cards}','CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
             Route::post('/show-my-card','CardsController@showPersonal');
+                    Route::post('/search-card','CardsController@searching');
             Route::get('/{cards}/edit','CardsController@edit')->name('cards.cards.edit')->where('id', '[0-9]+');
             Route::delete('/cards/{cards}','CardsController@destroy')->name('cards.cards.destroy')->where('id', '[0-9]+');
 
@@ -71,9 +84,7 @@ Route::group(
   
         
         Route::post('add-card-to-card-holder', 'UserCardsController@store');
-        Route::group(
-        [ 'prefix' => 'cards-holders', ], function () {
-            
+        Route::group([ 'prefix' => 'cards-holders', ], function () {
             Route::get('/', 'CardsHoldersController@index')->name('cards_holders.cards_holder.index');
             Route::get('/create','CardsHoldersController@create')->name('cards_holders.cards_holder.create');
             Route::get('/show/{cardsHolder}','CardsHoldersController@show')->name('cards_holders.cards_holder.show')->where('id', '[0-9]+');
@@ -86,10 +97,7 @@ Route::group(
         });
 
         
-        Route::group(
-[
-    'prefix' => 'interestes',
-], function () {
+        Route::group(['prefix' => 'interestes',], function () {
 
     Route::post('/get-all', 'InterestesController@index');
 
