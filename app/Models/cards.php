@@ -81,16 +81,16 @@ class cards extends Model
     }
 
     public function advancedSearching(Request $request) {
-        /*
+       /*
         $rules = [
-            'city' => 'string|min:0|nullable',
-            'country' => 'string|min:0|nullable',
-            'district' => 'string|min:0|nullable',
-            'field' => 'string|min:0|nullable',
-            'specialty' => 'string|min:0|nullable',
-            'industry' => 'string|min:0|nullable',
-            'last_name' => 'string|min:0|nullable',
-            'first_name' => 'string|min:0|nullable',
+            'city' => 'required|nullable',
+            'country' => 'required|string|nullable',
+            'district' => 'required|string|nullable',
+            'field' => 'required|string|min:0|nullable',
+            'specialty' => 'required|string|min:0|nullable',
+            'industry' => 'required|string|min:0|nullable',
+            'last_name' => 'required|string|min:0|nullable',
+            'first_name' => 'required|string|min:0|nullable',
             'alias' => 'required|string|min:0|nullable',
             'landline' => 'required|string|min:0|nullable',
             'fax' => 'required|string|min:0|nullable',
@@ -105,18 +105,10 @@ class cards extends Model
         $data = Validator::make($request->all(), $rules, $messages);
         if ($data->fails()) { 
             return response()->json([ 'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
-        }*/
+        } */
         $data = $request->all();
-        //**********************************
-//         $profiles_rows = profile::where('industry', 'LIKE', '%' . $term . '%')
-//                ->orWhere('specialty', 'LIKE', '%' . $term . '%')
-//                ->orWhere('field', 'LIKE', '%' . $term . '%')
-//                ->orWhere('district', 'LIKE', '%' . $term . '%')
-//                ->orWhere('country', 'LIKE', '%' . $term . '%')
-//                ->orWhere('city', 'LIKE', '%' . $term . '%')
-//                ->select('user_id')->get()->toArray();
         $profile_object = profile::select('user_id');
-        if(!empty($data['industry'])){ $profile_object->where('industry', 'LIKE', '%' . $data['industry'] . '%');}
+        if(!empty($data['industry'])){  $profile_object->where('industry', 'LIKE', '%' . $data['industry'] . '%');}
         if(!empty($data['specialty'])){ $profile_object->where('specialty', 'LIKE', '%' . $data['specialty'] . '%');}
         if(!empty($data['field'])){ $profile_object->where('field', 'LIKE', '%' . $data['field'] . '%'); }
         if(!empty($data['district'])){ $profile_object->where('district', 'LIKE', '%' . $data['district'] . '%'); }
@@ -130,10 +122,10 @@ class cards extends Model
         $cards_object = new self();
 //        if(!empty($ids)){
         $searchingCARDSresult_row = $cards_object::where('personal', 1)
+               
                 ->where(function($query)use($data,$ids) {
-                    (!empty($data['first_name']) ? $query->where('first_name', 'LIKE', '%' . $data['first_name'] . '%'):"");
-//                        return $query->where('first_name', 'LIKE', '%' . $term . '%')
-                    (!empty($data['$ids']) ? $query->orWhereIn('user_id', $ids):"");
+                    (!empty($data['first_name']) ? $query->where('first_name', 'LIKE', '%' . $data['first_name'] . '%'): '');
+                    (!empty($ids) ? $query->orWhereIn('user_id', $ids):"");
                     (!empty($data['last_name']) ? $query->orWhere('last_name', 'LIKE', '%' . $data['last_name'] . '%') :"");
                     (!empty($data['alias']) ? $query->orWhere('alias', 'LIKE', '%' . $data['alias'] . '%') :"");
                     (!empty($data['landline']) ? $query->orWhere('landline', 'LIKE', '%' . $data['landline']  . '%'):"");
@@ -143,7 +135,13 @@ class cards extends Model
                     (!empty($data['website_url']) ? $query->orWhere('website_url', 'LIKE', '%' . $data['website_url']  . '%'):"");
                     (!empty($data['company_name']) ? $query->orWhere('company_name', 'LIKE', '%' . $data['company_name']  . '%'):"");
                     return $query;
-                })->select('card_id','first_name','last_name','company_name','position','template_layout_id','logo','picture')->get()->toArray();
+                 })
+               /* */
+                        ->select('card_id','first_name','last_name','company_name','position','template_layout_id','logo','picture')
+//                        ->toSql();
+                        ->get()->toArray();
+//        dd($searchingCARDSresult_row);
+            return $searchingCARDSresult_row;
        
             
 //        } else {
@@ -163,7 +161,6 @@ class cards extends Model
 //            
 //    
 //        } 
-        return $searchingCARDSresult_row;
     }
     
     public function searching($term) {
