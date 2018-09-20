@@ -77,6 +77,7 @@ Route::group(['prefix' => 'card_to_interests',], function () {
             Route::get('/show/{cards}','CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
             Route::post('/show-my-card','CardsController@showPersonal');
                     Route::post('/search-card','CardsController@searching');
+                    Route::post('/advanced-search-card','CardsController@searchingAvanced');
             Route::get('/{cards}/edit','CardsController@edit')->name('cards.cards.edit')->where('id', '[0-9]+');
             Route::delete('/cards/{cards}','CardsController@destroy')->name('cards.cards.destroy')->where('id', '[0-9]+');
 

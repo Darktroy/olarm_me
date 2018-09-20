@@ -179,11 +179,18 @@ class CardsController extends Controller
         
         $user = Auth::user();
         $data = $request->all();
-        $cards = cards::searching($data['terms']);
-                return response()->json([
-                    'data' =>  $cards,
-                    'status' => 'success','status-code'=>200,
-                ],200);
+        $cards_objet = new cards();
+        $cards = $cards_objet->searching($data['terms']);
+        return response()->json(['data' =>  $cards,'status' => 'success','status-code'=>200],200);
+    }
+//    searching
+    public function searchingAvanced(Request $request) {
+        
+        $user = Auth::user();
+        $data = $request->all();
+        $cards_objet = new cards();
+        $cards = $cards_objet->advancedSearching($request);
+        return response()->json(['data' =>  $cards,'status' => 'success','status-code'=>200],200);
     }
     /**
      * Show the form for editing the specified cards.
