@@ -141,3 +141,67 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'faqs',
+], function () {
+
+    Route::get('/', 'FaqsController@index')
+         ->name('faqs.faq.index');
+
+    Route::get('/create','FaqsController@create')
+         ->name('faqs.faq.create');
+
+    Route::get('/show/{faq}','FaqsController@show')
+         ->name('faqs.faq.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{faq}/edit','FaqsController@edit')
+         ->name('faqs.faq.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'FaqsController@store')
+         ->name('faqs.faq.store');
+               
+    Route::put('faq/{faq}', 'FaqsController@update')
+         ->name('faqs.faq.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/faq/{faq}','FaqsController@destroy')
+         ->name('faqs.faq.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'terms',
+], function () {
+
+    Route::get('/', 'TermsController@index')
+         ->name('terms.terms.index');
+
+    Route::get('/create','TermsController@create')
+         ->name('terms.terms.create');
+
+    Route::get('/show/{terms}','TermsController@show')
+         ->name('terms.terms.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{terms}/edit','TermsController@edit')
+         ->name('terms.terms.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'TermsController@store')
+         ->name('terms.terms.store');
+               
+    Route::put('terms/{terms}', 'TermsController@update')
+         ->name('terms.terms.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/terms/{terms}','TermsController@destroy')
+         ->name('terms.terms.destroy')
+         ->where('id', '[0-9]+');
+
+});
