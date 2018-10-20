@@ -20,16 +20,17 @@
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
           $user = Auth::user(); 
           $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
+          $success['UserDetails'] =  $user; 
           return response()->json([
-            'UserDetails' =>  $user,
             'status' => 'success',
-            'data' => $success
-          ]); 
+            'data' => $success,
+            'status' => 'success','status-code'=>200, 'code'=>200
+          ],200); 
         } else { 
           return response()->json([
             'status' => 'error',
-            'data' => 'Unauthorized Access'
-          ]); 
+            'data' => 'Unauthorized Access','status-code'=>403, 'code'=>100
+          ],200); 
         } 
       }
         
@@ -37,16 +38,17 @@
         if(Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password])){ 
           $user = Auth::user(); 
           $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
+          $success['UserDetails'] =  $user; 
           return response()->json([
-            'UserDetails' =>  $user,
             'status' => 'success',
-            'data' => $success
-          ]); 
+            'data' => $success,
+            'status' => 'success','status-code'=>200, 'code'=>200
+          ],200); 
         } else { 
           return response()->json([
             'status' => 'error',
-            'data' => 'Unauthorized Access'
-          ]); 
+            'data' => 'Unauthorized Access','status-code'=>403, 'code'=>100
+          ],200); 
         } 
       }
       
@@ -75,7 +77,7 @@
                       'accept_terms' => 'required|int|size:1', 
                     ]);
                     if ($validator->fails()) { 
-                      return response()->json(['data'=>$validator->errors(),'status'=>'erroe','status-code'=>'400'],200);
+                      return response()->json(['data'=>$validator->errors(),'status'=>'erroe','status-code'=>'403','code'=>100],200);
                     }
                     $postArray = $request->all(); 
                     $postArray['name'] = $postArray['first_name'];
@@ -85,21 +87,21 @@
                     $user = User::create($postArray); 
                     $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
                     $success['name'] =  $user->name;
+                    $success['UserDetails'] =  $user;
                     $ActivationProcess_obj = new \App\Http\Controllers\ActivationProcessesController();
                     $ActivationProcess_obj->activationCode($user->id);
             //        dd($user->id);
             //        $code = \App\Models\ActivationProcess::create();
                     DB::commit();
                     return response()->json([
-                        'UserDetails' =>  $user,
-                        'status' => 'success','status-code'=>200,
-                        'data' => $success,
+                        'status' => 'success',
+                        'data' => $success,'status-code'=>200,'code'=>200
                     ],200);
           } catch (Exception $ex) {
               DB::rollBack();
               return response()->json([
                         'status' => 'error',
-                        'data' => $ex->getMessage(),'status-code'=>403
+                        'data' => $ex->getMessage(),'status-code'=>403 ,'code'=>100
                     ],200);
           }  
          

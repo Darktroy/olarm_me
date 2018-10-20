@@ -80,7 +80,8 @@ $cards = Card::pluck('privacy','id')->all();
                 DB::rollBack();
                 return response()->json([
                         'status' => 'error',
-                        'data' => $exception->getMessage(),'details'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403, 'code'=>100
+                        'data' => $exception->getMessage(),'details'=>$exception->getLine().' '.$exception->getFile(),
+                    'status-code'=>403, 'code'=>100
                     ],200);
         }
     }
