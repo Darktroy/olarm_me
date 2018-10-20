@@ -10,12 +10,9 @@
     {
         "model-name": "faq",
         "resource-file": "faqs.json"
-<<<<<<< HEAD
-=======
     },
     {
         "model-name": "Request",
         "resource-file": "requests.json"
->>>>>>> ceb173cbb5356bf523b09a81078c44505abaaca3
     }
 ]

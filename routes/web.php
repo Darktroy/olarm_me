@@ -205,8 +205,6 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
-<<<<<<< HEAD
-=======
 
 Route::group(
 [
@@ -239,4 +237,3 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
->>>>>>> ceb173cbb5356bf523b09a81078c44505abaaca3
