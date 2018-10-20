@@ -133,18 +133,9 @@ class CardsController extends Controller
                 
                 $personalCard = cards::where('user_id',$user->id)->with('interests')->get();
                 if(count($personalCard)==0){
-                    return response()->json([
-                        'data' =>  Null,
-                        'message' =>  'No Card related to this user',
-                        'status' => 'success','status-code'=>200,
-                        'code'=>200
-                    ],200);
+                    return response()->json(['data' =>  Null,'message' =>  'No Card related to this user','status' => 'success','status-code'=>200],200);
                 }
-                return response()->json([
-                    'data' =>  $personalCard[0],
-                    'message' =>  'your account is Activated',
-                    'status' => 'success','status-code'=>200,'code'=>100
-                ],200);
+                return response()->json(['data' =>  $personalCard[0],'message' =>  'your account is Activated','status' => 'success','status-code'=>200 ],200);
         } catch (Exception $exception) {
               return response()->json([
                         'status' => 'error',
@@ -153,7 +144,7 @@ class CardsController extends Controller
                     ],200);
         }
     }
-
+    
     /**
      * Display the specified cards.
      *
@@ -183,7 +174,24 @@ class CardsController extends Controller
                     'status' => 'success','status-code'=>200,
                 ],200);
     }
-    
+//    searching
+    public function searching(Request $request) {
+        
+        $user = Auth::user();
+        $data = $request->all();
+        $cards_objet = new cards();
+        $cards = $cards_objet->searching($data['terms']);
+        return response()->json(['data' =>  $cards,'status' => 'success','status-code'=>200],200);
+    }
+//    searching
+    public function searchingAvanced(Request $request) {
+        
+        $user = Auth::user();
+        $data = $request->all();
+        $cards_objet = new cards();
+        $cards = $cards_objet->advancedSearching($request);
+        return response()->json(['data' =>  $cards,'status' => 'success','status-code'=>200],200);
+    }
     /**
      * Show the form for editing the specified cards.
      *
@@ -307,6 +315,7 @@ class CardsController extends Controller
             'logo' => ['file','required'],
             'about_me' => 'string|min:1',
             'alias' => 'required|string|min:1',
+            'email' => 'required|string|min:1',
             'facebook_url' => 'string|min:1|nullable',
             'twitter_url' => 'string|min:1|nullable',
             'instagram_url' => 'string|min:1|nullable',

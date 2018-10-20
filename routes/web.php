@@ -205,3 +205,38 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+<<<<<<< HEAD
+=======
+
+Route::group(
+[
+    'prefix' => 'requests',
+], function () {
+
+    Route::get('/', 'RequestsController@index')
+         ->name('requests.requests.index');
+
+    Route::get('/create','RequestsController@create')
+         ->name('requests.requests.create');
+
+    Route::get('/show/{requests}','RequestsController@show')
+         ->name('requests.requests.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{requests}/edit','RequestsController@edit')
+         ->name('requests.requests.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'RequestsController@store')
+         ->name('requests.requests.store');
+               
+    Route::put('requests/{requests}', 'RequestsController@update')
+         ->name('requests.requests.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/requests/{requests}','RequestsController@destroy')
+         ->name('requests.requests.destroy')
+         ->where('id', '[0-9]+');
+
+});
+>>>>>>> ceb173cbb5356bf523b09a81078c44505abaaca3
