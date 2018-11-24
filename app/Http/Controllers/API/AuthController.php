@@ -6,8 +6,10 @@
     use Illuminate\Support\Facades\Auth; 
     use App\User; 
     use Validator;
+use Illuminate\Validation\Rule;
     use Illuminate\Support\Facades\DB;
     use Exception;
+    use App\Models\resetsteps;
     
     class AuthController extends Controller 
     {
@@ -107,6 +109,55 @@
          
       }
       
+      public function newPassReset(Request $request) 
+      { 
+          try {
+//              \Illuminate\Support\Facades\DB::
+            $postArray = $request->all(); 
+            DB::beginTransaction();
+            $validator = Validator::make($request->all(), [
+            'temp_pass' => [                                                                  
+                'required',                                                            
+                    Rule::exists('resetsteps', 'temp_pass')->where(function ($query) use ($postArray) 
+                        { 
+                            $query->where('temp_pass', $postArray['temp_pass']);
+                        })
+                        ],
+                      'password' => 'required', 
+                      'c_password' => 'required|same:password', 
+                      
+                    ]);
+                    if ($validator->fails()) { 
+                      return response()->json(['data'=>$validator->errors(),'status'=>'erroe','status-code'=>'403','code'=>100],200);
+                    }
+                    $data = resetsteps::where('temp_pass',$postArray['temp_pass'])->select('email')->first();
+                    
+                    $postArray_password['password'] = bcrypt($postArray['password']); 
+                    
+                    $user = User::where('email',$data['email'])->update($postArray_password); 
+                    $user = User::where('email',$data['email'])->first(); 
+                    $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
+                    $success['name'] =  $user->name;
+                    $success['UserDetails'] =  $user;
+                    $ActivationProcess_obj = new \App\Http\Controllers\ActivationProcessesController();
+                    $ActivationProcess_obj->activationCode($user->id);
+                    $data->delete();
+            //        dd($user->id);
+            //        $code = \App\Models\ActivationProcess::create();
+                    DB::commit();
+                    return response()->json([
+                        'status' => 'success',
+                        'data' => $success,'status-code'=>200,'code'=>200
+                    ],200);
+          } catch (Exception $ex) {
+              DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $ex->getMessage(),'status-code'=>403 ,'code'=>100
+                    ],200);
+          }  
+         
+      }
       
       /** 
        * details api 

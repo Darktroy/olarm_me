@@ -14,7 +14,42 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test', function () {
+    return view('companies.registerComapny', ['name' => 'James']);
+});
 
+Route::group(
+[
+    'prefix' => 'companies',
+], function () {
+
+    Route::get('/', 'CompaniesController@index')
+         ->name('companies.company.index');
+
+    Route::get('/create','CompaniesController@create')
+         ->name('companies.company.create');
+
+    Route::get('/show/{company}','CompaniesController@show')
+         ->name('companies.company.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{company}/edit','CompaniesController@edit')
+         ->name('companies.company.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'CompaniesController@store')
+         ->name('companies.company.store');
+               
+    Route::put('company/{company}', 'CompaniesController@update')
+         ->name('companies.company.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/company/{company}','CompaniesController@destroy')
+         ->name('companies.company.destroy')
+         ->where('id', '[0-9]+');
+
+});
+/*
 Route::group(
 [
     'prefix' => 'activation_processes',
@@ -234,6 +269,39 @@ Route::group(
 
     Route::delete('/requests/{requests}','RequestsController@destroy')
          ->name('requests.requests.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+*/
+Route::group(
+[
+    'prefix' => 'resetsteps',
+], function () {
+
+    Route::get('/', 'ResetstepsController@index')
+         ->name('resetsteps.resetsteps.index');
+
+    Route::get('/create','ResetstepsController@create')
+         ->name('resetsteps.resetsteps.create');
+
+    Route::get('/show/{resetsteps}','ResetstepsController@show')
+         ->name('resetsteps.resetsteps.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{resetsteps}/edit','ResetstepsController@edit')
+         ->name('resetsteps.resetsteps.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'ResetstepsController@store')
+         ->name('resetsteps.resetsteps.store');
+               
+    Route::put('resetsteps/{resetsteps}', 'ResetstepsController@update')
+         ->name('resetsteps.resetsteps.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/resetsteps/{resetsteps}','ResetstepsController@destroy')
+         ->name('resetsteps.resetsteps.destroy')
          ->where('id', '[0-9]+');
 
 });

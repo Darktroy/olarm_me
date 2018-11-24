@@ -99,7 +99,9 @@ $users = User::pluck('id','id')->all();
               return response()->json([
                         'status' => 'error',
                         'data' => $exception->getMessage(),
-                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
+                        'errorData' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile()
+                      ,'status-code'=>403,'code'=>100
                     ],200);
         }
     }

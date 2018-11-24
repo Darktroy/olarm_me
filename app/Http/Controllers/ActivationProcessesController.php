@@ -206,13 +206,14 @@ class ActivationProcessesController extends Controller
 //                        'UserDetails' =>  $user,
                         'message' =>  'your account is Activated',
                         'status' => 'success','status-code'=>200,
-                        'data' => '',
+                        'data' => 'success',
                     ],200);
         } catch (Exception $exc) {
             DB::rollBack();
               return response()->json([
                         'status' => 'error',
-                        'data' => $ex->getMessage(),'status-code'=>403
+                        'data' => $ex->getMessage(),'status-code'=>403,
+                        'errorData' => $ex->getMessage()
                     ],200);
         }
 
