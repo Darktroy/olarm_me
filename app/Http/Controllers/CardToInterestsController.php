@@ -37,11 +37,8 @@ class CardToInterestsController extends Controller
      */
     public function create()
     {
-        $cardToInterests = CardToInterest::pluck('id','card_to_interest_id')->all();
-$interests = Interest::pluck('id','id')->all();
-$users = User::pluck('id','id')->all();
+    
         
-        return view('card_to_interests.create', compact('cardToInterests','interests','users'));
     }
 
     /**
@@ -115,9 +112,6 @@ $users = User::pluck('id','id')->all();
      */
     public function show($id)
     {
-        $cardToInterests = card_to_interests::with('cardtointerest','interest','user')->findOrFail($id);
-
-        return view('card_to_interests.show', compact('cardToInterests'));
     }
 
     /**
@@ -129,12 +123,7 @@ $users = User::pluck('id','id')->all();
      */
     public function edit($id)
     {
-        $cardToInterests = card_to_interests::findOrFail($id);
-        $cardToInterests = CardToInterest::pluck('id','card_to_interest_id')->all();
-$interests = Interest::pluck('id','id')->all();
-$users = User::pluck('id','id')->all();
-
-        return view('card_to_interests.edit', compact('cardToInterests','cardToInterests','interests','users'));
+        
     }
 
     /**
@@ -173,18 +162,7 @@ $users = User::pluck('id','id')->all();
      */
     public function destroy($id)
     {
-        try {
-            $cardToInterests = card_to_interests::findOrFail($id);
-            $cardToInterests->delete();
-
-            return redirect()->route('card_to_interests.card_to_interests.index')
-                             ->with('success_message', 'Card To Interests was successfully deleted!');
-
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }
+       
     }
 
     
@@ -205,6 +183,29 @@ $users = User::pluck('id','id')->all();
         ];
         $data = Validator::make($request->all(), $rules, $messages);
         return $data;
+    }
+    //showPersonal
+    public function showPersonal(Request $request) {
+        $user = Auth::user();
+        try {
+            $cardToInterestObj = new card_to_interests();
+            $data = $cardToInterestObj->interestsAllToUser($user->id);
+            
+            return response()->json([
+                    'data' =>  $data,
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
+
+        } catch (Exception $exception) {
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),
+                        'errorData' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile()
+                      ,'status-code'=>403,'code'=>100
+                    ],200);
+        }
+
     }
 
 }

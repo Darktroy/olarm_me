@@ -36,13 +36,7 @@ Route::middleware('auth:api')->group(function(){
 
     Route::group(['prefix' => 'card_to_interests',], function () {
 
-        Route::get('/', 'CardToInterestsController@index');
-
-        Route::get('/create','CardToInterestsController@create');
-
-        Route::post('/show/{cardToInterests}','CardToInterestsController@show');
-
-        Route::get('/{cardToInterests}/edit','CardToInterestsController@edit');
+        Route::post('/show-personal-interested','CardToInterestsController@showPersonal');
 
         Route::post('/add-interest-to-cards', 'CardToInterestsController@store');
 

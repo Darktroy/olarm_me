@@ -72,6 +72,29 @@ class card_to_interests extends Model
         return $this->belongsTo('App\Models\User','user_id');
     }
 
+    public function interestsAllToUser($userId) {
+        $interestlistRowdata = interestes::select('interest_id','name')->get()->toArray();
+        $cardIntersIdsRowdata = card_to_interests::where('user_id',$userId)
+                ->select('interest_id')->get()->toArray();
+        $cardIntersIds = array(); 
+        $interestList = array();
+        if(!empty($cardIntersIdsRowdata)){
+            foreach ($cardIntersIdsRowdata as $key => $value) {
+               $cardIntersIds[] = $value['interest_id'] ;
+            }
+        } //if(!empty($cardIntersIdsRowdata))
+        
+        foreach ($interestlistRowdata as $key => $value) {
+            if(in_array($value['interest_id'], $cardIntersIds)){
+                $interestList[] = array("interest_id"=>$value['interest_id'] ,
+                    "name"=>$value['name'] ,"belongToCard"=> 1 );
+            } else {
+                $interestList[] = array("interest_id"=>$value['interest_id'] ,
+                    "name"=>$value['name'] ,"belongToCard"=> 0);
+            }
+        }
+        return $interestList;
+    }
 
 
 }
