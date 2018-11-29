@@ -63,7 +63,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
             $isProfileExist = profile::where('user_id',$user->id)->get();
             if(count($isProfileExist)>0){
                 return response()->json([
-                    'status' => 'error','error'=>'profile of this user already exist',
+                    'status' => 'error','error-data'=>'profile of this user already exist',
                     'status-code'=>401],200);
                 }
             $data = $request->all();
@@ -306,12 +306,11 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
 //            'template_layout_id' => 'required|integer|min:1',
 //            'logo' => ['file','required'],
 //            'about' => 'string|min:1',
-//            'alias' => 'required|string|min:1',
-//            'facebook_url' => 'string|min:1|nullable',
-//            'twitter_url' => 'string|min:1|nullable',
-//            'instagram_url' => 'string|min:1|nullable',
-//            'youtube_url' => 'string|min:1|nullable',
-     
+            'facebook_url' => 'string|min:1|nullable',
+            'twitter_url' => 'string|min:1|nullable',
+            'instagram_url' => 'string|min:1|nullable',
+            'youtube_url' => 'string|min:1|nullable',
+            'alias' => 'required|string|min:1',
         ];
         
 //        $data = $request->validate($rules);

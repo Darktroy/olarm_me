@@ -314,12 +314,12 @@ class CardsController extends Controller
             'template_layout_id' => 'required|integer|min:1',
             'logo' => ['file','required'],
             'about_me' => 'string|min:1',
-            'alias' => 'required|string|min:1',
+//            'alias' => 'required|string|min:1',
             'email' => 'required|string|min:1',
-            'facebook_url' => 'string|min:1|nullable',
-            'twitter_url' => 'string|min:1|nullable',
-            'instagram_url' => 'string|min:1|nullable',
-            'youtube_url' => 'string|min:1|nullable',
+//            'facebook_url' => 'string|min:1|nullable',
+//            'twitter_url' => 'string|min:1|nullable',
+//            'instagram_url' => 'string|min:1|nullable',
+//            'youtube_url' => 'string|min:1|nullable',
             'card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
      
         ];
