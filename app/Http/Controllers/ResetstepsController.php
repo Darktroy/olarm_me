@@ -6,6 +6,7 @@ use App\Models\resetsteps;
 use App\User;
 use App\Models\profile;
 use App\Models\cards;
+use App\Models\recent_activity;
 use Illuminate\Http\Request;
 use App\Models\TemplateLayout;
 use App\Http\Controllers\Controller;
@@ -140,7 +141,6 @@ class ResetstepsController extends Controller
             DB::beginTransaction();
             $resetObjectModel = new resetsteps();
             $data = $resetObjectModel->resetByEmail($request);
-            
             DB::commit();
             return response()->json(['data' =>  $data,'status' => 'success','status-code'=>200, 'code'=>200,
                 'note'=>'this temparory password will be terminate in 12 hour'],200);

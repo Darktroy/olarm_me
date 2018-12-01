@@ -369,3 +369,67 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'recent_activities',
+], function () {
+
+    Route::get('/', 'RecentActivitiesController@index')
+         ->name('recent_activities.recent_activity.index');
+
+    Route::get('/create','RecentActivitiesController@create')
+         ->name('recent_activities.recent_activity.create');
+
+    Route::get('/show/{recentActivity}','RecentActivitiesController@show')
+         ->name('recent_activities.recent_activity.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{recentActivity}/edit','RecentActivitiesController@edit')
+         ->name('recent_activities.recent_activity.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'RecentActivitiesController@store')
+         ->name('recent_activities.recent_activity.store');
+               
+    Route::put('recent_activity/{recentActivity}', 'RecentActivitiesController@update')
+         ->name('recent_activities.recent_activity.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/recent_activity/{recentActivity}','RecentActivitiesController@destroy')
+         ->name('recent_activities.recent_activity.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'invitation_contacts',
+], function () {
+
+    Route::get('/', 'InvitationContactsController@index')
+         ->name('invitation_contacts.invitation_contacts.index');
+
+    Route::get('/create','InvitationContactsController@create')
+         ->name('invitation_contacts.invitation_contacts.create');
+
+    Route::get('/show/{invitationContacts}','InvitationContactsController@show')
+         ->name('invitation_contacts.invitation_contacts.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{invitationContacts}/edit','InvitationContactsController@edit')
+         ->name('invitation_contacts.invitation_contacts.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'InvitationContactsController@store')
+         ->name('invitation_contacts.invitation_contacts.store');
+               
+    Route::put('invitation_contacts/{invitationContacts}', 'InvitationContactsController@update')
+         ->name('invitation_contacts.invitation_contacts.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/invitation_contacts/{invitationContacts}','InvitationContactsController@destroy')
+         ->name('invitation_contacts.invitation_contacts.destroy')
+         ->where('id', '[0-9]+');
+
+});

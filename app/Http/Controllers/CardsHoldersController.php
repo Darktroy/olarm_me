@@ -23,9 +23,7 @@ class CardsHoldersController extends Controller
      */
     public function index()
     {
-        $cardsHolders = cards_holder::with('cardholder','user')->paginate(25);
-
-        return view('cards_holders.index', compact('cardsHolders'));
+        
     }
 
     /**
@@ -35,10 +33,7 @@ class CardsHoldersController extends Controller
      */
     public function create()
     {
-        $cardHolders = CardHolder::pluck('id','id')->all();
-$users = User::pluck('id','id')->all();
         
-        return view('cards_holders.create', compact('cardHolders','users'));
     }
 
     /**
@@ -67,15 +62,17 @@ $users = User::pluck('id','id')->all();
                   return response()->json([
                     'data' =>$test_if_exist[0],
                     'status' => 'error',
-                    'error'=>'Sorry card holder already exist',
+                    'error-data'=>'Sorry card holder already exist',
                     'Appium-status-code'=>401
                     ],200);
                 }
                 $createdHolderCard = cards_holder::create($data);
+                recent_activity::create(array("user_id"=>$user->id ,"action_by_user_id"=>0,
+                    "description"=>"createCardHolder" ,"profile_image_url"=> null));
                 DB::commit();
                 return response()->json([
                     'data' =>  $createdHolderCard,
-                    'status' => 'success','Appium-status-code'=>200,
+                    'status' => 'success','status-code'=>200,
                 ],200);
         } catch (Exception $exception) {
 
@@ -111,11 +108,7 @@ $users = User::pluck('id','id')->all();
      */
     public function edit($id)
     {
-        $cardsHolder = cards_holder::findOrFail($id);
-        $cardHolders = CardHolder::pluck('id','id')->all();
-$users = User::pluck('id','id')->all();
-
-        return view('cards_holders.edit', compact('cardsHolder','cardHolders','users'));
+        
     }
 
     /**
@@ -129,6 +122,7 @@ $users = User::pluck('id','id')->all();
     public function update($id, Request $request)
     {
         try {
+            DB::beginTransaction();
             $data = $this->getData($request);
             if ($data->fails()) { 
                 return response()->json([
@@ -145,16 +139,16 @@ $users = User::pluck('id','id')->all();
             }
 //            dd($cardsHolder[0]);
             $cardsHolder[0]->update($request->all());
+            recent_activity::create(array("user_id"=>$user->id,"action_by_user_id"=>0,
+                    "description"=>"updateCardHolder" ,"profile_image_url"=> null));
             DB::commit();
-                return response()->json([
-                    'status' => 'success','Appium-status-code'=>200,
-                ],200);
+                return response()->json(['status' => 'success','status-code'=>200,],200);
         } catch (Exception $exception) {
                 DB::rollBack();
                 return response()->json([
                           'status' => 'error',
                           'data' => $exception->getMessage(),
-                    'special-data'=>$exception->getLine().' '.$exception->getFile(),'Appium-status-code'=>403
+                    'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403
                       ],200);
               
         }        

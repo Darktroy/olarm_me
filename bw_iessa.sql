@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 20, 2018 at 02:51 PM
+-- Generation Time: Nov 29, 2018 at 05:29 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -44,7 +44,9 @@ CREATE TABLE `activation_processes` (
 INSERT INTO `activation_processes` (`id`, `activationcode`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'a111', 7, '2018-08-07 15:46:56', '2018-08-07 15:46:56', NULL),
 (4, 'a111', 12, '2018-08-20 00:27:16', '2018-08-20 00:27:16', NULL),
-(5, 'a111', 15, '2018-09-10 06:26:04', '2018-09-10 06:26:04', NULL);
+(5, 'a111', 15, '2018-09-10 06:26:04', '2018-09-10 06:26:04', NULL),
+(6, 'a111', 1, '2018-11-24 09:16:03', '2018-11-24 09:16:03', NULL),
+(7, 'a111', 16, '2018-11-24 14:02:17', '2018-11-24 14:02:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -72,8 +74,7 @@ CREATE TABLE `cards` (
   `instagram_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `twitter_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `facebook_url` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alias` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(1028) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alias` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `template_layout_id` int(3) NOT NULL,
   `logo` varchar(2056) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `picture` varchar(2056) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -85,24 +86,22 @@ CREATE TABLE `cards` (
 -- Dumping data for table `cards`
 --
 
-INSERT INTO `cards` (`card_id`, `created_at`, `updated_at`, `user_id`, `last_name`, `first_name`, `create_by`, `privacy`, `company_name`, `position`, `cell_phone_number`, `landline`, `fax`, `website_url`, `about_me`, `youtube_url`, `instagram_url`, `twitter_url`, `facebook_url`, `alias`, `email`, `template_layout_id`, `logo`, `picture`, `personal`, `card_holder_id`) VALUES
-(1, '2018-08-16 08:39:33', '2018-08-16 08:39:33', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', '', 0, NULL, '', 0, 0),
-(2, '2018-08-16 08:41:36', '2018-08-16 08:41:36', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', '', 0, NULL, '', 0, 0),
-(3, '2018-08-16 08:48:54', '2018-08-16 08:48:54', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', '', 0, NULL, '', 0, 0),
-(4, '2018-08-16 15:04:38', '2018-08-16 15:04:38', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', '', 0, NULL, '', 0, 0),
-(5, '2018-08-22 06:44:36', '2018-08-22 06:44:36', 13, '', '', 13, 0, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_20180822084436c51ce410c124a10e0db5e4b97fc2af39.jpeg', 'http://localhost/BWmobapi/public/card_image/profile_pic_c51ce410c124a10e0db5e4b97fc2af39.png', 1, 0),
-(6, '2018-08-25 08:40:03', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 14, 1, 'com name test', 'Aza', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', 'test', NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_0db6b2599e275ff69482f9cf0a527a03aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 0, 0),
-(7, '2018-08-25 11:26:23', '2018-08-25 11:26:23', NULL, 'test 2', 'test 1', 14, 0, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_d1dd3dac52dfbfc8fb9fcd5a732d843faab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_d1dd3dac52dfbfc8fb9fcd5a732d843faab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
-(8, '2018-08-25 11:35:42', '2018-08-25 11:35:42', NULL, 'test 2', 'test 1', 14, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_ed01f7e0883658bab65f1d49beadde30aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_ed01f7e0883658bab65f1d49beadde30aab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
-(9, '2018-08-25 11:39:13', '2018-08-25 11:39:13', NULL, 'test 2', 'test 1', 14, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_a0ebd294b93978cd750a7b192541c2b3aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_a0ebd294b93978cd750a7b192541c2b3aab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
-(10, '2018-08-29 08:48:24', '2018-08-29 08:48:24', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_82fe3afa747ef6aff4d183101b067681c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_82fe3afa747ef6aff4d183101b067681c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(11, '2018-08-29 08:48:42', '2018-08-29 08:48:42', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_804638effd67cfa2d019015d2f9a98aac9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_804638effd67cfa2d019015d2f9a98aac9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(14, '2018-08-29 09:50:07', '2018-08-29 09:50:07', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_db5e293bcde1ee520ec2615d1a74d416c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_db5e293bcde1ee520ec2615d1a74d416c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(15, '2018-08-29 09:50:49', '2018-08-29 09:50:49', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_4a24e5379089e36362bde81d072c9553c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_4a24e5379089e36362bde81d072c9553c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(16, '2018-08-29 10:03:58', '2018-08-29 10:07:39', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'Aza', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', 'test', NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_64124e82ab14748a04c3c3764b074864c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_64124e82ab14748a04c3c3764b074864c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(17, '2018-09-03 03:36:46', '2018-09-03 03:36:46', NULL, 'test 2', 'test 1', 81, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_c1e7f50672c87a4dea78bc0c243ecd6ac9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_c1e7f50672c87a4dea78bc0c243ecd6ac9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
-(19, '2018-09-19 06:18:37', '2018-09-19 06:18:37', 8, 'Test me if you can', 'tasht', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_88b28fd08487136ad0b90e4fc4cd5902aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 1, 0),
-(20, '2018-09-19 06:21:40', '2018-09-19 06:21:40', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', '', 11, 'http://localhost/BWmobapi/public/logo_image/logo_bf08c7a7f2976f76bcc5b891b7cd3e82c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_bf08c7a7f2976f76bcc5b891b7cd3e82c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0);
+INSERT INTO `cards` (`card_id`, `created_at`, `updated_at`, `user_id`, `last_name`, `first_name`, `create_by`, `privacy`, `company_name`, `position`, `cell_phone_number`, `landline`, `fax`, `website_url`, `about_me`, `youtube_url`, `instagram_url`, `twitter_url`, `facebook_url`, `alias`, `template_layout_id`, `logo`, `picture`, `personal`, `card_holder_id`) VALUES
+(1, '2018-08-16 08:39:33', '2018-08-16 08:39:33', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', 0, NULL, '', 0, 0),
+(2, '2018-08-16 08:41:36', '2018-08-16 08:41:36', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', 0, NULL, '', 0, 0),
+(3, '2018-08-16 08:48:54', '2018-08-16 08:48:54', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', 0, NULL, '', 0, 0),
+(4, '2018-08-16 15:04:38', '2018-08-16 15:04:38', 8, '', '', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', '獶', NULL, NULL, NULL, NULL, '', 0, NULL, '', 0, 0),
+(5, '2018-08-22 06:44:36', '2018-08-22 06:44:36', 13, '', '', 13, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_20180822084436c51ce410c124a10e0db5e4b97fc2af39.jpeg', 'http://localhost/BWmobapi/public/card_image/profile_pic_c51ce410c124a10e0db5e4b97fc2af39.png', 1, 0),
+(6, '2018-08-25 08:40:03', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 14, 1, 'com name test', 'Aza', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', 'test', NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_0db6b2599e275ff69482f9cf0a527a03aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 0, 0),
+(7, '2018-08-25 11:26:23', '2018-08-25 11:26:23', NULL, 'test 2', 'test 1', 14, 0, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_d1dd3dac52dfbfc8fb9fcd5a732d843faab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_d1dd3dac52dfbfc8fb9fcd5a732d843faab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
+(8, '2018-08-25 11:35:42', '2018-08-25 11:35:42', NULL, 'test 2', 'test 1', 14, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_ed01f7e0883658bab65f1d49beadde30aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_ed01f7e0883658bab65f1d49beadde30aab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
+(9, '2018-08-25 11:39:13', '2018-08-25 11:39:13', NULL, 'test 2', 'test 1', 14, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_a0ebd294b93978cd750a7b192541c2b3aab3238922bcc25a6f606eb525ffdc56.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_a0ebd294b93978cd750a7b192541c2b3aab3238922bcc25a6f606eb525ffdc56.jpg', 0, 0),
+(10, '2018-08-29 08:48:24', '2018-08-29 08:48:24', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_82fe3afa747ef6aff4d183101b067681c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_82fe3afa747ef6aff4d183101b067681c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
+(11, '2018-08-29 08:48:42', '2018-08-29 08:48:42', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_804638effd67cfa2d019015d2f9a98aac9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_804638effd67cfa2d019015d2f9a98aac9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
+(14, '2018-08-29 09:50:07', '2018-08-29 09:50:07', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_db5e293bcde1ee520ec2615d1a74d416c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_db5e293bcde1ee520ec2615d1a74d416c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
+(15, '2018-08-29 09:50:49', '2018-08-29 09:50:49', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_4a24e5379089e36362bde81d072c9553c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_4a24e5379089e36362bde81d072c9553c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
+(16, '2018-08-29 10:03:58', '2018-08-29 10:07:39', NULL, 'test 2', 'test 1', 8, 1, 'com name test', 'Aza', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', 'test', NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_64124e82ab14748a04c3c3764b074864c9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_64124e82ab14748a04c3c3764b074864c9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0),
+(17, '2018-09-03 03:36:46', '2018-09-03 03:36:46', NULL, 'test 2', 'test 1', 81, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, 'hyu', 11, 'http://localhost/BWmobapi/public/logo_image/logo_c1e7f50672c87a4dea78bc0c243ecd6ac9f0f895fb98ab9159f51fd0297e236d.jpg', 'http://localhost/BWmobapi/public/card_image/profile_pic_notpersonal_c1e7f50672c87a4dea78bc0c243ecd6ac9f0f895fb98ab9159f51fd0297e236d.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -152,15 +151,80 @@ CREATE TABLE `card_to_interests` (
 --
 
 INSERT INTO `card_to_interests` (`card_to_interest_id`, `created_at`, `updated_at`, `interest_id`, `name`, `user_id`, `card_id`, `private`) VALUES
-(1, '2018-09-03 08:45:57', '2018-09-03 08:45:57', 1, 'interest trest 1', 14, 0, '0'),
+(1, '2018-09-03 08:45:57', '2018-09-03 08:45:57', 1, 'interest trest 1', 16, 0, '0'),
 (2, '2018-09-03 08:47:32', '2018-09-03 08:47:32', 2, 'kora', 14, 0, '1'),
 (3, '2018-09-03 08:48:04', '2018-09-03 08:48:04', 0, 'kora', 14, 0, '1'),
 (4, '2018-09-03 08:48:21', '2018-09-03 08:48:21', 0, 'kora', 14, 0, '1'),
-(5, '2018-09-03 09:31:56', '2018-09-03 09:31:56', 1, 'interest trest 1', 14, 15, '0'),
+(5, '2018-09-03 09:31:56', '2018-09-03 09:31:56', 2, 'interest trest 1', 16, 15, '0'),
 (6, '2018-09-03 09:31:56', '2018-09-03 09:31:56', 0, 'kora', 14, 15, '1'),
 (7, '2018-09-03 09:33:33', '2018-09-03 09:33:33', 1, 'interest trest 1', 14, 6, '0'),
 (8, '2018-09-03 09:33:33', '2018-09-03 09:33:33', 0, 'kora', 14, 6, '1'),
 (9, '2018-09-03 09:33:37', '2018-09-03 09:33:37', 0, 'kora', 14, 6, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `company_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `company_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_logo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_landline` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_fax` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_website` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_about` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_twitter` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_instagram` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_youtube` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_field` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_industry` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_speciality` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_countary` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_district` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `department_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`department_id`, `created_at`, `updated_at`, `title`, `email`) VALUES
+(1, NULL, NULL, 'customer satisfy', 'el7ob_koloh@ba7bkWahshtine.a7a'),
+(2, NULL, NULL, 'secretary ', 'elbet_susan_el_shmal@bar.koko');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faqs`
+--
+
+CREATE TABLE `faqs` (
+  `faq_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `question` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `answer` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -185,6 +249,29 @@ INSERT INTO `interestes` (`interest_id`, `created_at`, `updated_at`, `name`) VAL
 (3, NULL, NULL, 'interest trest 3'),
 (4, NULL, NULL, 'interest trest 4'),
 (5, NULL, NULL, 'interest trest 5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messag_records`
+--
+
+CREATE TABLE `messag_records` (
+  `messag_record_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title_of_message` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messag_records`
+--
+
+INSERT INTO `messag_records` (`messag_record_id`, `created_at`, `updated_at`, `email`, `title_of_message`, `message`, `user_id`) VALUES
+(3, '2018-11-29 03:44:29', '2018-11-29 03:44:29', 'el7ob_koloh@ba7bkWahshtine.a7a', NULL, 'sad', 14);
 
 -- --------------------------------------------------------
 
@@ -215,7 +302,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2018_08_16_151038_create_cards_holders_table', 4),
 (11, '2018_08_29_103002_create_user_cards_table', 5),
 (12, '2018_08_29_142511_create_interestes_table', 6),
-(13, '2018_08_29_145316_create_card_to_interests_table', 6);
+(13, '2018_08_29_145316_create_card_to_interests_table', 6),
+(14, '2018_09_03_132430_create_faqs_table', 7),
+(15, '2018_09_03_132537_create_terms_table', 7),
+(16, '2018_09_19_064205_create_requests_table', 7),
+(17, '2018_11_19_110500_create_companies_table', 7),
+(18, '2018_11_24_051415_create_resetsteps_table', 8),
+(19, '2018_11_25_204848_create_departments_table', 9),
+(20, '2018_11_29_034537_create_messag_records_table', 10);
 
 -- --------------------------------------------------------
 
@@ -241,7 +335,10 @@ CREATE TABLE `oauth_access_tokens` (
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
 ('03d96c9adc65cc0efc969c9a1c0e38df6d8e1e0e9430efe02539c197ed1183eb558a160a40fd8fbf', 14, 5, 'LaraPassport', '[]', 0, '2018-08-25 08:36:50', '2018-08-25 08:36:50', '2019-08-25 10:36:50'),
+('0b9a33db1a18ffe238f5b91bfd645c781cbc07969dd20e1fd87d4e3da2918ac421edcc6b9c2cea60', 16, 5, 'LaraPassport', '[]', 0, '2018-11-24 12:02:16', '2018-11-24 12:02:16', '2019-11-24 14:02:16'),
+('10752421eebaa8b88cd0c328cfa1ba447adfd68c2d4292b936512c3381b923e3d32df8a089dd618d', 1, 5, 'LaraPassport', '[]', 0, '2018-11-24 07:16:03', '2018-11-24 07:16:03', '2019-11-24 09:16:03'),
 ('1acd9211229a0fe0e548175cde77e18830aafb7a5e45f2944f1854c55b185cb3b1580cde634270d9', 9, 5, 'LaraPassport', '[]', 0, '2018-08-16 06:38:08', '2018-08-16 06:38:08', '2019-08-16 08:38:08'),
+('33e936a92a3a925a408b0f206e7908845e392c0f2d08d674351df5e566919617d918dda64376a89c', 1, 5, 'LaraPassport', '[]', 0, '2018-11-24 07:21:14', '2018-11-24 07:21:14', '2019-11-24 09:21:14'),
 ('4defcf43c54d1ae2b0bd84ce6c0ae3f5b82cc74078378c9bef172733edcc56f2009830cea689df36', 15, 5, 'LaraPassport', '[]', 0, '2018-09-10 04:26:04', '2018-09-10 04:26:04', '2019-09-10 06:26:04'),
 ('4f711b06fea85c8817f25d2db18898a45ea4a8eb294971b6647a2388d298132fe873469257d86610', 3, 5, 'LaraPassport', '[]', 0, '2018-08-06 08:14:09', '2018-08-06 08:14:09', '2019-08-06 10:14:09'),
 ('6149db1706ce32d42fe0ef49cf64c86d0485780eeef295cdc8f11197137c978f65ef5f62243484b7', 5, 5, 'LaraPassport', '[]', 0, '2018-08-07 13:18:16', '2018-08-07 13:18:16', '2019-08-07 15:18:16'),
@@ -369,19 +466,24 @@ CREATE TABLE `profiles` (
   `field` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `industry` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `specialty` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `personal` tinyint(1) NOT NULL DEFAULT '0'
+  `personal` tinyint(1) NOT NULL DEFAULT '0',
+  `facebook_url` text COLLATE utf8mb4_unicode_ci,
+  `twitter_url` text COLLATE utf8mb4_unicode_ci,
+  `youtube_url` text COLLATE utf8mb4_unicode_ci,
+  `instagram_url` text COLLATE utf8mb4_unicode_ci,
+  `alias` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`profile_id`, `created_at`, `updated_at`, `user_id`, `last_name`, `first_name`, `picture`, `gender`, `country`, `city`, `district`, `field`, `industry`, `specialty`, `personal`) VALUES
-(10, '2018-08-16 07:12:51', '2018-08-16 07:12:51', 9, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_45c48cce2e2d7fbdea1afc51c7c6ad26.jpg', 'male', 'egypt', 'cairo', 'shobtra', 'en12345', 'it', 'software', 1),
-(11, '2018-08-19 13:40:46', '2018-08-19 13:40:46', 10, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_d3d9446802a44259755d38e6d163e820.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1),
-(12, '2018-08-19 22:27:54', '2018-08-19 22:27:54', 11, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_6512bd43d9caa6e02c990b0a82652dca.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1),
-(13, '2018-08-22 05:44:29', '2018-08-22 05:44:29', 13, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_c51ce410c124a10e0db5e4b97fc2af39.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1),
-(14, '2018-08-25 08:38:19', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1);
+INSERT INTO `profiles` (`profile_id`, `created_at`, `updated_at`, `user_id`, `last_name`, `first_name`, `picture`, `gender`, `country`, `city`, `district`, `field`, `industry`, `specialty`, `personal`, `facebook_url`, `twitter_url`, `youtube_url`, `instagram_url`, `alias`) VALUES
+(10, '2018-08-16 07:12:51', '2018-08-16 07:12:51', 9, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_45c48cce2e2d7fbdea1afc51c7c6ad26.jpg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, ''),
+(11, '2018-08-19 13:40:46', '2018-08-19 13:40:46', 10, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_d3d9446802a44259755d38e6d163e820.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, ''),
+(12, '2018-08-19 22:27:54', '2018-08-19 22:27:54', 11, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_6512bd43d9caa6e02c990b0a82652dca.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, ''),
+(13, '2018-08-22 05:44:29', '2018-08-22 05:44:29', 13, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_c51ce410c124a10e0db5e4b97fc2af39.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, ''),
+(14, '2018-08-25 08:38:19', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -390,30 +492,49 @@ INSERT INTO `profiles` (`profile_id`, `created_at`, `updated_at`, `user_id`, `la
 --
 
 CREATE TABLE `requests` (
-  `request_id` int(5) NOT NULL,
-  `from_id` int(5) NOT NULL,
-  `to_id` int(5) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `request_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `from_id` int(10) UNSIGNED DEFAULT NULL,
+  `to_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `requests`
+-- Table structure for table `resetsteps`
 --
 
-INSERT INTO `requests` (`request_id`, `from_id`, `to_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(4, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(5, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(6, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(7, 5, 19, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(8, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(9, 5, 19, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(10, 5, 19, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(11, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(12, 19, 5, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL),
-(13, 5, 19, '2018-09-19 11:22:43', '2018-09-19 11:22:43', NULL);
+CREATE TABLE `resetsteps` (
+  `resetsteps_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `confirmation_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `confirmation_link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `temp_pass` varchar(4091) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `resetsteps`
+--
+
+INSERT INTO `resetsteps` (`resetsteps_id`, `created_at`, `updated_at`, `email`, `confirmation_code`, `confirmation_link`, `temp_pass`) VALUES
+(1, '2018-11-24 05:30:16', '2018-11-24 07:08:53', 'eng.iessa.mostafa300720182320@gmail.com', 'androw12345', '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');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `terms`
+--
+
+CREATE TABLE `terms` (
+  `terms_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -439,7 +560,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `active`) VALUES
-(1, 'wintop-admin', '', '', 'eng.iessa.mostafa300720182320@gmail.com', '$2y$10$j1e9CS6tsg7gY26fQLT8/uWDCR3w.JdnGK.t6luDppzsVjsAJ4Hsa', NULL, '2018-08-06 06:26:25', '2018-08-06 06:26:25', 0),
+(1, 'wintop-admin', '', '', 'eng.iessa.mostafa300720182320@gmail.com', '$2y$10$4jUfHYb1e7UoUJVXPyjp0.b/xCBM/wyTTg88QnfL1Gfa1W/H2t0cq', NULL, '2018-08-06 06:26:25', '2018-11-24 07:21:13', 0),
 (2, 'wintop-admin', '', '', 'eng.iessa.mostafa3400720182320@gmail.com', '$2y$10$p7GVK3IYoM0UCQ8i2oN.SeWX.Ajrdw1JGVqj1K.48d6ewa6cuZTeq', NULL, '2018-08-06 07:51:24', '2018-08-06 07:51:24', 0),
 (3, 'wintop-admin', '', '', 'eng.iessa.mostafa34007201d82320@gmail.com', '$2y$10$NkxZUCfcG5MmKKl0Ere/Gu01ifA6LkJczSdIv2AgkEoZCmWsBpvoq', NULL, '2018-08-06 08:14:08', '2018-08-06 08:14:08', 0),
 (5, 'wintop-admin', '', '', 'eng.iessa.mostafa07Aug2018@gmail.com', '$2y$10$dET2WthIBaEbUdIHkft1bu6ioQbrPXQd9/BqjkJ2NTzADoHi2PrLi', NULL, '2018-08-07 13:18:16', '2018-08-07 13:18:16', 0),
@@ -451,7 +572,8 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 (12, 'wintop-admin', 'wintop-admin', 'dd', 'eng.iessa.mostafa19082013@gmail.com', '$2y$10$Wlq7sP6XraUW1U8y/7DRKe0DaJp3Ydz2806VoWW5eFpS8SQvXzA2K', NULL, '2018-08-19 22:27:16', '2018-08-19 22:27:16', 0),
 (13, 'wintop-admin', 'wintop-admin', 'dd', 'eng.iessa.mostafa22082013@gmail.com', '$2y$10$fu/u5VdoMNDF6LsgeECIfeVFlwzRyJ22RcNByoYfGwNYOiN.sjz/C', NULL, '2018-08-22 05:43:46', '2018-08-22 05:44:09', 1),
 (14, 'wintop-admin', 'tasht', 'Test me if you can', 'eng.iessa.mostafa25082013@gmail.com', '$2y$10$yUbnQRQjBcGOwD6sYfmv9eyJzhB4FvDIfb9tniVJXrSataEBV1B9y', NULL, '2018-08-25 08:36:49', '2018-08-26 10:27:36', 1),
-(15, 'wintop-admin', 'wintop-admin', 'dd', 'eng.iessa.mostafa29082013@gmail.com', '$2y$10$jF7F9..DlOGRFCrxq2MUq.60BLSMfvRWVZ6g93D2EEstNXaUudE02', NULL, '2018-09-10 04:26:03', '2018-09-10 04:26:03', 0);
+(15, 'wintop-admin', 'wintop-admin', 'dd', 'eng.iessa.mostafa29082013@gmail.com', '$2y$10$jF7F9..DlOGRFCrxq2MUq.60BLSMfvRWVZ6g93D2EEstNXaUudE02', NULL, '2018-09-10 04:26:03', '2018-09-10 04:26:03', 0),
+(16, 'wintop-admin', 'wintop-admin', 'dd', 'eng.iessa.mostafa10112013@gmail.com', '$2y$10$20mxG0yfIYbT0WAoFh4RQOYEzuKAiEuhB9uhe/G.KiRapOn0A07IO', NULL, '2018-11-24 12:02:15', '2018-11-24 12:02:15', 0);
 
 -- --------------------------------------------------------
 
@@ -476,13 +598,7 @@ INSERT INTO `user_cards` (`user_card_id`, `created_at`, `updated_at`, `user_id`,
 (5, '2018-09-03 03:36:46', '2018-09-03 03:36:46', 8, 0, 17),
 (6, '2018-09-03 03:36:46', '2018-09-03 03:36:46', 8, 0, 1),
 (7, '2018-09-03 03:36:46', '2018-09-03 03:36:46', 8, 0, 2),
-(8, '2018-09-03 03:36:46', '2018-09-03 03:36:46', 8, 0, 3),
-(9, '2018-09-19 06:18:37', '2018-09-19 06:18:37', 14, 0, 19),
-(10, '2018-09-19 06:21:40', '2018-09-19 06:21:40', 8, 0, 20),
-(11, '2018-09-19 09:01:45', '2018-09-19 09:01:45', 13, 0, 19),
-(12, '2018-09-19 09:01:45', '2018-09-19 09:01:45', 8, 0, 5),
-(13, '2018-09-19 10:54:02', '2018-09-19 10:54:02', 8, 0, 5),
-(14, '2018-09-19 10:54:02', '2018-09-19 10:54:02', 13, 0, 19);
+(8, '2018-09-03 03:36:46', '2018-09-03 03:36:46', 8, 0, 3);
 
 --
 -- Indexes for dumped tables
@@ -516,10 +632,35 @@ ALTER TABLE `card_to_interests`
   ADD KEY `card_to_interests_user_id_index` (`user_id`);
 
 --
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`department_id`);
+
+--
+-- Indexes for table `faqs`
+--
+ALTER TABLE `faqs`
+  ADD PRIMARY KEY (`faq_id`);
+
+--
 -- Indexes for table `interestes`
 --
 ALTER TABLE `interestes`
   ADD PRIMARY KEY (`interest_id`);
+
+--
+-- Indexes for table `messag_records`
+--
+ALTER TABLE `messag_records`
+  ADD PRIMARY KEY (`messag_record_id`),
+  ADD KEY `messag_records_user_id_index` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -577,7 +718,21 @@ ALTER TABLE `profiles`
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
-  ADD PRIMARY KEY (`request_id`);
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `requests_from_id_index` (`from_id`),
+  ADD KEY `requests_to_id_index` (`to_id`);
+
+--
+-- Indexes for table `resetsteps`
+--
+ALTER TABLE `resetsteps`
+  ADD PRIMARY KEY (`resetsteps_id`);
+
+--
+-- Indexes for table `terms`
+--
+ALTER TABLE `terms`
+  ADD PRIMARY KEY (`terms_id`);
 
 --
 -- Indexes for table `users`
@@ -603,13 +758,13 @@ ALTER TABLE `user_cards`
 -- AUTO_INCREMENT for table `activation_processes`
 --
 ALTER TABLE `activation_processes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `cards`
 --
 ALTER TABLE `cards`
-  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cards_holders`
@@ -624,16 +779,40 @@ ALTER TABLE `card_to_interests`
   MODIFY `card_to_interest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `department_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `faqs`
+--
+ALTER TABLE `faqs`
+  MODIFY `faq_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `interestes`
 --
 ALTER TABLE `interestes`
   MODIFY `interest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `messag_records`
+--
+ALTER TABLE `messag_records`
+  MODIFY `messag_record_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -657,19 +836,31 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `request_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `resetsteps`
+--
+ALTER TABLE `resetsteps`
+  MODIFY `resetsteps_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `terms`
+--
+ALTER TABLE `terms`
+  MODIFY `terms_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_cards`
 --
 ALTER TABLE `user_cards`
-  MODIFY `user_card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

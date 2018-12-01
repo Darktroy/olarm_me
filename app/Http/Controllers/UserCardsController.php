@@ -127,21 +127,7 @@ $cards = Card::pluck('privacy','id')->all();
      */
     public function update($id, Request $request)
     {
-        try {
-            
-            $data = $this->getData($request);
-            
-            $userCards = user_cards::findOrFail($id);
-            $userCards->update($data);
-
-            return redirect()->route('user_cards.user_cards.index')
-                             ->with('success_message', 'User Cards was successfully updated!');
-
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }        
+         
     }
 
     /**
@@ -153,18 +139,7 @@ $cards = Card::pluck('privacy','id')->all();
      */
     public function destroy($id)
     {
-        try {
-            $userCards = user_cards::findOrFail($id);
-            $userCards->delete();
-
-            return redirect()->route('user_cards.user_cards.index')
-                             ->with('success_message', 'User Cards was successfully deleted!');
-
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }
+        
     }
 
     

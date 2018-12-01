@@ -94,6 +94,8 @@ use Illuminate\Validation\Rule;
                     $ActivationProcess_obj->activationCode($user->id);
             //        dd($user->id);
             //        $code = \App\Models\ActivationProcess::create();
+                    
+        recent_activity::create(array("user_id"=>0 ,"action_by_user_id"=>$user->id,"description"=>"registered" ,"profile_image_url"=> null));
                     DB::commit();
                     return response()->json([
                         'status' => 'success',
@@ -142,6 +144,10 @@ use Illuminate\Validation\Rule;
                     $ActivationProcess_obj = new \App\Http\Controllers\ActivationProcessesController();
                     $ActivationProcess_obj->activationCode($user->id);
                     $data->delete();
+                    
+                    recent_activity::create(array("user_id"=>0 ,"action_by_user_id"=>$user->id,
+                        "description"=>"newPassword" ,"profile_image_url"=> null));
+
             //        dd($user->id);
             //        $code = \App\Models\ActivationProcess::create();
                     DB::commit();

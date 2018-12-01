@@ -16,6 +16,7 @@ Route::post('login', 'API\AuthController@login');
 //Route::post('login-by-mobile', 'API\AuthController@loginMobile');
 Route::post('register', 'API\AuthController@register');
 Route::post('register-mobile', 'API\AuthController@registerMobile');
+
 //                  Password Rest
 Route::post('reset-by-email', 'ResetstepsController@requestByEmail');
 Route::post('confirm-by-SMS', 'ResetstepsController@confirmBySMS');
@@ -27,6 +28,7 @@ Route::middleware('auth:api')->group(function(){
 
     
     
+    Route::post('invite-contacts','InvitationContactsController@store');
     
     
     Route::group([ 'prefix' => 'requests',], function () {
@@ -50,16 +52,10 @@ Route::middleware('auth:api')->group(function(){
     Route::post('active-using-code', 'ActivationProcessesController@activeAccount');
 
     Route::group([ 'prefix' => 'personal',], function () {
-
-//        Route::get('/', 'ProfilesController@index')->name('profiles.profile.index');
-//        Route::get('/create','ProfilesController@create')->name('profiles.profile.create');
-//        Route::get('/show/{profile}','ProfilesController@show')->name('profiles.profile.show')->where('id', '[0-9]+');
         Route::post('/show-my-profile','ProfilesController@showProfile')->name('profiles.profile.show')->where('id', '[0-9]+');
-//        Route::get('/{profile}/edit','ProfilesController@edit')->name('profiles.profile.edit')->where('id', '[0-9]+');
         Route::post('/', 'ProfilesController@store')->name('profiles.profile.store');
         Route::post('/profile-update', 'ProfilesController@updateMyProfile')->name('profiles.profile.update')->where('id', '[0-9]+');
         Route::post('/profile-update2', 'ProfilesController@update')->name('profiles.profile.update')->where('id', '[0-9]+');
-//        Route::delete('/profile/{profile}','ProfilesController@destroy')->name('profiles.profile.destroy')->where('id', '[0-9]+');
     });
     Route::post('show-my-All-Cards','CardsController@showAll');
     Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
@@ -85,15 +81,8 @@ Route::middleware('auth:api')->group(function(){
     Route::post('send-contact-us-message', 'MessagRecordsController@sendingTheMessage');
     
     Route::group([ 'prefix' => 'cards-holders', ], function () {
-        Route::get('/', 'CardsHoldersController@index')->name('cards_holders.cards_holder.index');
-        Route::get('/create','CardsHoldersController@create')->name('cards_holders.cards_holder.create');
-        Route::get('/show/{cardsHolder}','CardsHoldersController@show')->name('cards_holders.cards_holder.show')->where('id', '[0-9]+');
-        Route::get('/{cardsHolder}/edit','CardsHoldersController@edit')->name('cards_holders.cards_holder.edit')->where('id', '[0-9]+');
-        Route::post('/', 'CardsHoldersController@store')->name('cards_holders.cards_holder.store');
+        Route::post('/', 'CardsHoldersController@store');
         Route::post('card-holder/{cardsHolder}', 'CardsHoldersController@update')->name('cards_holders.cards_holder.update')->where('id', '[0-9]+');
-//            Route::put('card-holder/{cardsHolder}', 'CardsHoldersController@update')->name('cards_holders.cards_holder.update')->where('id', '[0-9]+');
-        Route::delete('/cards_holder/{cardsHolder}','CardsHoldersController@destroy')->name('cards_holders.cards_holder.destroy')->where('id', '[0-9]+');
-
     });
 
 
