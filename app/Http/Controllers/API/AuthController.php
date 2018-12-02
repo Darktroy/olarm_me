@@ -2,6 +2,7 @@
     namespace App\Http\Controllers\API;
     
     use Illuminate\Http\Request; 
+    use App\Models\recent_activity;
     use App\Http\Controllers\Controller; 
     use Illuminate\Support\Facades\Auth; 
     use App\User; 
