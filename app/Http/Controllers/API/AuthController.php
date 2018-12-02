@@ -25,6 +25,7 @@ use Illuminate\Validation\Rule;
           $user = Auth::user(); 
           $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
           $success['UserDetails'] =  $user; 
+          $success['staging-details'] = staging::where('user_id',$user->id)->get(); 
           return response()->json([
             'status' => 'success',
             'data' => $success,
