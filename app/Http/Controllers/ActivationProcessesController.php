@@ -190,7 +190,7 @@ class ActivationProcessesController extends Controller
             DB::rollBack();
               return response()->json([
                         'status' => 'error',
-                        'data' => $exc->getMessage(),'status-code'=>403,
+                        'data' =>$exc->getLine().' '.$exc->getFile().' '. $exc->getMessage(),'status-code'=>403,
                         'errorData' => $exc->getMessage()
                     ],200);
         }
