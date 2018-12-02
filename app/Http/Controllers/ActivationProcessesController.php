@@ -163,6 +163,7 @@ class ActivationProcessesController extends Controller
     
     public function activeAccount(Request $request) {
         $user = Auth::user();
+        $id = $user->id;
         $data = $request->all();
         $isHas = ActivationProcess::where('activationcode',$data['activation_code'])->
                 where('user_id',$user->id)->get();
@@ -178,7 +179,7 @@ class ActivationProcessesController extends Controller
                 $isHas[0]->delete();
                 $user = \App\User::where('id',$user->id)->update(['active' => 1]);
             }
-            staging::updateOrCreate(array('user_id' => $user->id), array('active_account' => 1));
+            staging::updateOrCreate(array('user_id' => $id), array('active_account' => 1));
             DB::commit();
                     return response()->json([
 //                        'UserDetails' =>  $user,
