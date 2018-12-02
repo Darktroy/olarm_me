@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Models\profile;
 use App\Models\cards;
+use App\Models\staging;
 use Illuminate\Http\Request;
 use App\Models\TemplateLayout;
 use App\Http\Controllers\Controller;
@@ -96,6 +97,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
 //            $data['personal'] = 1; //0 for not person
             $profilerow = profile::create($data);
             $profile = profile::where('profile_id',$profilerow->profile_id)->first();
+            staging::updateOrCreate(array('user_id' => $user->id), array('creation_own_profile' => 1));
 //            dd($profile);
             DB::commit();
                     return response()->json([

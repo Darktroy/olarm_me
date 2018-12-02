@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use App\Models\cards;
 use App\Models\profile;
 use App\Models\user_cards;
 use App\Models\cards_holder;
+use App\Models\staging;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Auth; 
@@ -110,7 +111,8 @@ class CardsController extends Controller
                 
                 $user_cards = user_cards::create(array('user_id'=>$user->id,
                     'card_holder_id'=>$data['card_holder_id'],'card_id'=>$createdCard->card_id));
-//                dd($createdCard);
+                
+                staging::updateOrCreate(array('user_id' => $user->id), array('creation_own_card' => 1));
                 DB::commit();
                 return response()->json([
                     'data' =>  $createdCard,

@@ -3,6 +3,7 @@
     
     use Illuminate\Http\Request; 
     use App\Models\recent_activity;
+    use App\Models\staging;
     use App\Http\Controllers\Controller; 
     use Illuminate\Support\Facades\Auth; 
     use App\User; 
@@ -96,8 +97,9 @@ use Illuminate\Validation\Rule;
             //        dd($user->id);
             //        $code = \App\Models\ActivationProcess::create();
                     
-        recent_activity::create(array("user_id"=>0 ,"action_by_user_id"=>$user->id,"description"=>"registered" ,"profile_image_url"=> null));
-                    DB::commit();
+        recent_activity::create(array("user_id"=>$user->id ,"action_by_user_id"=>0,"description"=>"registered" ,"profile_image_url"=> null));
+        staging::updateOrCreate(array('user_id' => $user->id), array('registration' => 1));
+            DB::commit();
                     return response()->json([
                         'status' => 'success',
                         'data' => $success,'status-code'=>200,'code'=>200

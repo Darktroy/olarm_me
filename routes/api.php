@@ -29,6 +29,7 @@ Route::middleware('auth:api')->group(function(){
     
     
     Route::post('invite-contacts','InvitationContactsController@store');
+    Route::post('get-stage','StagingsController@showStage');
     
     
     Route::group([ 'prefix' => 'requests',], function () {

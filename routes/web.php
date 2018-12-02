@@ -433,3 +433,35 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'stagings',
+], function () {
+
+    Route::get('/', 'StagingsController@index')
+         ->name('stagings.staging.index');
+
+    Route::get('/create','StagingsController@create')
+         ->name('stagings.staging.create');
+
+    Route::get('/show/{staging}','StagingsController@show')
+         ->name('stagings.staging.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{staging}/edit','StagingsController@edit')
+         ->name('stagings.staging.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'StagingsController@store')
+         ->name('stagings.staging.store');
+               
+    Route::put('staging/{staging}', 'StagingsController@update')
+         ->name('stagings.staging.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/staging/{staging}','StagingsController@destroy')
+         ->name('stagings.staging.destroy')
+         ->where('id', '[0-9]+');
+
+});

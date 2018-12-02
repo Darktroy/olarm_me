@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
+use App\Models\staging;
 use Illuminate\Http\Request;
 use App\Models\ActivationProcess;
 use App\Http\Controllers\Controller;
@@ -47,20 +48,7 @@ class ActivationProcessesController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            
-            $data = $this->getData($request);
-            
-            ActivationProcess::create($data);
-
-            return redirect()->route('activation_processes.activation_process.index')
-                             ->with('success_message', 'Activation Process was successfully added!');
-
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }
+        
     }
 
     public function processActivation($userId) {
@@ -134,18 +122,7 @@ class ActivationProcessesController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $activationProcess = ActivationProcess::findOrFail($id);
-            $activationProcess->delete();
-
-            return redirect()->route('activation_processes.activation_process.index')
-                             ->with('success_message', 'Activation Process was successfully deleted!');
-
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }
+       
     }
 
     
@@ -201,6 +178,7 @@ class ActivationProcessesController extends Controller
                 $isHas[0]->delete();
                 $user = \App\User::where('id',$user->id)->update(['active' => 1]);
             }
+            staging::updateOrCreate(array('user_id' => $user->id), array('active_account' => 1));
             DB::commit();
                     return response()->json([
 //                        'UserDetails' =>  $user,
