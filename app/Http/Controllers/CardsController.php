@@ -137,8 +137,12 @@ class CardsController extends Controller
         $st3 = str_replace(' ', '', $st2);
         $user = Auth::user();
         $test = $request->all();
+        $test2 = [];
+        foreach ($test['data'] as $key => $value) {
+            $test[$key] = $value;
+        }
         return response()->json([
-                    'data' =>  $test['data'].last_name,
+                    'data' =>  $test['data'],
 //                    'message' =>  'your account is Activated',
                     'status' => 'testing'
                 ],200);
