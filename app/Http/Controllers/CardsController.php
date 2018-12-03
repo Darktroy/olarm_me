@@ -140,7 +140,7 @@ class CardsController extends Controller
         $test2 = [];
         
         return response()->json([
-                    'data' => typeOf($test['data']) ,
+                    'data' => var_dump($test['data']) ,
 //                    'message' =>  'your account is Activated',
                     'status' => 'testing'
                 ],200);
