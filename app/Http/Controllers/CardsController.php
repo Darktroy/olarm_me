@@ -138,11 +138,9 @@ class CardsController extends Controller
         $user = Auth::user();
         $test = $request->all();
         $test2 = [];
-        foreach ($test['data'] as $key => $value) {
-            $test[$key] = $value;
-        }
+        
         return response()->json([
-                    'data' =>  $test['data'],
+                    'data' => typeOf($test['data']) ,
 //                    'message' =>  'your account is Activated',
                     'status' => 'testing'
                 ],200);
