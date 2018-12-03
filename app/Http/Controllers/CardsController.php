@@ -137,7 +137,11 @@ class CardsController extends Controller
         $st3 = str_replace(' ', '', $st2);
         $user = Auth::user();
         $test = $request->all();
-        dd($test);
+        return response()->json([
+                    'data' =>  $test['data'],
+//                    'message' =>  'your account is Activated',
+                    'status' => 'testing'
+                ],200);
         try {
                 DB::beginTransaction();
                 $data = $this->getDatastoreAndrow($request);
