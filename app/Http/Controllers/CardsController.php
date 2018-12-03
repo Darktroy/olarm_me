@@ -416,19 +416,19 @@ class CardsController extends Controller
     protected function getDatastoreAndrow(Request $request)
     {
         $rules = [
-            'data.privacy' => 'required|integer|digits_between:0,1',
-            'data.company_name' => 'required|string|min:1|nullable',
-            'data.position' => 'required|string|min:1|nullable',
-            'data.cell_phone_number' => 'required|string|nullable',
-            'data.landline' => 'required|string|min:1|nullable',
-            'data.fax' => 'required|string|min:1|nullable',
-            'data.website_url' => 'string|min:1|nullable',
-            'data.about_me' => 'string|min:1|nullable',
-            'data.template_layout_id' => 'required|integer|min:1',
+            'privacy' => 'required|integer|digits_between:0,1',
+            'company_name' => 'required|string|min:1|nullable',
+            'position' => 'required|string|min:1|nullable',
+            'cell_phone_number' => 'required|string|nullable',
+            'landline' => 'required|string|min:1|nullable',
+            'fax' => 'required|string|min:1|nullable',
+            'website_url' => 'string|min:1|nullable',
+            'about_me' => 'string|min:1|nullable',
+            'template_layout_id' => 'required|integer|min:1',
             'logo' => ['file','required'],
-            'data.about_me' => 'string|min:1',
-            'data.email' => 'required|string|min:1',
-            'data.card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
+            'about_me' => 'string|min:1',
+            'email' => 'required|string|min:1',
+            'card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
      
         ];
         $messages =[
