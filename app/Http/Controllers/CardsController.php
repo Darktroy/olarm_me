@@ -116,7 +116,6 @@ class CardsController extends Controller
                 DB::commit();
                 return response()->json([
                     'data' =>  $createdCard,
-//                    'message' =>  'your account is Activated',
                     'status' => 'success','status-code'=>200,'code'=>200
                 ],200);
         } catch (Exception $exception) {
@@ -136,14 +135,9 @@ class CardsController extends Controller
         $st2 = str_replace('-', '', $st1);
         $st3 = str_replace(' ', '', $st2);
         $user = Auth::user();
-        $test = $request->all();
-        $test2 = [];
         
-        return response()->json([
-                    'data' => var_dump($test) ,
-//                    'message' =>  'your account is Activated',
-                    'status' => 'testing'
-                ],200);
+        
+   
         try {
                 DB::beginTransaction();
                 $data = $this->getDatastoreAndrow($request);
