@@ -56,11 +56,6 @@ class CardsController extends Controller
         $st2 = str_replace('-', '', $st1);
         $st3 = str_replace(' ', '', $st2);
         $user = Auth::user();
-        return response()->json([
-                    'data' =>  $request->all(),
-//                    'message' =>  'your account is Activated',
-                    'status' => 'success','status-code'=>200,'code'=>200
-                ],200);
         try {
                 DB::beginTransaction();
                 $data = $this->getData($request);
@@ -133,6 +128,87 @@ class CardsController extends Controller
                     ],200);
         }
     }
+    
+    
+    public function storeAndrow(Request $request)
+    {
+        $st1 = str_replace(':', '', now());
+        $st2 = str_replace('-', '', $st1);
+        $st3 = str_replace(' ', '', $st2);
+        $user = Auth::user();
+        try {
+                DB::beginTransaction();
+                $data = $this->getDatastoreAndrow($request);
+                if ($data->fails()) { 
+                  return response()->json([
+                  'status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);
+                }
+                
+                $data = $request->all();
+                $data['create_by'] = $user->id;
+
+                if($data['personal']==1){
+                    $data['last_name'] = $user->last_name;
+                    $data['first_name'] = $user->first_name;
+                    $data['user_id'] = $user->id;
+                    $profile = profile::where('user_id',$user->id)->get();
+                    if(count($profile)==0){
+                        return response()->json(['status' => 'error', 'error'=>'Profile does not exist', 'status-code'=>401],200);
+                    }
+                    $data['picture'] = $profile[0]['picture'];
+                }else{
+                    // not personal
+                    if(empty($data['last_name'])||empty($data['first_name'])){
+                        return response()->json([ 'status' => 'error','error'=>'first or last name not entered','status-code'=>401],200);
+                    }
+                    $data['user_id'] = Null;
+                    if ($request->hasFile('picture') && is_file($data['picture'])){ 
+                        $file = $request->file('picture');
+                        $ext = strtolower($file->getClientOriginalExtension());
+                            $imageName = 'profile_pic_notpersonal_'.md5($st3). md5($user->id).'.'.$ext;
+                            $data['picture']->move(public_path('/card_image'), $imageName);
+        //                $data['picture'] =helperVars::$picPath.$imageName;
+                        $imageName = '/card_image/'.$imageName;
+                        $data['picture'] =url($imageName);
+                    }else{
+                        $data['picture'] =' ';
+                    }
+                }
+                
+                if ($request->hasFile('logo') && is_file($data['logo'])){ 
+                $file = $request->file('logo');
+                $ext = strtolower($file->getClientOriginalExtension());
+                    $imageName = 'logo_'.md5($st3). md5($user->id).'.'.$ext;
+                    $data['logo']->move(public_path('/logo_image'), $imageName);
+//                $data['logo'] =helperVars::$logoPath.$imageName;
+                $imageName = '/logo_image/'.$imageName;
+                $data['logo'] =url($imageName);
+                }else{
+                    $data['logo'] =0;
+                } 
+                
+                $createdCard = cards::create($data);
+                
+                $user_cards = user_cards::create(array('user_id'=>$user->id,
+                    'card_holder_id'=>$data['card_holder_id'],'card_id'=>$createdCard->card_id));
+                
+                staging::updateOrCreate(array('user_id' => $user->id), array('creation_own_card' => 1));
+                DB::commit();
+                return response()->json([
+                    'data' =>  $createdCard,
+//                    'message' =>  'your account is Activated',
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
+        } catch (Exception $exception) {
+            DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
+                    ],200);
+        }
+    }
+    
     public function showPersonal(Request $request)
     {
         $user = Auth::user();
@@ -328,6 +404,31 @@ class CardsController extends Controller
 //            'instagram_url' => 'string|min:1|nullable',
 //            'youtube_url' => 'string|min:1|nullable',
             'card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
+     
+        ];
+        $messages =[
+            'picture.required' => 'Please Enter valid picture',
+        ];
+        $data = Validator::make($request->all(), $rules, $messages);
+        return $data;
+    }
+     
+    protected function getDatastoreAndrow(Request $request)
+    {
+        $rules = [
+            'data.privacy' => 'required|integer|digits_between:0,1',
+            'data.company_name' => 'required|string|min:1|nullable',
+            'data.position' => 'required|string|min:1|nullable',
+            'data.cell_phone_number' => 'required|string|nullable',
+            'data.landline' => 'required|string|min:1|nullable',
+            'data.fax' => 'required|string|min:1|nullable',
+            'data.website_url' => 'string|min:1|nullable',
+            'data.about_me' => 'string|min:1|nullable',
+            'data.template_layout_id' => 'required|integer|min:1',
+            'logo' => ['file','required'],
+            'data.about_me' => 'string|min:1',
+            'data.email' => 'required|string|min:1',
+            'data.card_holder_id' => 'string|min:1|exists:cards_holders,card_holder_id',
      
         ];
         $messages =[

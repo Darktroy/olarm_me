@@ -65,6 +65,7 @@ Route::middleware('auth:api')->group(function(){
     Route::group(
     [ 'prefix' => 'personal-card',], function () {
         Route::post('/', 'CardsController@store')->name('cards.cards.store');
+        Route::post('/androw', 'CardsController@storeAndrow')->name('cards.cards.store');
         Route::get('/', 'CardsController@index')->name('cards.cards.index');
         Route::get('/create','CardsController@create')->name('cards.cards.create');
         Route::get('/show/{cards}','CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
