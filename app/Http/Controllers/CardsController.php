@@ -136,6 +136,8 @@ class CardsController extends Controller
         $st2 = str_replace('-', '', $st1);
         $st3 = str_replace(' ', '', $st2);
         $user = Auth::user();
+        $test = $request->all();
+        dd($test);
         try {
                 DB::beginTransaction();
                 $data = $this->getDatastoreAndrow($request);
