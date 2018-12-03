@@ -138,7 +138,7 @@ class CardsController extends Controller
         $user = Auth::user();
         $test = $request->all();
         return response()->json([
-                    'data' =>  $test['data']['last_name'],
+                    'data' =>  $test['data'].last_name,
 //                    'message' =>  'your account is Activated',
                     'status' => 'testing'
                 ],200);
