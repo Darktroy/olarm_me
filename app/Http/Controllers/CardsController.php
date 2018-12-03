@@ -406,7 +406,7 @@ class CardsController extends Controller
             'logo' => ['file','required'],
             'about_me' => 'string|min:1',
 //            'alias' => 'required|string|min:1',
-            'email' => 'required|string|min:1',
+//            'email' => 'required|string|min:1',
 //            'facebook_url' => 'string|min:1|nullable',
 //            'twitter_url' => 'string|min:1|nullable',
 //            'instagram_url' => 'string|min:1|nullable',
