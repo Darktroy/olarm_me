@@ -27,17 +27,19 @@
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
                         @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
 
             <form method="POST" action="{{ route('companies.company.store') }}" 
                   accept-charset="UTF-8" id="create_company_form" name="create_company_form" class="form-horizontal">
             {{ csrf_field() }}
-            @include ('companies.form', [ 'company' => null,])
+            @include ('companies.form', [
+                                        'company' => null,
+                                      ])
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -46,10 +48,14 @@
                 </div>
 
             </form>
+
+                        
+                        
+                        
                         
                     </div>
                     <div class="signup-image">
-                        <figure><img src="{{ asset('companiesResources/images/signup-image.jpg')}}" alt="sing up image"></figure>
+                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
                         <a href="#" class="signup-image-link">I am already member</a>
                     </div>
                 </div>

@@ -26,30 +26,46 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-            <form method="POST" action="{{ route('companies.company.store') }}" 
-                  accept-charset="UTF-8" id="create_company_form" name="create_company_form" class="form-horizontal">
-            {{ csrf_field() }}
-            @include ('companies.form', [ 'company' => null,])
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input class="btn btn-primary" type="submit" value="Add">
-                    </div>
-                </div>
-
-            </form>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="firstName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="firstName" id="firstName" placeholder="Your first Name" required="required" autofocus="autofocus"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName"><i class="zmdi zmdi-account "></i></label>
+                                <input type="text" name="lastName" id="lastName" placeholder="Your Last Name" required="required" autofocus="autofocus"/>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <label for="inputEmail"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="inputEmail" placeholder="Your Email" required="required"/>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <label for="inputPassword"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="inputPassword" id="inputPassword" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Repeat your password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                        
+                        
+                        
                         
                     </div>
                     <div class="signup-image">
-                        <figure><img src="{{ asset('companiesResources/images/signup-image.jpg')}}" alt="sing up image"></figure>
+                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
                         <a href="#" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
