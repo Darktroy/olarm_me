@@ -176,7 +176,8 @@ class MessagRecordsController extends Controller
         try {
             DB::beginTransaction();
             $data = $messageRecordObject->snedContactUsMessage($user->id,$request);
-//        logs::create(array('user_id'=>$user->id, 'log'=>$user->first_name.' has been remove system user','system_id'=>$data['system_id']));  
+        logs::create(array('user_id'=>$user->id, 'log'=>$user->first_name.' has been remove system user','system_id'=>$data['system_id'],
+            'title'=>"title waiting for docuentaTION",'message'=>"message waiting for documentation",'body'=>"body waiting for documentation"));  
             DB::commit();
             return response()->json([ 'status' => 'success','status-code'=>200,'data' => $data],200); 
         } catch (Exception $ex) {

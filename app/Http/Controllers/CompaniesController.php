@@ -46,7 +46,21 @@ class CompaniesController extends Controller
     public function store(Request $request)
     {
         try {
-            
+            /*
+            "admin_first_name" => "s"
+    "admin_last_name" => "s"
+    "admin_email" => "s@f.com"
+    "password" => "1"
+    "c_password" => "1"
+    "admin_phone" => "01245"
+    "company_name" => "d"
+    "company_registry_paper" => "مطابخ.png"
+    "company_tax_card" => "مج شوربه.png"
+    "company_landline" => "255"
+    "company_fax" => "45"
+    "company_address" => "asc54 875"
+    "company_website" => "http://www.twest.com"
+            */
             $data = $this->getData($request);
             dd($data);
             company::create($data);
