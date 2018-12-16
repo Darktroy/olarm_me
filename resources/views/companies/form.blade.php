@@ -125,6 +125,15 @@
         <span class="focus-input100"></span>
         {!! $errors->first('company_website', '<p class="help-block">:message</p>') !!}
 </div>
+
+<div class="wrap-input100 validate-input form-group" 
+     data-validate="Accept terms is required">
+    
+        
+        <input type="checkbox" name="accept_terms" value="1" placeholder="terms and conditions ..." />
+        <span class="label-input100">Accept terms</span>
+        <span class="focus-input100"></span>
+</div>
 <!--
 <div class="wrap-input100 validate-input form-group {{ $errors->has('company_about') ? 'has-error' : '' }}" 
      data-validate="company about is required">
@@ -225,12 +234,12 @@
         {!! $errors->first('company_district', '<p class="help-block">:message</p>') !!}
 </div>-->
 
-				<div class="container-contact100-form-btn">
-					<div class="wrap-contact100-form-btn">
-						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn">
-							Send
-						</button>
-					</div>
-				</div>
+        <div class="container-contact100-form-btn">
+                <div class="wrap-contact100-form-btn">
+                        <div class="contact100-form-bgbtn"></div>
+                        <button class="contact100-form-btn">
+                                Send
+                        </button>
+                </div>
+        </div>
 </div>
