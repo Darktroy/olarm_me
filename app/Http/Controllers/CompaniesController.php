@@ -21,7 +21,7 @@ class CompaniesController extends Controller
     {
         $companies = company::paginate(25);
 
-        return view('companies.index', compact('companies'));
+        return view('companyadminpanel.masterLayout', compact('companies'));
     }
 
     /**
@@ -45,14 +45,10 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
+        $companyObj = new self();
         try {
             /*
-            "admin_first_name" => "s"
-    "admin_last_name" => "s"
-    "admin_email" => "s@f.com"
-    "password" => "1"
-    "c_password" => "1"
-    "admin_phone" => "01245"
+           
     "company_name" => "d"
     "company_registry_paper" => "مطابخ.png"
     "company_tax_card" => "مج شوربه.png"
@@ -61,20 +57,51 @@ class CompaniesController extends Controller
     "company_address" => "asc54 875"
     "company_website" => "http://www.twest.com"
             */
+            DB::beginTransaction();
+
+            $companyObj->createUser($request);
+            
             $data = $this->getData($request);
             dd($data);
             company::create($data);
-
+            DB::commit();
             return redirect()->route('companies.company.index')
                              ->with('success_message', 'Company was successfully added!');
 
         } catch (Exception $exception) {
-
+              DB::rollBack();
             return back()->withInput()
                          ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
         }
     }
-
+    
+    private function createUser(Request $request) {
+        
+         $validator = Validator::make($request->all(), [ 
+                      'admin_first_name' => 'required', 
+                      'admin_last_name' => 'required', 
+                      'admin_phone' => 'required', 
+                      'admin_email' => 'required|email|unique:users,email', 
+                      'password' => 'required', 
+                      'c_password' => 'required|same:password', 
+//                      'lang' => 'required|string|min:2|max:2', 
+                      'accept_terms' => 'required|int|size:1', 
+                    ]);
+                    if ($validator->fails()) { 
+//                      return response()->json(['data'=>$validator->errors(),'status'=>'erroe','status-code'=>'403','code'=>100],200);
+                        throw Exception();
+                    }
+                    $postArray = $request->all(); 
+                    $postArray['name'] = $postArray['admin_first_name'].' '.$postArray['admin_last_name'];
+                    $postArray['first_name'] = $postArray['admin_first_name'];
+                    $postArray['last_name'] = $postArray['admin_last_name'];
+//                    $postArray['password'] = bcrypt($postArray['password']); 
+                    $postArray['password'] = Hash::make($postArray['password']); 
+                    $user = User::create($postArray); 
+                    $success['token'] =  $user->createToken('LaraPassport')->accessToken; 
+                    
+                    }
+    
     /**
      * Display the specified company.
      *

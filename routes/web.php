@@ -23,8 +23,8 @@ Route::group(
     'prefix' => 'companies',
 ], function () {
 
-    Route::get('/', 'CompaniesController@index')
-         ->name('companies.company.index');
+    Route::get('/', 'CompaniesController@index');
+//         ->name('companies.company.index');
 
     Route::get('/create','CompaniesController@create')
          ->name('companies.company.create');
