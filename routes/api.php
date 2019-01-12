@@ -26,7 +26,8 @@ Route::post('new-password', 'API\AuthController@newPassReset');
 
 Route::middleware('auth:api')->group(function(){
 
-    Route::post('getLogs', 'RecentActivitiesController@getRecentActivity');
+    Route::post('email-signature', 'EmailSignaturesController@showEmailSignature');
+    Route::post('getLogs', 'RecentActivitiesController@getRecentActivity'); 
     Route::post('invite-contacts','InvitationContactsController@store');
     Route::post('get-stage','StagingsController@showStage');
     

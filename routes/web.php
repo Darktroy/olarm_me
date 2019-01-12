@@ -443,3 +443,34 @@ Route::get('/', function () {
             });
 */
 });
+Route::group(
+[
+    'prefix' => 'email_signatures',
+], function () {
+
+    Route::get('/', 'EmailSignaturesController@index')
+         ->name('email_signatures.email_signature.index');
+
+    Route::get('/create','EmailSignaturesController@create')
+         ->name('email_signatures.email_signature.create');
+
+    Route::get('/show/{emailSignature}','EmailSignaturesController@show')
+         ->name('email_signatures.email_signature.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{emailSignature}/edit','EmailSignaturesController@edit')
+         ->name('email_signatures.email_signature.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/email_signatures', 'EmailSignaturesController@store')
+         ->name('email_signatures.email_signature.store');
+               
+    Route::put('email_signature/{emailSignature}', 'EmailSignaturesController@update')
+         ->name('email_signatures.email_signature.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/email_signature/{emailSignature}','EmailSignaturesController@destroy')
+         ->name('email_signatures.email_signature.destroy')
+         ->where('id', '[0-9]+');
+
+});
