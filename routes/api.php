@@ -26,11 +26,17 @@ Route::post('new-password', 'API\AuthController@newPassReset');
 
 Route::middleware('auth:api')->group(function(){
 
-    
-    
+    Route::post('getLogs', 'RecentActivitiesController@getRecentActivity');
     Route::post('invite-contacts','InvitationContactsController@store');
     Route::post('get-stage','StagingsController@showStage');
     
+    Route::post('add-card-to-card-holder', 'UserCardsController@store');
+    Route::post('departments-list', 'DepartmentsController@listDepartments');
+    Route::post('send-contact-us-message', 'MessagRecordsController@sendingTheMessage');
+    
+    Route::post('show-my-All-Cards','CardsController@showAll');
+    Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
+    Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
     
     Route::group([ 'prefix' => 'requests',], function () {
 
@@ -58,9 +64,7 @@ Route::middleware('auth:api')->group(function(){
         Route::post('/profile-update', 'ProfilesController@updateMyProfile')->name('profiles.profile.update')->where('id', '[0-9]+');
         Route::post('/profile-update2', 'ProfilesController@update')->name('profiles.profile.update')->where('id', '[0-9]+');
     });
-    Route::post('show-my-All-Cards','CardsController@showAll');
-    Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
-    Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
+    
 
     Route::group(
     [ 'prefix' => 'personal-card',], function () {
@@ -78,10 +82,6 @@ Route::middleware('auth:api')->group(function(){
     });
 
 
-    Route::post('add-card-to-card-holder', 'UserCardsController@store');
-    Route::post('departments-list', 'DepartmentsController@listDepartments');
-    Route::post('send-contact-us-message', 'MessagRecordsController@sendingTheMessage');
-    
     Route::group([ 'prefix' => 'cards-holders', ], function () {
         Route::post('/', 'CardsHoldersController@store');
         Route::post('card-holder/{cardsHolder}', 'CardsHoldersController@update')->name('cards_holders.cards_holder.update')->where('id', '[0-9]+');

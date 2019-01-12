@@ -7,6 +7,7 @@ use App\ActionByUser;
 use Illuminate\Http\Request;
 use App\Models\recent_activity;
 use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\Auth; 
 use Exception;
 
 class RecentActivitiesController extends Controller
@@ -166,4 +167,15 @@ $actionByUsers = ActionByUser::pluck('id','id')->all();
         return $data;
     }
 
+    public function getRecentActivity() {
+        $user = Auth::user();
+        $data = recent_activity::where('user_id',$user->id)->orWhere('action_by_user_id',$user->id)->get()->toArray();
+         return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'Success',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+    }
+    
+    
 }
