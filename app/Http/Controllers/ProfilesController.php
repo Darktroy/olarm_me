@@ -205,6 +205,62 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
         }
     }
 
+//    showIndustriesList
+    public function showIndustriesList(Request $request)
+    {
+            $user = Auth::user();
+        try {
+            $industriesListRow = profile::select('industry')->distinct()->get()->toArray();
+            $data = [];
+            if(count($industriesListRow) > 0){
+                foreach ($industriesListRow as $key => $value) {
+                    $data[] = $value['industry'];
+                }
+            }
+                   return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'From Iessa with Love',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+        } catch (Exception $exception) {
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403 , 'code'=>100
+                    ],200);
+        }
+    }
+// getISpeciatiesList
+    
+    public function getISpeciatiesList(Request $request)
+    {
+        $user = Auth::user();
+     
+        $rules = [ 'industry' => 'required|string|min:1|exists:profiles,industry', ];
+        $messages =[ 'industry.required' => 'Please Enter valid industry or existance ', ];
+        $data = Validator::make($request->all(), $rules, $messages);
+        if ($data->fails()) { return response()->json(['status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);}
+        
+        try {
+            $data = $request->all();
+            $specialtyListRow = profile::select('specialty')->where('industry',$data['industry'])->distinct()->get()->toArray();
+            $data = [];
+            if(count($specialtyListRow) > 0){
+                foreach ($specialtyListRow as $key => $value) {
+                    $data[] = $value['specialty'];
+                }
+            }
+                   return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'From Iessa with Love',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+        } catch (Exception $exception) {
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403 , 'code'=>100
+                    ],200);
+        }
+    }
     /**
      * Display the specified profile.
      *

@@ -80,10 +80,8 @@ class CompaniesController extends Controller
 
         $userdetails = $companyObj->createUser($request);
        $data = $request->all();
-//       dd($request->hasFile("company_registry_paper"));
         $data = $this->getData($request);
         if ($data->fails()) { 
-//            dd($data->errors()->toArray());
             throw new Exception();
         }
        $data = $request->all();  
@@ -246,17 +244,6 @@ class CompaniesController extends Controller
             'company_fax' => 'required|string|min:1|nullable',
             'company_address' => 'required|string|min:1',
             'company_website' => 'string|min:1',
-//            'company_about' => 'string|min:1',
-//            'company_facebook' => 'string|min:1|nullable',
-//            'company_twitter' => 'string|min:1|nullable',
-//            'company_instagram' => 'string|min:1|nullable',
-//            'company_youtube' => 'string|min:1|nullable',
-//            'company_field' => 'string|min:1',
-//            'company_industry' => 'string|min:1',
-//            'company_speciality' => 'string|min:1',
-//            'company_countary' => 'string',
-//            'company_city' => 'string|min:1',
-//            'company_district' => 'string|min:1', 
      
         ];
         
