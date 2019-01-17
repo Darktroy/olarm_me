@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\countariesDetails;
 use App\Http\Controllers\Controller;
-use Exception;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
     use App\Http\Controllers\helperVars;
     use Validator;
+use Exception;
     
 class CountariesDetailsController extends Controller
 {
@@ -168,14 +168,55 @@ class CountariesDetailsController extends Controller
     }
 
     public function getCountriesList() {
-        $data = countariesDetails::all();
+        $objCountaries = new countariesDetails();
+        
+        $data = $objCountaries->getCountaries();
+        
                      return response()->json([
                         'data' =>  $data,
-                        'message' =>  'your account is Activated',
+                        'message' =>  'From Iessa with love',
                         'status' => 'success','status-code'=>200, 'code'=>200
                     ],200);
     }
+    //getCitiesList
+    public function getCitiesList(Request $request) {
+        $objCountaries = new countariesDetails();
+        try {
+
+                $data = $objCountaries->getCities($request);
+        
+                     return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'From Iessa with love',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+            
+        } catch (Exception $exception) {
+            return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403 , 'code'=>100
+                    ],200);
+        }
+    }
     
-    
-    
+    //getDistrictesList
+    public function getDistrictesList(Request $request) {
+        $objCountaries = new countariesDetails();
+        try {
+
+                $data = $objCountaries->getDistricts($request);
+        
+                     return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'From Iessa with love',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+            
+        } catch (Exception $exception) {
+            return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'status-code'=>403 , 'code'=>100
+                    ],200);
+        }
+    }
 }
