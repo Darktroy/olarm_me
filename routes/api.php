@@ -26,6 +26,10 @@ Route::post('new-password', 'API\AuthController@newPassReset');
 
 Route::middleware('auth:api')->group(function(){
 
+    Route::post('get-user-card-holders', 'CardsHoldersController@showCardHoldersList');
+    Route::post('change-card-cardHolder', 'UserCardsController@moveChangingCardHolder');
+    Route::post('show-my-cards', 'UserCardsController@showMyCards');
+    
     Route::post('show-industries-list', 'ProfilesController@showIndustriesList');
     Route::post('show-specialities-by-industry-name', 'ProfilesController@getISpeciatiesList');
     Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');

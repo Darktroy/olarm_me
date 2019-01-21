@@ -275,7 +275,9 @@ class CardsController extends Controller
         $data = $request->all();
         $cards_objet = new cards();
         $cards = $cards_objet->advancedSearching($request);
-        return response()->json(['data' =>  $cards,'status' => 'success','status-code'=>200],200);
+        return response()->json(['data' =>  $cards,
+            'message' =>  'if privacy 0->private , 1->public card From Iessa with love',
+            'status' => 'success','status-code'=>200],200);
     }
     /**
      * Show the form for editing the specified cards.

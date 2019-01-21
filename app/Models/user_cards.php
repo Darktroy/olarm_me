@@ -3,6 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\Auth; 
+    use Illuminate\Support\Facades\DB;
+    use Validator;
+    use Illuminate\Validation\Rule;
+
+use Exception;
 
 class user_cards extends Model
 {
@@ -68,9 +76,57 @@ class user_cards extends Model
      */
     public function card()
     {
-        return $this->belongsTo('App\Models\Card','card_id');
+        return $this->belongsTo('App\Models\cards','card_id');
     }
 
 
+    public function moveCardTonewCardHolder(Request $request,$userId)
+    {
+        $data = $request->all();
+        $data['user_id'] = $userId;
+        $rules = [
+            'card_holder_id' => [                                                                  
+                'required',                                                            
+                Rule::exists('cards_holders', 'card_holder_id')                     
+                ->where(function ($query) use ($data) 
+                        { $query->where('card_holder_id', $data['card_holder_id'])
+                                ->where('user_id', $data['user_id']);
+                        }
+                        )],
+//                                card_id
+            'card_id' => [                                                                  
+                'required',                                                            
+                Rule::exists('user_cards', 'card_id')                     
+                ->where(function ($query) use ($data) 
+                        { $query->where('card_id', $data['card_id'])
+                                ->where('user_id', $data['user_id']);
+                        }
+                        )],
+        ];
+       
+
+        $messages =[
+            'card_id.required' => 'Please Enter proper card',
+            'card_id.exists' => 'Please Enter proper or owened card',
+            'card_holder_id.required' => 'Please Enter proper card Holder',
+            'card_holder_id.exists' => 'Please Enter proper or owened card Holder',
+            ];
+        $dataValidation = Validator::make($request->all(), $rules, $messages);
+        if ($dataValidation->fails()) { 
+                 throw new Exception($dataValidation->errors());
+            }
+        $data = self::where('user_id',$userId)->where('card_id',$data['card_id'])
+                ->update(array('card_holder_id'=>$data['card_holder_id']));
+        return $data;
+    }
+    
+    public function showMyCards($userId) {
+        $dataRow = self::where('user_id',$userId)->with('card')->get()->toArray();
+        $data =[];
+        foreach ($dataRow as $key => $value) {
+            $data[] = $value['card'];
+        }
+        return $data;
+    }
 
 }

@@ -163,4 +163,47 @@ $cards = Card::pluck('privacy','id')->all();
         return $data;
     }
 
+    
+    
+    public function moveChangingCardHolder(Request $request)
+    {
+        //card_id
+        $user = Auth::user();
+        try {
+            DB::beginTransaction();
+//            dd($user->id);35
+            $userCardObject = new user_cards();
+            $data = $userCardObject->moveCardTonewCardHolder($request,$user->id);
+                        DB::commit();
+
+                    return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'Success',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+
+        } catch (Exception $exception) {
+//            echo $exc->getTraceAsString();
+            DB::rollBack();
+                return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'details'=>$exception->getLine().' '.$exception->getFile(),
+                    'status-code'=>403, 'code'=>100
+                    ],200);
+        }
+
+    }
+    
+    public function showMyCards(Request $request) {
+        $user = Auth::user();
+         $userCardObject = new user_cards();
+            $data = $userCardObject->showMyCards($user->id);
+
+                    return response()->json([
+                        'data' =>  $data,
+                        'message' =>  'Success',
+                        'status' => 'success','status-code'=>200, 'code'=>200
+                    ],200);
+    }
+    
 }

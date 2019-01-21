@@ -122,10 +122,12 @@ class cards extends Model
             $ids[]=$value['user_id'];
         }
         $cards_object = new self();
+//        dd($ids);
 //        if(!empty($ids)){
         $searchingCARDSresult_row = $cards_object::where('personal', 1)
                
                 ->where(function($query)use($data,$ids) {
+//        $searchingCARDSresult_row = $cards_object::where(function($query)use($data,$ids) {
                     (!empty($data['first_name']) ? $query->where('first_name', 'LIKE', '%' . $data['first_name'] . '%'): '');
                     (!empty($ids) ? $query->orWhereIn('user_id', $ids):"");
                     (!empty($data['last_name']) ? $query->orWhere('last_name', 'LIKE', '%' . $data['last_name'] . '%') :"");
@@ -139,10 +141,10 @@ class cards extends Model
                     return $query;
                  })
                /* */
-                        ->select('card_id','first_name','last_name','company_name','position','template_layout_id','logo','picture')
+                        ->select('card_id','first_name','last_name','company_name','position','template_layout_id','logo','picture','privacy')
 //                        ->toSql();
                         ->get()->toArray();
-//        dd($searchingCARDSresult_row);
+                 
             return $searchingCARDSresult_row;
        
             
