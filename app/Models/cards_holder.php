@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+    use Validator;
+    use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class cards_holder extends Model
 {
@@ -49,9 +52,9 @@ class cards_holder extends Model
     /**
      * Get the cardHolder for this model.
      */
-    public function cardHolder()
+    public function theCards()
     {
-        return $this->belongsTo('App\Models\CardHolder','card_holder_id');
+        return $this->hasOne('App\Models\cards','card_id','card_id');
     }
 
     /**
@@ -78,4 +81,31 @@ class cards_holder extends Model
         $data = array_merge($privateData,$userCardHolders);
         return $data;
     }
+    /*
+    public function getCardsOfHolder(Request $request,$userId) {
+        $data = $request->all();
+        $data['user_id'] = $userId;
+        $rules = [
+            'card_holder_id' => [                                                                  
+                'required',                                                            
+                Rule::exists('cards_holders', 'card_holder_id')                     
+                ->where(function ($query) use ($data) 
+                        { $query->where('card_holder_id', $data['card_holder_id'])
+                                ->where('user_id', $data['user_id']);
+                        }
+                        )],
+        ];
+       
+
+        $messages =[
+            'card_holder_id.required' => 'Please Enter proper card Holder',
+            'card_holder_id.exists' => 'Please Enter proper or owened card Holder',
+            ];
+        $dataValidation = Validator::make($request->all(), $rules, $messages);
+        if ($dataValidation->fails()) { 
+                 throw new Exception($dataValidation->errors());
+        }
+        $data = self::where('card_holder_id',$data['card_holder_id'])->with('theCards')->get()->toArray();
+        return $data;
+    }*/
 }

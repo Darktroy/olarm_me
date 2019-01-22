@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\CardHolder;
+use App\Models\user_cards;
 use App\Models\cards_holder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -203,6 +204,30 @@ class CardsHoldersController extends Controller
 //            dd($user->id); 35
             $objCardHolder = new cards_holder();
             $data = $objCardHolder->getUserCardHolders($user->id, $user->type); 
+            return response()->json([
+                    'data' =>  $data,
+                    'status' => 'success','status-code'=>200,
+                ],200);
+        } catch (Exception $exception) {
+            return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),'getTraceAsString'=>$exception->getTraceAsString(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403
+                    ],200);
+        }
+    }
+    
+    //showCardsOfHoldersList
+    
+    public function showCardsOfHoldersList(Request $request) {
+        
+        $user = Auth::user();
+        try {
+//            dd($user->id); 35
+            
+//            $objCardHolder = new cards_holder();
+            $objUserCardHolder = new user_cards();
+        $data = $objUserCardHolder->getCardsOfHolder($request,$user->id); 
             return response()->json([
                     'data' =>  $data,
                     'status' => 'success','status-code'=>200,

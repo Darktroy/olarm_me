@@ -70,7 +70,12 @@ class user_cards extends Model
     {
         return $this->belongsTo('App\Models\CardHolder','card_holder_id');
     }
-
+    
+    public function theCards()
+    {
+        return $this->hasOne('App\Models\cards','card_id','card_id');
+    }
+    
     /**
      * Get the card for this model.
      */
@@ -128,5 +133,34 @@ class user_cards extends Model
         }
         return $data;
     }
+public function getCardsOfHolder(Request $request,$userId) {
+        $data = $request->all();
+        $data['user_id'] = $userId;
+        $rules = [
+            'card_holder_id' => [                                                                  
+                'required',                                                            
+                Rule::exists('cards_holders', 'card_holder_id')                     
+                ->where(function ($query) use ($data) 
+                        { $query->where('card_holder_id', $data['card_holder_id'])
+                                ->where('user_id', $data['user_id']);
+                        }
+                        )],
+        ];
+       
 
+        $messages =[
+            'card_holder_id.required' => 'Please Enter proper card Holder',
+            'card_holder_id.exists' => 'Please Enter proper or owened card Holder',
+            ];
+        $dataValidation = Validator::make($request->all(), $rules, $messages);
+        if ($dataValidation->fails()) { 
+                 throw new Exception($dataValidation->errors());
+        }
+        $dataRow = self::where('card_holder_id',$data['card_holder_id'])->with('theCards')->get()->toArray();
+        $data = [];
+        foreach ($dataRow as $key => $value) {
+            $data[] = $value['the_cards'];
+        }
+        return $data;
+    }
 }
