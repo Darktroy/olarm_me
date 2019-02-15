@@ -206,4 +206,16 @@ $cards = Card::pluck('privacy','id')->all();
                     ],200);
     }
     
+    public function showUserTRRT() {
+        $user = Auth::user();
+        $userCardObject = new user_cards();
+            $data = $userCardObject->showUserrttr($user->id);
+            return response()->json([
+                'data' =>  $data,
+                'message' =>  'Success',
+                'status' => 'success','status-code'=>200, 'code'=>200
+            ],200);
+        
+    }
+    
 }

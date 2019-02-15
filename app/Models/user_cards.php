@@ -133,6 +133,45 @@ class user_cards extends Model
         }
         return $data;
     }
+    
+    public function showUserrttr($userId) {
+        $userCardObject = new self();
+        $requestData = $userCardObject->getPrivaceOrrequested($userId);
+        $transferedata = self::where('transfered',1)->where('user_id',$userId)->get();
+        $transfered = FALSE;
+        if(count($transferedata)>0){
+            $transfered = $transferedata;
+        }
+        $redirectdata = self::where('redirected',1)->where('user_id',$userId)->get();
+        $redirected = FALSE;
+        if(count($redirectdata)>0){
+            $redirected = $redirectdata;
+        }
+        $data =[];
+        $data['request'] = $requestData;
+         
+        $data['transfered'] = $transfered;
+        $data['recommended'] = $redirected;
+        return $data;
+         
+        
+    }
+    
+    public function getPrivaceOrrequested($userId) {
+        $isAccountPublic = cards::where('user_id',$userId)
+                ->where('create_by',$userId)->select('privacy')->first();
+        $data = FALSE;
+        if($isAccountPublic['privacy']==0){
+            $data = [];
+            $dataRow = Requests::where('to_id',$userId)->with('card_from')->get();
+            foreach ($dataRow as $key => $value) {
+                $data[] = $value['card_from'];
+            }
+        }
+        return $data;
+        
+    }
+    
 public function getCardsOfHolder(Request $request,$userId) {
         $data = $request->all();
         $data['user_id'] = $userId;

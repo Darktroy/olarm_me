@@ -32,7 +32,7 @@ class cards_holder extends Model
      */
     protected $fillable = [
                   'user_id',
-                  'name'
+                  'name','company_id'
               ];
 
     /**

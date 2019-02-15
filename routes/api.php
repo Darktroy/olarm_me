@@ -26,6 +26,7 @@ Route::post('new-password', 'API\AuthController@newPassReset');
 
 Route::middleware('auth:api')->group(function(){
 
+    Route::post('get-user-tranfers-request-recomanded-transfer', 'UserCardsController@showUserTRRT');
     Route::post('get-user-card-holders', 'CardsHoldersController@showCardHoldersList');
     Route::post('get-cards-by-Cardholders', 'CardsHoldersController@showCardsOfHoldersList');
     Route::post('change-card-cardHolder', 'UserCardsController@moveChangingCardHolder');
