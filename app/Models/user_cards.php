@@ -147,11 +147,23 @@ class user_cards extends Model
         if(count($redirectdata)>0){
             $redirected = $redirectdata;
         }
+        $recommendedData = recommendedCards::with('card','recommendedByUser')
+                ->where('recommended_for_user_id',$userId)->get()->toArray();
+        $recommended = FALSE;
+        if(count($recommendedData)>0){
+            foreach ($recommendedData as $key => $value) {
+                $recommended[] = array('card_id'=>$value['card']['card_id'],
+                    'first_name'=>$value['card']['first_name'],'last_name'=>$value['card']['last_name'],
+                    'privacy'=>$value['card']['privacy'],
+                    'privacy_meaning'=>'0 for private card need confirmation before adding , 1 for private card public added without confirmation');
+            }
+        }
         $data =[];
         $data['request'] = $requestData;
          
         $data['transfered'] = $transfered;
-        $data['recommended'] = $redirected;
+        $data['redirected'] = $redirected;
+        $data['recommended'] = $recommended;
         return $data;
          
         

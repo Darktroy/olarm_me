@@ -47,3 +47,35 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'recommended_cards',
+], function () {
+
+    Route::get('/', 'RecommendedCardsController@index')
+         ->name('recommended_cards.recommended_cards.index');
+
+    Route::get('/create','RecommendedCardsController@create')
+         ->name('recommended_cards.recommended_cards.create');
+
+    Route::get('/show/{recommendedCards}','RecommendedCardsController@show')
+         ->name('recommended_cards.recommended_cards.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{recommendedCards}/edit','RecommendedCardsController@edit')
+         ->name('recommended_cards.recommended_cards.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'RecommendedCardsController@store')
+         ->name('recommended_cards.recommended_cards.store');
+               
+    Route::put('recommended_cards/{recommendedCards}', 'RecommendedCardsController@update')
+         ->name('recommended_cards.recommended_cards.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/recommended_cards/{recommendedCards}','RecommendedCardsController@destroy')
+         ->name('recommended_cards.recommended_cards.destroy')
+         ->where('id', '[0-9]+');
+
+});
