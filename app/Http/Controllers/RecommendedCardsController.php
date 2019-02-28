@@ -154,7 +154,6 @@ $recommendedForUsers = User::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'recommendedCards_id' => 'nullable',
             'card_id' => 'nullable',
             'recommended_by_user_id' => 'nullable',
             'recommended_for_user_id' => 'nullable',
@@ -165,6 +164,29 @@ $recommendedForUsers = User::pluck('id','id')->all();
 
 
         return $data;
+    }
+    
+    public function recommendCard(Request $request) {
+        $user = Auth::user();
+        try {
+                DB::beginTransaction();
+                $RCobject = new recommendedCards();
+                
+                $data = $RCobject->recommendCardtouser($request, $user->id);
+               
+                DB::commit();
+                return response()->json([
+                    'data' =>  $data,
+                    'status' => 'success','status-code'=>200,'code'=>200
+                ],200);
+        } catch (Exception $exception) {
+            DB::rollBack();
+              return response()->json([
+                        'status' => 'error',
+                        'data' => $exception->getMessage(),
+                  'special-data'=>$exception->getLine().' '.$exception->getFile(),'status-code'=>403,'code'=>100
+                    ],200);
+        }
     }
 
 }

@@ -31,6 +31,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('get-cards-by-Cardholders', 'CardsHoldersController@showCardsOfHoldersList');
     Route::post('change-card-cardHolder', 'UserCardsController@moveChangingCardHolder');
     Route::post('show-my-cards', 'UserCardsController@showMyCards');
+    Route::post('recommend-card', 'RecommendedCardsController@recommendCard');
     
     Route::post('show-industries-list', 'ProfilesController@showIndustriesList');
     Route::post('show-specialities-by-industry-name', 'ProfilesController@getISpeciatiesList');
