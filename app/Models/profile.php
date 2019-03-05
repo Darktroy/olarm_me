@@ -41,7 +41,7 @@ class profile extends Model
 //                'template_layout_id',
 //                'logo',
 //                'about',
-//                'alias',
+                'alias',
 //                'facebook_url',
 //                'twitter_url',
 //                'instagram_url',

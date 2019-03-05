@@ -79,3 +79,35 @@ Route::group(
          ->where('id', '[0-9]+');
 
 });
+
+Route::group(
+[
+    'prefix' => 'user_locations',
+], function () {
+
+    Route::get('/', 'UserLocationsController@index')
+         ->name('user_locations.user_location.index');
+
+    Route::get('/create','UserLocationsController@create')
+         ->name('user_locations.user_location.create');
+
+    Route::get('/show/{userLocation}','UserLocationsController@show')
+         ->name('user_locations.user_location.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{userLocation}/edit','UserLocationsController@edit')
+         ->name('user_locations.user_location.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'UserLocationsController@store')
+         ->name('user_locations.user_location.store');
+               
+    Route::put('user_location/{userLocation}', 'UserLocationsController@update')
+         ->name('user_locations.user_location.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/user_location/{userLocation}','UserLocationsController@destroy')
+         ->name('user_locations.user_location.destroy')
+         ->where('id', '[0-9]+');
+
+});

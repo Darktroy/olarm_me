@@ -26,6 +26,9 @@ Route::post('new-password', 'API\AuthController@newPassReset');
 
 Route::middleware('auth:api')->group(function(){
 
+    Route::post('set-my-location', 'UserLocationsController@setMyLocation');
+    Route::post('set-my-location-and-get-near-by', 'UserLocationsController@setMyLocationAndNearBy');
+    
     Route::post('get-user-tranfers-request-recomanded-transfer', 'UserCardsController@showUserTRRT');
     Route::post('get-user-card-holders', 'CardsHoldersController@showCardHoldersList');
     Route::post('get-cards-by-Cardholders', 'CardsHoldersController@showCardsOfHoldersList');
@@ -126,36 +129,3 @@ Route::middleware('auth:api')->group(function(){
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-/*
-
-Route::group(
-[
-    'prefix' => 'departments',
-], function () {
-
-    Route::get('/', 'DepartmentsController@index')
-         ->name('departments.departments.index');
-
-    Route::get('/create','DepartmentsController@create')
-         ->name('departments.departments.create');
-
-    Route::get('/show/{departments}','DepartmentsController@show')
-         ->name('departments.departments.show')
-         ->where('id', '[0-9]+');
-
-    Route::get('/{departments}/edit','DepartmentsController@edit')
-         ->name('departments.departments.edit')
-         ->where('id', '[0-9]+');
-
-    Route::post('/', 'DepartmentsController@store')
-         ->name('departments.departments.store');
-               
-    Route::put('departments/{departments}', 'DepartmentsController@update')
-         ->name('departments.departments.update')
-         ->where('id', '[0-9]+');
-
-    Route::delete('/departments/{departments}','DepartmentsController@destroy')
-         ->name('departments.departments.destroy')
-         ->where('id', '[0-9]+');
-
-}); */
