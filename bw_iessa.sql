@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2019 at 09:39 AM
+-- Generation Time: Mar 05, 2019 at 12:58 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -51,7 +51,10 @@ INSERT INTO `activation_processes` (`id`, `activationcode`, `user_id`, `created_
 (10, 'a111', 33, '2019-01-12 05:46:06', '2019-01-12 05:46:06', NULL),
 (11, 'a111', 34, '2019-01-12 05:46:12', '2019-01-12 05:46:12', NULL),
 (12, 'a111', 35, '2019-01-12 05:46:20', '2019-01-12 05:46:20', NULL),
-(13, 'a111', 36, '2019-01-12 06:29:56', '2019-01-12 06:29:56', NULL);
+(13, 'a111', 36, '2019-01-12 06:29:56', '2019-01-12 06:29:56', NULL),
+(14, 'a111', 47, '2019-03-05 10:13:17', '2019-03-05 10:13:17', NULL),
+(15, 'a111', 48, '2019-03-05 10:21:15', '2019-03-05 10:21:15', NULL),
+(16, 'a111', 49, '2019-03-05 11:12:40', '2019-03-05 11:12:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -95,6 +98,30 @@ INSERT INTO `branchs` (`branch_id`, `created_at`, `updated_at`, `company_id`, `n
 (1, '2018-12-25 04:48:27', '2018-12-25 04:48:27', 8, 'wvfennmjnnf', 'fcwe'),
 (2, '2018-12-25 05:03:13', '2018-12-25 05:03:13', 7, 'defb', 'address dfbswv'),
 (3, '2018-12-26 02:29:19', '2018-12-26 02:29:19', 7, 'ac', 'wqec');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cardpools`
+--
+
+CREATE TABLE `cardpools` (
+  `cardpool_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `company_id` int(10) UNSIGNED NOT NULL,
+  `card_holder_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cardpools`
+--
+
+INSERT INTO `cardpools` (`cardpool_id`, `created_at`, `updated_at`, `company_id`, `card_holder_id`) VALUES
+(1, NULL, NULL, 8, 3),
+(2, NULL, NULL, 8, 4),
+(3, NULL, NULL, 8, 5),
+(4, '2019-01-31 05:53:54', '2019-01-31 05:53:54', 8, 12);
 
 -- --------------------------------------------------------
 
@@ -143,7 +170,11 @@ INSERT INTO `cards` (`card_id`, `created_at`, `updated_at`, `user_id`, `last_nam
 (20, '2019-01-15 05:21:05', '2019-01-15 07:04:29', 11, 't1Update', 't1Update5', 28, 0, 'qweqw', 't1PosUpdate', '8585', '555552', '151111', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, 't1aliasUpdate', 0, NULL, NULL, 1, 0, 8, 'male', 1),
 (21, NULL, NULL, NULL, 'test', 'test', 35, 0, 'test', 'test postion', '012525452', '2455821', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0, 0, 0, 'male', 1),
 (22, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 28, 'l1', 'f1', 35, 0, 'qweqw', 'P1', '12345', '67890', '2568', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, 'alias 1', 0, NULL, NULL, 0, 0, 8, 'male', 1),
-(23, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 28, 'l1', 'f1', 35, 0, 'qweqw', 'P1', '12345', '67890', '2568', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, 'alias 1', 0, NULL, NULL, 0, 0, 8, 'male', 1);
+(23, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 28, 'l1', 'f1', 35, 0, 'qweqw', 'P1', '12345', '67890', '2568', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, 'alias 1', 0, NULL, NULL, 0, 0, 8, 'male', 1),
+(24, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 35, 'l1', 'f1', 35, 0, 'qweqw', 'P1', '12345', '67890', '2568', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, 'alias 1', 0, NULL, NULL, 1, 0, 8, 'male', 1),
+(25, '2019-03-05 08:20:28', '2019-03-05 08:20:28', 47, 'dd', 'wintop-admin', 47, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, NULL, 11, 'http://localhost/BWmobapi/public/logo_image/logo_a7a854cbed51e7cf88e93fa36fbbfaa267c6a1e7ce56d3d6fa748ab6d9af3fd7.png', 'http://localhost/BWmobapi/public/card_image/profile_pic_67c6a1e7ce56d3d6fa748ab6d9af3fd7.jpg', 1, 0, 0, 'male', 1),
+(26, '2019-03-05 09:12:01', '2019-03-05 09:12:01', 48, 'dd', 'wintop-admin', 48, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, NULL, 11, 'http://localhost/BWmobapi/public/logo_image/logo_5611c13b449179d99fd17f6563e22055642e92efb79421734881b53e1e1b18b6.png', 'http://localhost/BWmobapi/public/card_image/profile_pic_642e92efb79421734881b53e1e1b18b6.jpg', 1, 0, 0, 'male', 1),
+(27, '2019-03-05 09:13:18', '2019-03-05 09:13:18', 49, 'dd', 'wintop-admin', 49, 1, 'com name test', 'position test', '01012345678', '02234567989', '02234567990', 'we.url.tres', 'sv', NULL, NULL, NULL, NULL, NULL, 11, 'http://localhost/BWmobapi/public/logo_image/logo_16082344c9012f618f59554e56ecb1f7f457c545a9ded88f18ecee47145a72c0.png', 'http://localhost/BWmobapi/public/card_image/profile_pic_f457c545a9ded88f18ecee47145a72c0.jpg', 1, 0, 0, 'male', 1);
 
 -- --------------------------------------------------------
 
@@ -157,23 +188,26 @@ CREATE TABLE `cards_holders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `canDelete` int(1) NOT NULL DEFAULT '1'
+  `canDelete` int(1) NOT NULL DEFAULT '1',
+  `company_id` int(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cards_holders`
 --
 
-INSERT INTO `cards_holders` (`card_holder_id`, `created_at`, `updated_at`, `user_id`, `name`, `canDelete`) VALUES
-(0, NULL, NULL, NULL, 'default', 0),
-(1, '2018-08-16 14:19:06', '2018-08-16 14:19:06', 8, 'test me if you can', 1),
-(2, '2018-08-16 14:28:34', '2018-08-16 14:28:34', 35, 'test me if you can 2', 1),
-(3, '2018-08-16 14:28:46', '2018-08-16 14:28:46', 8, 'test3', 1),
-(4, '2018-08-16 14:28:54', '2018-08-16 14:42:37', 35, 'test 5555', 1),
-(5, '2018-08-29 08:51:51', '2018-08-29 08:51:51', 35, 'test34', 1),
-(6, NULL, NULL, NULL, 'pending', 0),
-(7, NULL, NULL, NULL, 'colleagues', 0),
-(8, NULL, NULL, NULL, 'cardpool', 0);
+INSERT INTO `cards_holders` (`card_holder_id`, `created_at`, `updated_at`, `user_id`, `name`, `canDelete`, `company_id`) VALUES
+(0, NULL, NULL, NULL, 'default', 0, NULL),
+(1, '2018-08-16 14:19:06', '2018-08-16 14:19:06', 28, 'test me if you can', 1, 8),
+(3, '2018-08-16 14:28:46', '2018-08-16 14:28:46', 8, 'test3', 1, NULL),
+(5, '2018-08-29 08:51:51', '2018-08-29 08:51:51', 35, 'test34', 1, 8),
+(6, NULL, NULL, NULL, 'pending', 0, NULL),
+(7, NULL, NULL, NULL, 'colleagues', 0, NULL),
+(8, NULL, NULL, NULL, 'cardpool', 0, NULL),
+(9, '2019-01-31 05:35:39', '2019-01-31 05:35:39', NULL, 'wef', 1, NULL),
+(10, '2019-01-31 05:39:05', '2019-01-31 05:39:05', NULL, 'wevfeq', 1, 8),
+(12, '2019-01-31 05:53:54', '2019-01-31 05:53:54', NULL, 'we', 1, 8),
+(13, '2019-01-31 08:14:57', '2019-01-31 08:14:57', 37, 'wevfeq', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -248,7 +282,8 @@ CREATE TABLE `companies` (
 
 INSERT INTO `companies` (`company_id`, `created_at`, `updated_at`, `company_name`, `company_logo`, `company_landline`, `company_fax`, `company_address`, `company_website`, `company_about`, `company_facebook`, `company_twitter`, `company_instagram`, `company_youtube`, `company_field`, `company_industry`, `company_speciality`, `company_countary`, `company_city`, `company_district`, `company_tax_card`, `company_registery`, `user_id`, `approve`) VALUES
 (7, '2018-12-24 14:16:18', '2018-12-24 14:16:18', 'dd', NULL, '5555555', '875421574', '128 khlouse', 'http://www.twest.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TC1545668178.jpg', 'RP1545668178.jpg', 27, 0),
-(8, '2018-12-30 11:47:43', '2018-12-30 11:47:43', 'qweqw', NULL, '1455', '1546', 'qweqw', 'qweqw.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TC1546177663.png', 'RP1546177663.png', 28, 0);
+(8, '2018-12-30 11:47:43', '2019-01-26 06:03:15', 'qweqw', NULL, '1455', '1546', 'qweqw', 'qweqw.com', 'fghjkjhgfcvgbhnjkjhgfghjkjhgfvcghjkjhgfghjkhgfghjkjhgfswvf', 'http://www.twest.com', 'http://www.twest.com', 'http://www.twest.com', 'http://www.twest.com', NULL, NULL, NULL, NULL, NULL, NULL, 'TC1546177663.png', 'RP1546177663.png', 28, 0),
+(9, '2019-01-31 13:40:46', '2019-01-31 13:40:46', 'q', NULL, '23123', '432443', '128 khlouse', 'http://www.twest.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TC1548949246.png', 'RP1548949246.png', 46, 0);
 
 -- --------------------------------------------------------
 
@@ -434,7 +469,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2018_12_25_080902_create_departements_table', 15),
 (26, '2018_12_30_115731_create_user_to_companies_table', 16),
 (27, '2019_01_12_070123_create_email_signatures_table', 17),
-(28, '2019_01_17_055058_create_countaries_details_table', 18);
+(28, '2019_01_17_055058_create_countaries_details_table', 18),
+(29, '2019_01_31_001146_create_cardpools_table', 19),
+(30, '2019_02_26_075811_create_recommended_cards_table', 20),
+(31, '2019_03_05_021828_create_user_locations_table', 21);
 
 -- --------------------------------------------------------
 
@@ -470,6 +508,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('4f711b06fea85c8817f25d2db18898a45ea4a8eb294971b6647a2388d298132fe873469257d86610', 3, 5, 'LaraPassport', '[]', 0, '2018-08-06 08:14:09', '2018-08-06 08:14:09', '2019-08-06 10:14:09'),
 ('518b6b541c529e3f95fb167107972a2eae9dd92926721a95a33d0de5074612a3194066394e240800', 33, 5, 'LaraPassport', '[]', 0, '2019-01-12 04:34:35', '2019-01-12 04:34:35', '2020-01-12 06:34:35'),
 ('54c7b4f4b069942713c5a331302ae00e17f3c9e3d31eba8531c33971dbe14b34b6abe727b00a1286', 18, 5, 'LaraPassport', '[]', 0, '2018-12-02 00:15:47', '2018-12-02 00:15:47', '2019-12-02 02:15:47'),
+('6075158e9a7d4e81159903fbdeabee40a6fbf5175fc3320ce615b46b19d7cd88da88a6e320802d54', 35, 5, 'LaraPassport', '[]', 0, '2019-02-26 06:08:49', '2019-02-26 06:08:49', '2020-02-26 08:08:49'),
 ('6149db1706ce32d42fe0ef49cf64c86d0485780eeef295cdc8f11197137c978f65ef5f62243484b7', 5, 5, 'LaraPassport', '[]', 0, '2018-08-07 13:18:16', '2018-08-07 13:18:16', '2019-08-07 15:18:16'),
 ('6316ae29747de24ade08186ded86f812c7d65bc8a33aea9fd2f1b3f5ea2da8711915118765274b93', 34, 5, 'LaraPassport', '[]', 0, '2019-01-12 03:46:12', '2019-01-12 03:46:12', '2020-01-12 05:46:12'),
 ('658707b68df5974dfec40d1f28056fbecc51b08f702c9fd0b82583d9b9ce7aa4b38537c5ec5ae7ff', 13, 5, 'LaraPassport', '[]', 0, '2018-08-22 05:43:46', '2018-08-22 05:43:46', '2019-08-22 07:43:46'),
@@ -483,9 +522,12 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('9f53f25e641166e3b1c8a13f433d2f2f9691f5d330bf99022b0b2814e2e9eb5337aa539fa061d9ca', 1, 5, 'LaraPassport', '[]', 0, '2018-08-06 06:26:25', '2018-08-06 06:26:25', '2019-08-06 08:26:25'),
 ('a6b86b7a2ca0f49fb236a35c09933476395bfdfd0733f8693ee1ac75a81bf961bcb9135c0e94a2cf', 35, 5, 'LaraPassport', '[]', 0, '2019-01-17 02:55:43', '2019-01-17 02:55:43', '2020-01-17 04:55:43'),
 ('bf1de42a200236e5edf1173ebb728919b5e47c2e2bcaef63cf7b685ac3ed5631b72c05092ca8228b', 12, 5, 'LaraPassport', '[]', 0, '2018-08-19 22:27:16', '2018-08-19 22:27:16', '2019-08-20 00:27:16'),
+('c8b6a82acea6d484df04ebdf02eeb2a0dd0865582f2c34cb4ee6a561c68809cba3488b6fe1f54030', 47, 5, 'LaraPassport', '[]', 0, '2019-03-05 08:13:17', '2019-03-05 08:13:17', '2020-03-05 10:13:17'),
+('d43823a08fd6433bb6251fc51d1cea1c99f2b9caf9a3eea10dedc4a31b36a02b729436767eda7ddf', 49, 5, 'LaraPassport', '[]', 0, '2019-03-05 09:12:39', '2019-03-05 09:12:39', '2020-03-05 11:12:39'),
 ('d93cb1efd68d1aa09a4320eeb4de5cc489b835d683d560e2062fcf858a6f4cb9f0a8a2a89b86d45c', 33, 5, 'LaraPassport', '[]', 0, '2019-01-12 03:46:05', '2019-01-12 03:46:05', '2020-01-12 05:46:05'),
 ('e67265e22af1f11155b33cd0d648739c6dd72ca604adacc7b6ec6c3f4545ea58bc9cb5e04d16f8ab', 8, 5, 'LaraPassport', '[]', 0, '2018-08-09 01:35:19', '2018-08-09 01:35:19', '2019-08-09 03:35:19'),
 ('e74a45af501023481014efb5812948bb4e1d223b6438d6f7ac128af685962d2606eef4ca38ea66be', 36, 5, 'LaraPassport', '[]', 0, '2019-01-12 04:29:55', '2019-01-12 04:29:55', '2020-01-12 06:29:55'),
+('e86bd387136e3f7a83b0972b9ee71616e179d89f7ff699dd77cdc07fd04bf49cdb47d476d6921eb9', 48, 5, 'LaraPassport', '[]', 0, '2019-03-05 08:21:15', '2019-03-05 08:21:15', '2020-03-05 10:21:15'),
 ('f148a30eaee33972371e7379ef7001cfd102a83a5a32f6d2f2e18dd9e91bb00bc169864b11787e34', 11, 5, 'LaraPassport', '[]', 0, '2018-08-19 22:27:01', '2018-08-19 22:27:01', '2019-08-20 00:27:01');
 
 -- --------------------------------------------------------
@@ -617,7 +659,10 @@ INSERT INTO `profiles` (`profile_id`, `created_at`, `updated_at`, `user_id`, `la
 (11, '2018-08-19 13:40:46', '2018-08-19 13:40:46', 10, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_d3d9446802a44259755d38e6d163e820.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it 2', 'software', 1, NULL, NULL, NULL, NULL, ''),
 (12, '2018-08-19 22:27:54', '2018-08-19 22:27:54', 11, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_6512bd43d9caa6e02c990b0a82652dca.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software testing', 1, NULL, NULL, NULL, NULL, ''),
 (13, '2018-08-22 05:44:29', '2018-08-22 05:44:29', 13, '', '', 'http://localhost/BWmobapi/public/card_image/profile_pic_c51ce410c124a10e0db5e4b97fc2af39.png', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'test industry', 'software', 1, NULL, NULL, NULL, NULL, ''),
-(14, '2018-08-25 08:38:19', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, '');
+(14, '2018-08-25 08:38:19', '2018-08-26 10:27:36', 14, 'Test me if you can', 'tasht', 'http://localhost/BWmobapi/public/card_image/profile_pic_e7327d748d95a66452ee96657fd46f49aab3238922bcc25a6f606eb525ffdc56.jpeg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, ''),
+(15, '2019-03-05 08:18:54', '2019-03-05 08:18:54', 47, 'dd', 'wintop-admin', 'http://localhost/BWmobapi/public/card_image/profile_pic_67c6a1e7ce56d3d6fa748ab6d9af3fd7.jpg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, 'test'),
+(16, '2019-03-05 09:11:40', '2019-03-05 09:11:40', 48, 'dd', 'wintop-admin', 'http://localhost/BWmobapi/public/card_image/profile_pic_642e92efb79421734881b53e1e1b18b6.jpg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, 'test'),
+(17, '2019-03-05 09:13:01', '2019-03-05 09:13:01', 49, 'dd', 'wintop-admin', 'http://localhost/BWmobapi/public/card_image/profile_pic_f457c545a9ded88f18ecee47145a72c0.jpg', 'male', 'egypt', 'cairo', 'shobtra', 'engineering', 'it', 'software', 1, NULL, NULL, NULL, NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -646,7 +691,34 @@ INSERT INTO `recent_activities` (`recent_activity_id`, `created_at`, `updated_at
 (4, '2019-01-12 03:46:20', '2019-01-12 03:46:20', 35, 0, 'registered', NULL),
 (5, '2019-01-12 03:46:20', '2019-01-12 03:46:20', 35, 0, 'registeredTest4', NULL),
 (6, '2019-01-12 03:46:20', '2019-01-12 03:46:20', 0, 35, 'registeredTest4 by user', NULL),
-(7, '2019-01-12 04:29:56', '2019-01-12 04:29:56', 36, 0, 'registered', NULL);
+(7, '2019-01-12 04:29:56', '2019-01-12 04:29:56', 36, 0, 'registered', NULL),
+(8, '2019-03-05 08:13:17', '2019-03-05 08:13:17', 47, 0, 'registered', NULL),
+(9, '2019-03-05 08:21:15', '2019-03-05 08:21:15', 48, 0, 'registered', NULL),
+(10, '2019-03-05 09:12:40', '2019-03-05 09:12:40', 49, 0, 'registered', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recommended_cards`
+--
+
+CREATE TABLE `recommended_cards` (
+  `recommendedCards_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `card_id` int(10) UNSIGNED DEFAULT NULL,
+  `recommended_by_user_id` int(10) UNSIGNED DEFAULT NULL,
+  `recommended_for_user_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `recommended_cards`
+--
+
+INSERT INTO `recommended_cards` (`recommendedCards_id`, `created_at`, `updated_at`, `card_id`, `recommended_by_user_id`, `recommended_for_user_id`) VALUES
+(1, NULL, NULL, 20, 19, 35),
+(2, NULL, NULL, 18, 19, 35),
+(3, NULL, NULL, 19, 19, 35);
 
 -- --------------------------------------------------------
 
@@ -710,7 +782,10 @@ INSERT INTO `stagings` (`staging_id`, `created_at`, `updated_at`, `user_id`, `re
 (1, '2019-01-12 03:46:06', '2019-01-12 03:46:06', 33, 1, 0, 0, 0),
 (2, '2019-01-12 03:46:12', '2019-01-12 03:46:12', 34, 1, 0, 0, 0),
 (3, '2019-01-12 03:46:20', '2019-01-12 03:46:20', 35, 1, 0, 0, 0),
-(4, '2019-01-12 04:29:56', '2019-01-12 04:29:56', 36, 1, 0, 0, 0);
+(4, '2019-01-12 04:29:56', '2019-01-12 04:29:56', 36, 1, 0, 0, 0),
+(5, '2019-03-05 08:13:18', '2019-03-05 08:20:29', 47, 1, 0, 1, 1),
+(6, '2019-03-05 08:21:15', '2019-03-05 09:12:01', 48, 1, 0, 1, 1),
+(7, '2019-03-05 09:12:40', '2019-03-05 09:13:18', 49, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -758,7 +833,7 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 (19, 'werd2 werd2', 'werd2', 'werd2', 'werd2@werd2.werd2', '$2y$10$rP.dXgJb5I3hLkqSD16eVOhrIxfS9T//8LIXU2u4wsxi.ZyjXFRgm', NULL, '2018-12-24 14:05:17', '2018-12-24 14:05:17', 0, 3),
 (24, 'zs zs', 'zs', 'zs', 'zs@zs.zs', '$2y$10$Phlxcikldnj9CtuKNOEHE.HGYLBQ/1BzWtoXF1.pgAP.wLmsjfEQS', NULL, '2018-12-24 14:11:15', '2018-12-24 14:11:15', 0, 3),
 (27, 'zsd zsd', 'zsd', 'zsd', 'zsd@zsd.zsd', '$2y$10$BtifMqHz5dJLBtw.gqfNTOqMBH0ocI1S.DBlUH9FsykV2v2xPT.XC', 'X0fPd0hOl67pDiSI0Li5u9XBUr3wTlM8jQnqxyRev5DT1IPVsleMtZlqlBQp', '2018-12-24 14:16:18', '2018-12-24 14:16:18', 0, 3),
-(28, 'tttttttttttttttttttttttttt yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', 'tttttttttttttttttttttttttt', 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', 'qweqw@qweqw.qweqw', '$2y$10$cbD4EcMZdF5gvXommT.Gee7EGOytJMl9BO6VPPwFgvmeb.8FT0hHO', '0YwNNhkwBgZ2VSwxAF5kYy89v4INtNyLd8JfI7JhXkd0mYAB8Pqn3i6iXNWb', '2018-12-30 11:47:43', '2019-01-15 05:15:15', 0, 3),
+(28, 'tttttttttttttttttttttttttt yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', 'tttttttttttttttttttttttttt', 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', 'qweqw@qweqw.qweqw', '$2y$10$cbD4EcMZdF5gvXommT.Gee7EGOytJMl9BO6VPPwFgvmeb.8FT0hHO', 'qvXYtuKV9YWEZsiVcrmlSUOkDdCVBgrndHu9pv5JjExtqlBAw9zrLD92q6bg', '2018-12-30 11:47:43', '2019-01-15 05:15:15', 0, 3),
 (29, 'ftest ltest', 'ftest', 'ltest', 'test@test.test', '$2y$10$ngWGujpEH5CAANDe1CG0..QL.itnnhZTYX3ZPj6yTaCQXIrXygHHa', NULL, '2019-01-02 05:07:00', '2019-01-02 05:07:00', 0, 3),
 (30, 'jan1 jan1', 'jan1', 'jan1', 'jan1@jan1.jan1', '$2y$10$MsCLghpzDfHtnf1jrA3oye2.20gP/TxwW2/lPnwvdgVEkDFfwKroC', NULL, '2019-01-02 05:14:47', '2019-01-02 05:14:47', 0, 3),
 (31, 'jan2 jan2', 'jan2', 'jan2', 'jan2@jan2.jan2', '$2y$10$KAwWiw31B23LkxrKnCpKfuau73UH6Zx2R6WnXHowOkEmbkJFhrmfG', NULL, '2019-01-02 05:16:37', '2019-01-02 05:16:37', 0, 3),
@@ -775,7 +850,11 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 (42, 'tyui wsevfoiuh', 'tyui', 'wsevfoiuh', 'ljk@jhgf.voi', '$2y$10$qbIcNVMqpV7lQhqcdcOdXuy3VqsuVD5FLSrmZ6AvUcxCx59bJTooO', NULL, '2019-01-13 02:51:11', '2019-01-13 02:51:11', 0, 3),
 (43, 'wqaefd qwed', 'wqaefd', 'qwed', 'hg@hj.iui', '$2y$10$PzQaNptI/x09/pjeT/wcHOztGkrAya63CEXk9uDmvJ1BLbkB/ESu.', NULL, '2019-01-13 02:52:42', '2019-01-13 02:52:42', 0, 3),
 (44, 'f1 l1', 'f1', 'l1', 'L@L.L', '$2y$10$aYuhFJ73GMKagDPFxkBSPuBLN3zwGJ3lXJ4KPWvhWS3CaH4PiFfo2', NULL, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 0, 3),
-(45, 't1Update5 t1Update', 't1Update5', 't1Update', 't1@t1.t1', '$2y$10$2S7/12hjbbUH0OtWKjBIg.P5pmaPgSrIZPLIYgRYvE70WxbI7RVs6', NULL, '2019-01-15 05:21:05', '2019-01-15 07:04:29', 0, 3);
+(45, 't1Update5 t1Update', 't1Update5', 't1Update', 't1@t1.t1', '$2y$10$2S7/12hjbbUH0OtWKjBIg.P5pmaPgSrIZPLIYgRYvE70WxbI7RVs6', NULL, '2019-01-15 05:21:05', '2019-01-15 07:04:29', 0, 3),
+(46, 'q q', 'q', 'q', 'q@q.q', '$2y$10$Tpy7tHyTDo7LAwIBzuzmA.ij2f7rL2jZ7c1jiCE1TWThrpxCWXSNW', 'sGbpEIffdBZCn3JS50Vjx52vCENqDAzZK6PuAXJifwotH8sjeEzmHyp4ERtH', '2019-01-31 13:40:46', '2019-01-31 13:40:46', 0, 3),
+(47, 'wintop-admin', 'wintop-admin', 'dd', 'test05032019_1@gmail.com', '$2y$10$QwVa.kOTZ2yaJEU08VxQnuCQSopD1oQtAzbeDZL12LtyZ8QMo81e6', NULL, '2019-03-05 08:13:14', '2019-03-05 08:13:14', 0, 3),
+(48, 'wintop-admin', 'wintop-admin', 'dd', 'test05032019_2@gmail.com', '$2y$10$BXCZTP.6LiOeCaECEzUsVeTlgaJnkT3p0eO0/xSVGpQYexn7VTL0S', NULL, '2019-03-05 08:21:15', '2019-03-05 08:21:15', 0, 3),
+(49, 'wintop-admin', 'wintop-admin', 'dd', 'test05032019_3@gmail.com', '$2y$10$6PdnRo8gLdd6nbDqfzO49.UOBieOKzSvQ1pX9DJRv7dqDwnJWNtBG', NULL, '2019-03-05 09:12:39', '2019-03-05 09:12:39', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -789,17 +868,52 @@ CREATE TABLE `user_cards` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `card_holder_id` int(10) UNSIGNED DEFAULT NULL,
-  `card_id` int(10) UNSIGNED DEFAULT NULL
+  `card_id` int(10) UNSIGNED DEFAULT NULL,
+  `transfered` int(1) NOT NULL DEFAULT '0',
+  `redirected` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user_cards`
 --
 
-INSERT INTO `user_cards` (`user_card_id`, `created_at`, `updated_at`, `user_id`, `card_holder_id`, `card_id`) VALUES
-(1, NULL, '2019-01-21 02:59:01', 35, 5, 21),
-(2, NULL, '2019-01-21 02:59:01', 35, 5, 22),
-(3, NULL, '2019-01-21 02:59:01', 35, 5, 23);
+INSERT INTO `user_cards` (`user_card_id`, `created_at`, `updated_at`, `user_id`, `card_holder_id`, `card_id`, `transfered`, `redirected`) VALUES
+(1, NULL, '2019-01-21 02:59:01', 35, 5, 21, 0, 1),
+(2, NULL, '2019-01-21 02:59:01', 35, 5, 22, 1, 0),
+(3, NULL, '2019-01-21 02:59:01', 35, 5, 23, 0, 1),
+(4, '2019-03-05 08:20:29', '2019-03-05 08:20:29', 47, 0, 25, 0, 0),
+(5, '2019-03-05 09:12:01', '2019-03-05 09:12:01', 48, 0, 26, 0, 0),
+(6, '2019-03-05 09:13:18', '2019-03-05 09:13:18', 49, 0, 27, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_locations`
+--
+
+CREATE TABLE `user_locations` (
+  `userLocation_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(64) NOT NULL,
+  `card_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `lat` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `long` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `formatted_address` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_locations`
+--
+
+INSERT INTO `user_locations` (`userLocation_id`, `user_id`, `card_id`, `created_at`, `updated_at`, `lat`, `long`, `country`, `state`, `city`, `formatted_address`) VALUES
+(1, 35, 24, '2019-03-05 07:18:11', '2019-03-05 07:18:11', '30.0791746', '31.2485775', NULL, NULL, NULL, '128 Kholosi, Gesr Shubra, Shobra, Cairo Governorate, Egypt'),
+(2, 47, 25, '2019-03-05 08:21:02', '2019-03-05 08:21:02', '30.0791746', '31.2485775', NULL, NULL, NULL, '128 Kholosi, Gesr Shubra, Shobra, Cairo Governorate, Egypt'),
+(3, 48, 26, '2019-03-05 09:12:20', '2019-03-05 09:12:20', '30.0791746', '31.2485775', NULL, NULL, NULL, '128 Kholosi, Gesr Shubra, Shobra, Cairo Governorate, Egypt'),
+(4, 49, 27, '2019-03-05 09:13:29', '2019-03-05 09:13:29', '30.0791746', '31.2485775', NULL, NULL, NULL, '128 Kholosi, Gesr Shubra, Shobra, Cairo Governorate, Egypt');
 
 -- --------------------------------------------------------
 
@@ -834,7 +948,8 @@ INSERT INTO `user_to_companies` (`userToCompany_id`, `created_at`, `updated_at`,
 (10, '2019-01-13 02:51:11', '2019-01-13 02:51:11', 8, 42, 2, 1),
 (11, '2019-01-13 02:52:42', '2019-01-13 02:52:42', 8, 43, 2, 2),
 (12, '2019-01-15 05:17:36', '2019-01-15 05:17:36', 8, 44, 2, 1),
-(13, '2019-01-15 05:21:05', '2019-01-15 05:21:05', 8, 45, 2, 3);
+(13, '2019-01-15 05:21:05', '2019-01-15 05:21:05', 8, 45, 2, 3),
+(14, '2019-01-31 13:40:46', '2019-01-31 13:40:46', 9, 46, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -858,6 +973,14 @@ ALTER TABLE `activity_description`
 ALTER TABLE `branchs`
   ADD PRIMARY KEY (`branch_id`),
   ADD KEY `branchs_company_id_index` (`company_id`);
+
+--
+-- Indexes for table `cardpools`
+--
+ALTER TABLE `cardpools`
+  ADD PRIMARY KEY (`cardpool_id`),
+  ADD KEY `cardpools_company_id_index` (`company_id`),
+  ADD KEY `cardpools_card_holder_id_index` (`card_holder_id`);
 
 --
 -- Indexes for table `cards`
@@ -995,6 +1118,15 @@ ALTER TABLE `recent_activities`
   ADD KEY `recent_activities_action_by_user_id_index` (`action_by_user_id`);
 
 --
+-- Indexes for table `recommended_cards`
+--
+ALTER TABLE `recommended_cards`
+  ADD PRIMARY KEY (`recommendedCards_id`),
+  ADD KEY `recommended_cards_card_id_index` (`card_id`),
+  ADD KEY `recommended_cards_recommended_by_user_id_index` (`recommended_by_user_id`),
+  ADD KEY `recommended_cards_recommended_for_user_id_index` (`recommended_for_user_id`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -1038,6 +1170,14 @@ ALTER TABLE `user_cards`
   ADD KEY `user_cards_card_id_index` (`card_id`);
 
 --
+-- Indexes for table `user_locations`
+--
+ALTER TABLE `user_locations`
+  ADD PRIMARY KEY (`userLocation_id`),
+  ADD UNIQUE KEY `card_id` (`card_id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `user_to_companies`
 --
 ALTER TABLE `user_to_companies`
@@ -1053,7 +1193,7 @@ ALTER TABLE `user_to_companies`
 -- AUTO_INCREMENT for table `activation_processes`
 --
 ALTER TABLE `activation_processes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `activity_description`
@@ -1068,16 +1208,22 @@ ALTER TABLE `branchs`
   MODIFY `branch_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `cardpools`
+--
+ALTER TABLE `cardpools`
+  MODIFY `cardpool_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `cards`
 --
 ALTER TABLE `cards`
-  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `cards_holders`
 --
 ALTER TABLE `cards_holders`
-  MODIFY `card_holder_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `card_holder_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `card_to_interests`
@@ -1089,7 +1235,7 @@ ALTER TABLE `card_to_interests`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `countaries_details`
@@ -1137,7 +1283,7 @@ ALTER TABLE `messag_records`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -1155,13 +1301,19 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `profile_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `profile_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `recent_activities`
 --
 ALTER TABLE `recent_activities`
-  MODIFY `recent_activity_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `recent_activity_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `recommended_cards`
+--
+ALTER TABLE `recommended_cards`
+  MODIFY `recommendedCards_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -1179,7 +1331,7 @@ ALTER TABLE `resetsteps`
 -- AUTO_INCREMENT for table `stagings`
 --
 ALTER TABLE `stagings`
-  MODIFY `staging_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `staging_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `terms`
@@ -1191,19 +1343,25 @@ ALTER TABLE `terms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user_cards`
 --
 ALTER TABLE `user_cards`
-  MODIFY `user_card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_locations`
+--
+ALTER TABLE `user_locations`
+  MODIFY `userLocation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_to_companies`
 --
 ALTER TABLE `user_to_companies`
-  MODIFY `userToCompany_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `userToCompany_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
