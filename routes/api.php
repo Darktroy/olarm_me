@@ -21,6 +21,9 @@ Route::post('register-mobile', 'API\AuthController@registerMobile');
 Route::post('reset-by-email', 'ResetstepsController@requestByEmail');
 Route::post('confirm-by-SMS', 'ResetstepsController@confirmBySMS');
 Route::post('new-password', 'API\AuthController@newPassReset');
+Route::post('qr-code', function () {
+    return QrCode::size(100)->generate(md5('iessa456'));
+});
 
 
 
