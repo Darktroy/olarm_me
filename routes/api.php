@@ -55,6 +55,11 @@ Route::middleware('auth:api')->group(function () {
     Route::post('create-cards', 'CardsController@store')->name('cards.cards.store');
     Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
 
+    Route::group(
+        ['prefix' => 'user_card_notes'], function () {
+            Route::post('', 'UserCardNotesController@store');
+        });
+
     Route::group(['prefix' => 'requests'], function () {
         Route::post('/show-my-All-rquests', 'RequestsController@index');
         Route::post('', 'RequestsController@store');

@@ -33,7 +33,7 @@
                             "is-unique": false,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -47,7 +47,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "activationcode",
@@ -81,7 +84,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "activationcode",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -123,7 +129,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -133,6 +142,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -140,7 +153,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -168,7 +182,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -179,7 +193,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -193,7 +207,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "profile_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -235,7 +252,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "picture",
@@ -269,7 +289,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "picture",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "gender",
@@ -303,7 +326,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "gender",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "country",
@@ -337,7 +363,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "country",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "city",
@@ -371,7 +400,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "city",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "district",
@@ -405,7 +437,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "district",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "field",
@@ -439,7 +474,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "field",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "industry",
@@ -473,7 +511,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "industry",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "specialty",
@@ -507,7 +548,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "specialty",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "privacy",
@@ -541,7 +585,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "privacy",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "template_layout_id",
@@ -583,7 +630,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "template_layout_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "logo",
@@ -617,7 +667,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "logo",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "about",
@@ -651,7 +704,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "about",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "alias",
@@ -685,7 +741,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "alias",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "facebook_url",
@@ -719,7 +778,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "facebook_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "twitter_url",
@@ -753,7 +815,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "twitter_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "instagram_url",
@@ -787,7 +852,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "instagram_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "youtube_url",
@@ -821,7 +889,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "youtube_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -831,6 +902,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -838,7 +913,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -891,7 +967,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -933,7 +1012,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "privacy",
@@ -967,7 +1049,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "privacy",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_name",
@@ -1001,7 +1086,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "position",
@@ -1035,7 +1123,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "position",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "cell_phone_number",
@@ -1069,7 +1160,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "cell_phone_number",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "landline",
@@ -1103,7 +1197,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "landline",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "fax",
@@ -1137,7 +1234,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "fax",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "website_url",
@@ -1171,7 +1271,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "website_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "about_me",
@@ -1205,7 +1308,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "about_me",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -1215,6 +1321,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -1222,7 +1332,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -1283,7 +1394,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_holder_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -1325,7 +1439,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "name",
@@ -1361,7 +1478,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -1371,6 +1491,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -1378,7 +1502,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -1431,7 +1556,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_card_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -1473,7 +1601,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "card_holder_id",
@@ -1515,7 +1646,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_holder_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "card_id",
@@ -1557,7 +1691,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -1567,6 +1704,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -1574,7 +1715,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -1627,7 +1769,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "interest_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "name",
@@ -1663,7 +1808,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -1673,6 +1821,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -1680,7 +1832,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -1708,7 +1861,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -1719,7 +1872,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -1741,7 +1894,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_to_interest_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "interest_id",
@@ -1783,7 +1939,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "interest_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "name",
@@ -1819,7 +1978,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -1861,7 +2023,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "private",
@@ -1895,7 +2060,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "private",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -1905,6 +2073,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -1912,7 +2084,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -1940,7 +2113,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -1951,7 +2124,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -1973,7 +2146,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "faq_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "question",
@@ -2007,7 +2183,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "question",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "answer",
@@ -2041,7 +2220,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "answer",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -2051,6 +2233,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -2058,7 +2244,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -2086,7 +2273,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -2097,7 +2284,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -2111,7 +2298,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "terms_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "name",
@@ -2147,7 +2337,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "description",
@@ -2183,7 +2376,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "description",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -2193,6 +2389,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -2200,7 +2400,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -2253,7 +2454,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "request_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "from_id",
@@ -2295,7 +2499,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "from_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "to_id",
@@ -2337,7 +2544,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "to_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -2347,6 +2557,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -2354,7 +2568,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -2407,7 +2622,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_name",
@@ -2441,7 +2659,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_logo",
@@ -2475,7 +2696,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_logo",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_landline",
@@ -2509,7 +2733,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_landline",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_fax",
@@ -2543,7 +2770,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_fax",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_address",
@@ -2577,7 +2807,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_address",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_website",
@@ -2611,7 +2844,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_website",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_about",
@@ -2645,7 +2881,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_about",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_facebook",
@@ -2679,7 +2918,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_facebook",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_twitter",
@@ -2713,7 +2955,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_twitter",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_instagram",
@@ -2747,7 +2992,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_instagram",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_youtube",
@@ -2781,7 +3029,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_youtube",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_field",
@@ -2815,7 +3066,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_field",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_industry",
@@ -2849,7 +3103,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_industry",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_speciality",
@@ -2883,7 +3140,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_speciality",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_countary",
@@ -2917,7 +3177,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_countary",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_city",
@@ -2951,7 +3214,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_city",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_district",
@@ -2985,7 +3251,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_district",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -2995,6 +3264,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -3002,7 +3275,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -3055,7 +3329,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "resetsteps_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "email",
@@ -3089,7 +3366,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "email",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "confirmation_code",
@@ -3123,7 +3403,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "confirmation_code",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "confirmation_link",
@@ -3157,7 +3440,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "confirmation_link",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "temp_pass",
@@ -3191,7 +3477,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "temp_pass",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -3201,6 +3490,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -3208,7 +3501,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -3236,7 +3530,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -3247,7 +3541,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": false,
@@ -3261,7 +3555,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "department_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "title",
@@ -3297,7 +3594,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "title",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "email",
@@ -3331,7 +3631,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "email",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -3341,6 +3644,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -3348,7 +3655,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -3401,7 +3709,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "messag_record_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "email",
@@ -3435,7 +3746,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "email",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "title_of_message",
@@ -3469,7 +3783,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "title_of_message",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "message",
@@ -3505,7 +3822,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "message",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -3547,7 +3867,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -3557,6 +3880,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -3564,7 +3891,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -3592,7 +3920,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -3603,7 +3931,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -3617,7 +3945,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "recent_activity_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -3659,7 +3990,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "action_by_user_id",
@@ -3701,7 +4035,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "action_by_user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "description",
@@ -3737,7 +4074,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "description",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "profile_image_url",
@@ -3771,7 +4111,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "profile_image_url",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -3781,6 +4124,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -3788,7 +4135,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -3816,7 +4164,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -3827,7 +4175,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -3841,7 +4189,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "invitation_contacts_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "phonecode",
@@ -3875,7 +4226,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "phonecode",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "phone",
@@ -3909,7 +4263,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "phone",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "invited_user_id",
@@ -3951,7 +4308,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "invited_user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "invitation_code",
@@ -3985,7 +4345,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "invitation_code",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -3995,6 +4358,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4002,7 +4369,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4055,7 +4423,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "staging_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -4097,7 +4468,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "registration",
@@ -4131,7 +4505,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "registration",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "active_account",
@@ -4165,7 +4542,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "active_account",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "creation_own_profile",
@@ -4199,7 +4579,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "creation_own_profile",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "creation_own_card",
@@ -4233,7 +4616,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "creation_own_card",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -4243,6 +4629,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4250,7 +4640,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4303,7 +4694,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "branch_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "company_id",
@@ -4345,7 +4739,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "company_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "name",
@@ -4381,7 +4778,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "name",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "address",
@@ -4415,7 +4815,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "address",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -4425,6 +4828,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4432,7 +4839,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4485,7 +4893,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "emailSignature_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "user_id",
@@ -4527,7 +4938,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "imageName",
@@ -4561,7 +4975,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "imageName",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -4571,6 +4988,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4578,7 +4999,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4631,7 +5053,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "countariesDetails_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "countaryName",
@@ -4665,7 +5090,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "countaryName",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "cityName",
@@ -4699,7 +5127,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "cityName",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "district",
@@ -4733,7 +5164,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "district",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -4743,6 +5177,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4750,7 +5188,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4778,7 +5217,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -4789,7 +5228,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -4803,7 +5242,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "recommendedCards_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "card_id",
@@ -4845,7 +5287,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "card_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "recommended_by_user_id",
@@ -4887,7 +5332,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "recommended_by_user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "recommended_for_user_id",
@@ -4929,7 +5377,10 @@
                             },
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "recommended_for_user_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -4939,6 +5390,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -4946,7 +5401,8 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
-                    }
+                    },
+                    "api-documentation": []
                 }
             }
         ]
@@ -4974,7 +5430,7 @@
                             "css-class": "",
                             "options": {},
                             "html-value": null,
-                            "validation": "nullable",
+                            "validation": "required|nullable",
                             "is-on-index": true,
                             "is-on-show": true,
                             "is-on-form": true,
@@ -4985,7 +5441,7 @@
                             "is-unique": true,
                             "is-primary": true,
                             "comment": null,
-                            "is-nullable": true,
+                            "is-nullable": false,
                             "is-header": false,
                             "is-unsigned": true,
                             "is-auto-increment": true,
@@ -4999,7 +5455,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "userLocation_id",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "lat",
@@ -5033,7 +5492,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "lat",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "long",
@@ -5067,7 +5529,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "long",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "country",
@@ -5101,7 +5566,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "country",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "state",
@@ -5135,7 +5603,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "state",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "city",
@@ -5169,7 +5640,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "city",
+                            "is-api-visible": true,
+                            "api-description": {}
                         },
                         {
                             "name": "postal_code",
@@ -5203,7 +5677,10 @@
                             "foreign-relation": null,
                             "foreign-constraint": null,
                             "on-store": null,
-                            "on-update": null
+                            "on-update": null,
+                            "api-key": "postal_code",
+                            "is-api-visible": true,
+                            "api-description": {}
                         }
                     ],
                     "relations": [],
@@ -5213,6 +5690,10 @@
                     "protection": {
                         "is-model-protected": false,
                         "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
                         "is-form-request-protected": false,
                         "is-languages-protected": false,
                         "is-form-view-protected": false,
@@ -5220,6 +5701,248 @@
                         "is-create-view-protected": false,
                         "is-edit-view-protected": false,
                         "is-show-view-protected": false
+                    },
+                    "api-documentation": []
+                }
+            }
+        ]
+    },
+    {
+        "model-name": "user_card_note",
+        "resource-file": "user_card_notes.json",
+        "table-name": "user_card_notes",
+        "migrations": [
+            {
+                "name": "2019_04_09_100403_create_user_card_notes_table",
+                "class-name": "CreateUserCardNotesTable",
+                "path": "/opt/lampp/htdocs/Testbw/database/migrations/2019_04_09_100403_create_user_card_notes_table.php",
+                "is-create": true,
+                "is-virtual": false,
+                "is-organized": false,
+                "with-soft-delete": false,
+                "without-timestamps": false,
+                "resource": {
+                    "fields": [
+                        {
+                            "name": "user_card_note_id",
+                            "labels": "User Card Note",
+                            "html-type": "select",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "required|nullable",
+                            "is-on-index": true,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "int",
+                            "data-type-params": [],
+                            "data-value": null,
+                            "is-index": true,
+                            "is-unique": true,
+                            "is-primary": true,
+                            "comment": null,
+                            "is-nullable": false,
+                            "is-header": false,
+                            "is-unsigned": true,
+                            "is-auto-increment": true,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": "Select user card note",
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": null,
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null,
+                            "api-key": "user_card_note_id",
+                            "is-api-visible": true,
+                            "api-description": "The user card note of the model."
+                        },
+                        {
+                            "name": "user_id",
+                            "labels": "User",
+                            "html-type": "select",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "nullable",
+                            "is-on-index": true,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "int",
+                            "data-type-params": [],
+                            "data-value": null,
+                            "is-index": true,
+                            "is-unique": false,
+                            "is-primary": false,
+                            "comment": null,
+                            "is-nullable": true,
+                            "is-header": false,
+                            "is-unsigned": true,
+                            "is-auto-increment": false,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": "Select user",
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": {
+                                "name": "user",
+                                "type": "belongsTo",
+                                "params": [
+                                    "App\\Models\\User",
+                                    "user_id"
+                                ],
+                                "field": "id"
+                            },
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null,
+                            "api-key": "user_id",
+                            "is-api-visible": true,
+                            "api-description": "The user of the model."
+                        },
+                        {
+                            "name": "card_id",
+                            "labels": "Card",
+                            "html-type": "select",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "nullable",
+                            "is-on-index": true,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "int",
+                            "data-type-params": [],
+                            "data-value": null,
+                            "is-index": true,
+                            "is-unique": false,
+                            "is-primary": false,
+                            "comment": null,
+                            "is-nullable": true,
+                            "is-header": false,
+                            "is-unsigned": true,
+                            "is-auto-increment": false,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": "Select card",
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": {
+                                "name": "card",
+                                "type": "belongsTo",
+                                "params": [
+                                    "App\\Models\\Card",
+                                    "card_id"
+                                ],
+                                "field": "card_id"
+                            },
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null,
+                            "api-key": "card_id",
+                            "is-api-visible": true,
+                            "api-description": "The card of the model."
+                        },
+                        {
+                            "name": "note",
+                            "labels": "Note",
+                            "html-type": "textarea",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "string|min:1|max:1000|nullable",
+                            "is-on-index": false,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "string",
+                            "data-type-params": [
+                                1000
+                            ],
+                            "data-value": null,
+                            "is-index": false,
+                            "is-unique": false,
+                            "is-primary": false,
+                            "comment": null,
+                            "is-nullable": true,
+                            "is-header": false,
+                            "is-unsigned": false,
+                            "is-auto-increment": false,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": {},
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": null,
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null,
+                            "api-key": "note",
+                            "is-api-visible": true,
+                            "api-description": "The note of the model."
+                        }
+                    ],
+                    "relations": [],
+                    "indexes": [],
+                    "auto-manage-created-and-updated-at": true,
+                    "table-name": null,
+                    "protection": {
+                        "is-model-protected": false,
+                        "is-controller-protected": false,
+                        "is-api-resource-protected": false,
+                        "is-api-resource-collection-protected": false,
+                        "is-api-documentation-protected": false,
+                        "is-api-documentation-controller-protected": false,
+                        "is-form-request-protected": false,
+                        "is-languages-protected": false,
+                        "is-form-view-protected": false,
+                        "is-index-view-protected": false,
+                        "is-create-view-protected": false,
+                        "is-edit-view-protected": false,
+                        "is-show-view-protected": false
+                    },
+                    "api-documentation": {
+                        "access_token_with_bearer": "The access token prefixed with the \"Bearer \" key word.",
+                        "index_route_description": "Retrieve existing user card notes.",
+                        "index_route_response_description": "The API's response will be JSON based data. The JSON object will be structured as follow",
+                        "the_key_is_the_model_property_and_the_value_is_the_model_value": "The array's key is the user card note property name where the value is the assigned value to the retrieved user card note.",
+                        "link_to_retrieve_first_page": "Link to retrieve first page.",
+                        "link_to_retrieve_last_page": "Link to retrieve last page.",
+                        "link_to_retrieve_previous_page": "Link to retrieve previous page.",
+                        "link_to_retrieve_next_page": "Link to retrieve next page.",
+                        "the_number_of_current_page": "The number of current page.",
+                        "the_index_of_the_first_retrieved_item": "The index of first retrieved user card note.",
+                        "the_number_of_the_last_page": "The number of the last page.",
+                        "the_base_link_to_the_resource": "The base link to the api resource.",
+                        "the_number_of_models_per_page": "The number of user card notes per page.",
+                        "the_index_of_the_last_retrieved_item": "The index of last retrieved user card note.",
+                        "the_total_of_available_pages": "The total of the available pages.",
+                        "store_route_description": "Create new user card note.",
+                        "store_route_response_description": "The API's response will be JSON based data. The JSON object will be structured as follow",
+                        "update_route_description": "Update existsing user card note.",
+                        "update_route_response_description": "The API's response will be JSON based data. The JSON object will be structured as follow",
+                        "show_route_description": "Retrieve existsing user card note.",
+                        "show_route_response_description": "The API's response will be JSON based data. The JSON object will be structured as follow",
+                        "the_id_of_model_to_retrieve": "The unique id of the user card note to retrieve",
+                        "destroy_route_description": "Delete existsing user card note.",
+                        "destroy_route_response_description": "The API's response will be JSON based data. The JSON object will be structured as follow",
+                        "the_id_of_model_to_delete": "The id of the user card note to delete.",
+                        "general_description": "Allows you to list, create, edit, show and delete user card notes.",
+                        "indicate_whether_the_request_was_successful_or_not": "Indicate whether the request was successful or not.",
+                        "the_id_of_the_model": "The id of the user card note.",
+                        "this_parameter_must_be_present_in_the_request": "This parameter must be present in the request.",
+                        "the_request_failed_validation": "The request failed validation.",
+                        "list_of_the_invalid_errors": "List of the invalid errors.",
+                        "the_requested_model_does_not_exists": "The requested user card note does not exists.",
+                        "the_user_does_not_have_permission_to_access_the_requested_resource": "User does not have permission to access the requested resource."
                     }
                 }
             }

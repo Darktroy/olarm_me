@@ -60,6 +60,8 @@ class CardsHoldersController extends Controller
                     'Appium-status-code' => 401,
                     ], 200);
             }
+
+            DB::beginTransaction();
             $createdHolderCard = cards_holder::create($data);
             recent_activity::create(array('user_id' => $user->id, 'action_by_user_id' => 0,
                     'description' => 'createCardHolder', 'profile_image_url' => null, ));
