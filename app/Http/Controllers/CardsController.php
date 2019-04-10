@@ -77,6 +77,9 @@ class CardsController extends Controller
                 if (empty($data['last_name']) || empty($data['first_name'])) {
                     return response()->json(['status' => 'error', 'error' => 'first or last name not entered', 'status-code' => 401], 200);
                 }
+
+                $data['last_name'] = $data['last_name'];
+                $data['first_name'] = $data['first_name'];
                 $data['user_id'] = null;
                 if ($request->hasFile('picture') && is_file($data['picture'])) {
                     $file = $request->file('picture');
@@ -463,6 +466,20 @@ class CardsController extends Controller
         try {
             $objCard = new cards();
             $data = $objCard->removeCard($request, $user);
+
+            return response()->json(['data' => $data, 'status' => 'success', 'status-code' => 200], 200);
+        } catch (Exception $exception) {
+            return response()->json(['status' => 'error', 'data' => $exception->getMessage(), 'getTraceAsString' => $exception->getTraceAsString(), 'special-data' => $exception->getLine().' '.$exception->getFile(), 'status-code' => 403], 200);
+        }
+    }
+
+    // showOne
+    public function showOne(Request $request)
+    {
+        $user = Auth::user();
+        try {
+            $objCard = new cards();
+            $data = $objCard->showOne($request, $user);
 
             return response()->json(['data' => $data, 'status' => 'success', 'status-code' => 200], 200);
         } catch (Exception $exception) {

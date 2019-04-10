@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Validation\Rule;
 use Exception;
 
 class cards extends Model
@@ -78,6 +79,16 @@ class cards extends Model
     public function interests()
     {
         return $this->hasMany('App\Models\card_to_interests', 'card_id');
+    }
+
+    public function reminders()
+    {
+        return $this->hasMany('App\Models\user_card_reminder', 'card_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Models\user_card_note', 'card_id');
     }
 
     public function advancedSearching(Request $request)
@@ -287,6 +298,33 @@ class cards extends Model
         ->where('user_id', $user->id)->where('card_holder_id', $request->card_holder_id)->delete();
         recent_activity::create(array('user_id' => $user->id, 'action_by_user_id' => $user->id,
                 'description' => 'Delete Card', 'profile_image_url' => null, ));
+
+        return $card;
+    }
+
+    //show one
+    public function showOne(Request $request, $user)
+    {
+        $rules = [
+            'card_id' => [
+                'required',
+                Rule::exists('user_cards', 'card_id')->where(function ($query) use ($request,$user) {
+                    $query->where('card_id', $request->card_id)
+                    ->where('user_id', $user->id);
+                }),
+                'exists:cards,card_id',
+            ],
+        ];
+        $messages = [
+            'card_id.required' => 'Please Enter valid card id',
+        ];
+        $data = Validator::make($request->all(), $rules, $messages);
+
+        if ($data->fails()) {
+            throw new Exception($data->errors());
+        }
+
+        $card = cards::where('card_id', $request->card_id)->with('interests', 'reminders', 'notes')->first();
 
         return $card;
     }

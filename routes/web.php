@@ -104,3 +104,35 @@ Route::group(
          ->name('user_locations.user_location.destroy')
          ->where('id', '[0-9]+');
 });
+
+Route::group(
+[
+    'prefix' => 'qr_code_users',
+], function () {
+
+    Route::get('/', 'QrCodeUsersController@index')
+         ->name('qr_code_users.qr_code_user.index');
+
+    Route::get('/create','QrCodeUsersController@create')
+         ->name('qr_code_users.qr_code_user.create');
+
+    Route::get('/show/{qrCodeUser}','QrCodeUsersController@show')
+         ->name('qr_code_users.qr_code_user.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{qrCodeUser}/edit','QrCodeUsersController@edit')
+         ->name('qr_code_users.qr_code_user.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'QrCodeUsersController@store')
+         ->name('qr_code_users.qr_code_user.store');
+               
+    Route::put('qr_code_user/{qrCodeUser}', 'QrCodeUsersController@update')
+         ->name('qr_code_users.qr_code_user.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/qr_code_user/{qrCodeUser}','QrCodeUsersController@destroy')
+         ->name('qr_code_users.qr_code_user.destroy')
+         ->where('id', '[0-9]+');
+
+});

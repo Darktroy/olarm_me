@@ -4,24 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Exception;
 
-class user_card_note extends Model
+class user_card_reminder extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'user_card_notes';
+    protected $table = 'user_card_reminders';
 
     /**
      * The database primary key value.
      *
      * @var string
      */
-    protected $primaryKey = 'user_card_note_id';
+    protected $primaryKey = 'id';
 
     /**
      * Attributes that should be mass-assignable.
@@ -29,9 +27,12 @@ class user_card_note extends Model
      * @var array
      */
     protected $fillable = [
+                  'user_card_reminder_id',
                   'user_id',
                   'card_id',
-                  'note',
+                  'date',
+                  'time',
+                  'reminder',
               ];
 
     /**
@@ -49,6 +50,14 @@ class user_card_note extends Model
     protected $casts = [];
 
     /**
+     * Get the userCardReminder for this model.
+     */
+    public function userCardReminder()
+    {
+        return $this->belongsTo('App\Models\UserCardReminder', 'user_card_reminder_id');
+    }
+
+    /**
      * Get the user for this model.
      */
     public function user()
@@ -64,30 +73,24 @@ class user_card_note extends Model
         return $this->belongsTo('App\Models\Card', 'card_id');
     }
 
-    protected function getData(Request $request, $user)
+    public function storeUCR(Request $request, $user)
     {
-        $rules = [
-            'card_id' => [
-                'required',
-                Rule::exists('user_cards', 'card_id')->where(function ($query) use ($request,$user) {
-                    $query->where('card_id', $request->card_id)->where('user_id', $user->id);
-                }),
-            ],
-            'note' => 'required|string|min:1',
-        ];
+        $data = $this->getData($request);
+        $data = $request->all();
+        $data = self::create($data);
 
-        $data = $request->validate($rules);
-        // if ($data->fails()) {
-        //     throw new Exception($data->errors());
-        // }
+        return $data;
     }
 
-    public function storeNote(Request $request, $user)
+    protected function getData(Request $request)
     {
-        $this->getData($request, $user);
-        $user_card_note = user_card_note::create(array('card_id' => $request->card_id,
-        'user_id' => $user->id, 'note' => $request->note, ));
-
-        return $user_card_note;
+        $rules = [
+            'card_id' => 'nullable',
+            'date' => 'required|date_format:"d-m-Y"',
+            'time' => 'required|date_format:"h:i"',
+            'reminder' => 'required|string|min:1',
+        ];
+        $data = $request->validate($rules);
+        // dd($data);
     }
 }

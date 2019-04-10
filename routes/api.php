@@ -25,6 +25,10 @@ Route::post('qr-code', function () {
     return QrCode::size(100)->generate(md5('iessa456'));
 });
 
+Route::group(
+    ['prefix' => 'user_card_reminders'], function () {
+        Route::post('', 'UserCardRemindersController@store');
+    });
 Route::middleware('auth:api')->group(function () {
     Route::post('set-my-location', 'UserLocationsController@setMyLocation');
     Route::post('set-my-location-and-get-near-by', 'UserLocationsController@setMyLocationAndNearBy');
@@ -83,6 +87,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::group(
     ['prefix' => 'personal-card'], function () {
+        Route::post('generate-QR', 'QrCodeUsersController@store');
+        Route::post('show-card-details', 'CardsController@showOne');
         Route::post('/', 'CardsController@store')->name('cards.cards.store');
         Route::post('/androw', 'CardsController@storeAndrow')->name('cards.cards.store');
         Route::get('/', 'CardsController@index')->name('cards.cards.index');
