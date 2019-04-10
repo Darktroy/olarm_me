@@ -104,7 +104,7 @@ class CardsHoldersController extends Controller
     {
         $user = Auth::user();
         $cardHolder_obj = new cards_holder();
-        $cardHolderDetails = $cardHolder_obj->ShowCardHolder($request, $user);
+        $cardHolderDetails = $cardHolder_obj->ShowAllCardHolder($user);
 
         return response()->json(['status' => 'success', 'data' => $cardHolderDetails, 'status-code' => 200], 200);
     }
