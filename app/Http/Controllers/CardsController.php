@@ -102,6 +102,33 @@ class CardsController extends Controller
 //                $data['logo'] =helperVars::$logoPath.$imageName;
                 $imageName = '/logo_image/'.$imageName;
                 $data['logo'] = url($imageName);
+            } elseif(strlen($data['logo'])>0){
+
+                $imageName = 'logo_'.md5($st3).md5($user->id);
+                // $data['logo']->move(public_path('/logo_image'), $imageName);
+//                $data['logo'] =helperVars::$logoPath.$imageName;
+$rowImage64 = $data['logo'];
+$pos  = strpos($rowImage64, ';');
+// $type = explode(':', substr($rowImage64, 0, $pos))[1];
+// $type = explode('/', substr($type, 0, $pos))[1];
+                $imageName = '/logo_image/'.$imageName.'.jpg';
+
+
+                // split the string on commas
+                // $data[ 0 ] == "data:image/png;base64"
+                // $data[ 1 ] == <actual base64 string>
+
+                $dataImage = explode( ',', $data['logo'] );
+
+                // $ifp = file_put_contents( public_path($imageName), base64_decode( $dataImage[ 1 ] )); 
+                $ifp = file_put_contents( public_path($imageName), base64_decode($rowImage64 )); 
+                
+                // we could add validation here with ensuring count( $data ) > 1
+                // fwrite( $ifp, base64_decode( $dataImage[ 1 ] ) );
+
+                // clean up the file resource
+                // fclose( $ifp ); 
+                $data['logo'] = url($imageName);
             } else {
                 $data['logo'] = 0;
             }
@@ -403,7 +430,8 @@ class CardsController extends Controller
             'website_url' => 'string|min:1|nullable',
             'about_me' => 'string|min:1|nullable',
             'template_layout_id' => 'required|integer|min:1',
-            'logo' => ['file', 'required'],
+            'logo' => 'required',
+            // 'logo' => ['file', 'required'],
             'about_me' => 'string|min:1',
 //            'alias' => 'required|string|min:1',
 //            'email' => 'required|string|min:1',
