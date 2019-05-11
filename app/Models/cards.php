@@ -30,28 +30,11 @@ class cards extends Model
      * @var array
      */
     protected $fillable = [
-                    'user_id', 'last_name', 'first_name',
-                    'create_by',
-                    'privacy',
-                    'company_name',
-                    'position',
-                    'cell_phone_number',
-                    'landline',
-                    'fax',
-                    'website_url',
-                    'about_me',
-                    'template_layout_id',
-                    'picture',
-                    'personal',
-                    'card_holder_id',
-                    'logo',
-                    'alias', 'email',
-                    'facebook_url',
-                    'twitter_url',
-                    'instagram_url',
-                    'youtube_url',
-                    'company_id',
-                    'gender',
+                    'user_id', 'last_name', 'first_name','create_by','privacy',
+                    'company_name','position','cell_phone_number','landline','fax',
+                    'website_url','about_me','template_layout_id','picture','personal',
+                    'card_holder_id','logo','alias', 'email','facebook_url',
+                    'twitter_url','instagram_url','youtube_url','company_id','gender',
               ];
 
     /**
@@ -89,6 +72,11 @@ class cards extends Model
     public function notes()
     {
         return $this->hasMany('App\Models\user_card_note', 'card_id');
+    }
+
+    public function theprofile()
+    {
+        return $this->hasOne('App\Models\profile', 'user_id');
     }
 
     public function advancedSearching(Request $request)

@@ -80,7 +80,7 @@ class CardsController extends Controller
 
                 $data['last_name'] = $data['last_name'];
                 $data['first_name'] = $data['first_name'];
-                $data['user_id'] = null;
+                $data['user_id'] = 0;
                 if ($request->hasFile('picture') && is_file($data['picture'])) {
                     $file = $request->file('picture');
                     $ext = strtolower($file->getClientOriginalExtension());
@@ -99,35 +99,18 @@ class CardsController extends Controller
                 $ext = strtolower($file->getClientOriginalExtension());
                 $imageName = 'logo_'.md5($st3).md5($user->id).'.'.$ext;
                 $data['logo']->move(public_path('/logo_image'), $imageName);
-//                $data['logo'] =helperVars::$logoPath.$imageName;
                 $imageName = '/logo_image/'.$imageName;
                 $data['logo'] = url($imageName);
             } elseif(strlen($data['logo'])>0){
 
                 $imageName = 'logo_'.md5($st3).md5($user->id);
-                // $data['logo']->move(public_path('/logo_image'), $imageName);
-//                $data['logo'] =helperVars::$logoPath.$imageName;
-$rowImage64 = $data['logo'];
-$pos  = strpos($rowImage64, ';');
-// $type = explode(':', substr($rowImage64, 0, $pos))[1];
-// $type = explode('/', substr($type, 0, $pos))[1];
+                $rowImage64 = $data['logo'];
+                $pos  = strpos($rowImage64, ';');
                 $imageName = '/logo_image/'.$imageName.'.jpg';
-
-
-                // split the string on commas
-                // $data[ 0 ] == "data:image/png;base64"
-                // $data[ 1 ] == <actual base64 string>
 
                 $dataImage = explode( ',', $data['logo'] );
 
-                // $ifp = file_put_contents( public_path($imageName), base64_decode( $dataImage[ 1 ] )); 
                 $ifp = file_put_contents( public_path($imageName), base64_decode($rowImage64 )); 
-                
-                // we could add validation here with ensuring count( $data ) > 1
-                // fwrite( $ifp, base64_decode( $dataImage[ 1 ] ) );
-
-                // clean up the file resource
-                // fclose( $ifp ); 
                 $data['logo'] = url($imageName);
             } else {
                 $data['logo'] = 0;

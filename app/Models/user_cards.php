@@ -75,7 +75,7 @@ class user_cards extends Model
     {
         return $this->hasOne('App\Models\cards','card_id','card_id');
     }
-    
+   
     /**
      * Get the card for this model.
      */
@@ -137,15 +137,15 @@ class user_cards extends Model
     public function showUserrttr($userId) {
         $userCardObject = new self();
         $requestData = $userCardObject->getPrivaceOrrequested($userId);
-        $transferedata = self::where('transfered',1)->where('user_id',$userId)->get();
+        $transferedata = self::where('transfered',1)->where('user_id',$userId)->with('theCards.theprofile')->get();
         $transfered = FALSE;
         if(count($transferedata)>0){
-            $transfered = $transferedata;
+            $transfered = $this->getDataClearlyfromusercardtable($transferedata);
         }
         $redirectdata = self::where('redirected',1)->where('user_id',$userId)->get();
         $redirected = FALSE;
         if(count($redirectdata)>0){
-            $redirected = $redirectdata;
+            $redirected = $this->getDataClearlyfromusercardtable($redirectdata);
         }
         $recommendedData = recommendedCards::with('card','recommendedByUser')
                 ->where('recommended_for_user_id',$userId)->get()->toArray();
@@ -169,6 +169,23 @@ class user_cards extends Model
         
     }
     
+    public function getDataClearlyfromusercardtable($dataRow){
+        $data = []; $temp = [];
+        foreach ($dataRow as $key => $value) {
+            if (!is_null($value["theCards"]["theprofile"]["picture"])) {
+                $temp['card_id'] = $value["theCards"]["card_id"];
+                $temp['profile_id'] = $value["theCards"]["theprofile"]["profile_id"];
+                $temp['first_name'] = $value["theCards"]["theprofile"]["first_name"];
+                $temp['last_name'] = $value["theCards"]["theprofile"]["last_name"];
+                $temp['picture'] = $value["theCards"]["theprofile"]["picture"];
+                $temp['updated_at'] = $value["updated_at"];
+            
+                $data[] = $temp;
+            }
+        }
+       return $data;
+    }
+
     public function getPrivaceOrrequested($userId) {
         $isAccountPublic = cards::where('user_id',$userId)
                 ->where('create_by',$userId)->select('privacy')->first();
@@ -177,6 +194,7 @@ class user_cards extends Model
             $data = [];
             $dataRow = Requests::where('to_id',$userId)->with('card_from')->get();
             foreach ($dataRow as $key => $value) {
+                
                 $data[] = $value['card_from'];
             }
         }
