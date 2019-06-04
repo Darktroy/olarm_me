@@ -181,6 +181,7 @@ class user_cards extends Model
                 $temp['website_url'] = $value["theCards"]["website_url"];
                 $temp['logo'] = $value["theCards"]["logo"];
                 $temp['company_name'] = $value["theCards"]["company_name"];
+                $temp['template_layout_id'] = $value["theCards"]["template_layout_id"];
                 $temp['profile_id'] = $value["theCards"]["theprofile"]["profile_id"];
                 $temp['first_name'] = $value["theCards"]["theprofile"]["first_name"];
                 $temp['last_name'] = $value["theCards"]["theprofile"]["last_name"];
