@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
 
+use QrCode;
+
 class QrCodeUsersController extends Controller
 {
     /**
@@ -54,21 +56,21 @@ class QrCodeUsersController extends Controller
             $qr_obj = new qr_code_user();
             $data = $qr_obj->geberateQR($request, $user);
             DB::commit();
-
-            // return QrCode::size(100)->generate('123');
-
-            $qrcode = new BaconQrCodeGenerator();
-
-            return $qrcode->size(250)->generate($data);
-
-            // return QrCode::size(100)->generate($data);
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+            return response()->json([
+                'data' =>  $data,
+                'message' =>  'Success',
+                'status' => 'success', 'status-code' => 200, 'code' => 200
+            ], 200);
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+            // $qrcode = new BaconQrCodeGenerator();
+            // return $qrcode->size(250)->generate($data);
         } catch (Exception $exception) {
             DB::rollback();
-
             return response()->json([
                 'status' => 'error',
                 'data' => $exception->getMessage(),
-          'special-data' => $exception->getLine().' '.$exception->getFile(), 'status-code' => 403, 'code' => 100,
+                'special-data' => $exception->getLine() . ' ' . $exception->getFile(), 'status-code' => 403, 'code' => 100,
             ], 200);
         }
     }
@@ -121,10 +123,10 @@ class QrCodeUsersController extends Controller
             $qrCodeUser->update($data);
 
             return redirect()->route('qr_code_users.qr_code_user.index')
-                             ->with('success_message', 'Qr Code User was successfully updated.');
+                ->with('success_message', 'Qr Code User was successfully updated.');
         } catch (Exception $exception) {
             return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
     }
 
@@ -142,10 +144,10 @@ class QrCodeUsersController extends Controller
             $qrCodeUser->delete();
 
             return redirect()->route('qr_code_users.qr_code_user.index')
-                             ->with('success_message', 'Qr Code User was successfully deleted.');
+                ->with('success_message', 'Qr Code User was successfully deleted.');
         } catch (Exception $exception) {
             return back()->withInput()
-                         ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
     }
 
@@ -159,7 +161,7 @@ class QrCodeUsersController extends Controller
     protected function getData(Request $request)
     {
         $rules = [
-                'qr_code_user_id' => 'required|nullable',
+            'qr_code_user_id' => 'required|nullable',
             'user_id' => 'nullable',
             'card_id' => 'nullable',
             'code' => 'nullable',

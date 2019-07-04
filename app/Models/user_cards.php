@@ -166,7 +166,7 @@ class user_cards extends Model
         $data['recommended'] = $recommended;
         return $data;
          
-        
+         
     }
     
     public function getDataClearlyfromusercardtable($dataRow){
