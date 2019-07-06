@@ -123,7 +123,7 @@ class qr_code_user extends Model
         } else {
             $code = md5($st3) . md5($user->id) . 'qrNotSet';
             $data = self::create(array(
-                ' user_id ' => $user->id, ' card_id ' => $card->card_id,
+                ' user_id ' => $user->id,
                 ' code ' => $code,
             ));
 
