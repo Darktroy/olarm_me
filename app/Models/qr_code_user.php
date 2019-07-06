@@ -26,12 +26,12 @@ class qr_code_user extends Model
      * @var array
      */
     protected $fillable = [
-                  'user_id',
-                  'card_id',
-                  'code',
-                  'begain_at',
-                  'ended_at',
-              ];
+        'user_id',
+        'card_id',
+        'code',
+        'begain_at',
+        'ended_at',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -39,9 +39,9 @@ class qr_code_user extends Model
      * @var array
      */
     protected $dates = [
-               'begain_at',
-               'ended_at',
-           ];
+        'begain_at',
+        'ended_at',
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -112,21 +112,33 @@ class qr_code_user extends Model
         $st2 = str_replace('-', '', $st1);
         $st3 = str_replace(' ', '', $st2);
         $card = cards::where('user_id', $user->id)->where('personal', 1)->first();
-        $code = md5($st3).md5($card->card_id).md5($user->id);
-        $data = self::create(array('user_id' => $user->id, 'card_id' => $card->card_id,
-        'code' => $code, ));
+        if (count($card) > 0) {
+            $code = md5($st3) . md5($card->card_id) . md5($user->id);
+            $data = self::create(array(
+                'user_id' => $user->id, 'card_id' => $card->card_id,
+                'code' => $code,
+            ));
 
-        return $code;
+            return $code;
+        } else {
+            $code = md5($st3) . md5($user->id) . 'qrNotSet';
+            $data = self::create(array(
+                ' user_id ' => $user->id, ' card_id ' => $card->card_id,
+                ' code ' => $code,
+            ));
+
+            return $code;
+        }
     }
 
     protected function getData(Request $request)
     {
         $rules = [
-            'user_id' => 'nullable',
-            'card_id' => 'nullable',
-            'code' => 'nullable',
-            // 'begain_at' => 'date_format:j/n/Y g:i A|nullable',
-            // 'ended_at' => 'date_format:j/n/Y g:i A|nullable',
+            ' user_id ' => ' nullable ',
+            ' card_id ' => ' nullable ',
+            ' code ' => ' nullable ',
+            // ' begain_at ' => ' date_format: j / n / Y g :i   A|nullab le',
+            //  'ended_ at' =>  'date_forma t : j / n/Y  g : i A|nullable',
         ];
 
         $data = $request->validate($rules);
