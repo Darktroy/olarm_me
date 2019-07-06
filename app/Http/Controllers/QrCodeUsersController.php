@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
-use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
+// use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
 
-use QrCode;
+// use QrCode;
 
 class QrCodeUsersController extends Controller
 {
@@ -60,11 +60,9 @@ class QrCodeUsersController extends Controller
             return response()->json([
                 'data' =>  $data,
                 'message' =>  'Success',
-                'status' => 'success', 'status-code' => 200, 'code' => 200
             ], 200);
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-            // $qrcode = new BaconQrCodeGenerator();
-            // return $qrcode->size(250)->generate($data);
+
         } catch (Exception $exception) {
             DB::rollback();
             return response()->json([
