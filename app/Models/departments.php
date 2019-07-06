@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class departments extends Model
 {
-    
-
     /**
      * The database table used by the model.
      *
@@ -16,10 +14,10 @@ class departments extends Model
     protected $table = 'departments';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'department_id';
 
     /**
@@ -28,9 +26,8 @@ class departments extends Model
      * @var array
      */
     protected $fillable = [
-                  'department_id',
                   'title',
-                  'email'
+                  'email',
               ];
 
     /**
@@ -39,15 +36,11 @@ class departments extends Model
      * @var array
      */
     protected $dates = [];
-    
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [];
-    
-
-
-
 }
