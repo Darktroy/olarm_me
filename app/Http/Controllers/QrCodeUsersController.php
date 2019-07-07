@@ -57,10 +57,17 @@ class QrCodeUsersController extends Controller
             $data = $qr_obj->geberateQR($request, $user);
             DB::commit();
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-            return response()->json([
-                'data' =>  $data,
-                'message' =>  'Success',
-            ], 200);
+            if($data ==0){
+                return response()->json([
+                    'data' =>  $data,
+                    'message' =>  'notfound',
+                ], 200);
+            }else{
+                return response()->json([
+                    'data' =>  $data,
+                    'message' =>  'success',
+                ], 200);
+            }
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 
         } catch (Exception $exception) {

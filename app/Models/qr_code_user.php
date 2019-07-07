@@ -121,13 +121,8 @@ class qr_code_user extends Model
 
             return $code;
         } else {
-            $code = md5($st3) . md5($user->id) . 'qrNotSet';
-            $data = self::create(array(
-                ' user_id ' => $user->id,
-                ' code ' => $code,
-            ));
-
-            return $code;
+            $data =0 ;
+            return $data;
         }
     }
 
