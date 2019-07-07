@@ -121,8 +121,7 @@ class qr_code_user extends Model
 
             return $code;
         } else {
-            $data =0 ;
-            return $data;
+            return 'notfound';
         }
     }
 
