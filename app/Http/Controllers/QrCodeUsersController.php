@@ -61,11 +61,13 @@ class QrCodeUsersController extends Controller
                 return response()->json([
                     'data' =>  $data,
                     'message' =>  'notfound',
+                    'status' => 'notfound',
                 ], 200);
             }else{
                 return response()->json([
                     'data' =>  $data,
                     'message' =>  'success',
+                    'status' => 'success',
                 ], 200);
             }
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
