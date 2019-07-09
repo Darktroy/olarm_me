@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
-// use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
-
-// use QrCode;
 
 class QrCodeUsersController extends Controller
 {
@@ -57,14 +54,13 @@ class QrCodeUsersController extends Controller
             $data = $qr_obj->geberateQR($request, $user);
             DB::commit();
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-            if($data == 'notfound'){
+            if ($data == 'notfound') {
                 return response()->json([
                     'data' =>  $data,
                     'message' =>  'notfound',
                     'status' => 'notfound',
-                ], 200);    
-                
-            }else{
+                ], 200);
+            } else {
                 return response()->json([
                     'data' =>  $data,
                     'message' =>  'success',
