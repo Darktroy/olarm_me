@@ -79,7 +79,10 @@ class userLocation extends Model
         $data = $this->getData($request);
         $lat = $request->lat;
         $lng = $request->long;
-        $data = file_get_contents("https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
+        $url = str_replace(" ", "%20", "https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
+
+        // $data = file_get_contents("https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
+        $data = file_get_contents($url);
         $data = json_decode($data);
         $add_array  = $data->results;
         $add_array = $add_array[0];
