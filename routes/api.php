@@ -94,6 +94,7 @@ Route::middleware('auth:api')->group(function () {
         function () {
             Route::post('generate-QR', 'QrCodeUsersController@store');
             Route::post('add-QR', 'QrCodeUsersController@store');
+            Route::post('Accept-QR', 'QrCodeUsersController@storeAcception');
             Route::post('show-card-details', 'CardsController@showOne');
             Route::post('/', 'CardsController@store')->name('cards.cards.store');
             Route::post('/androw', 'CardsController@storeAndrow')->name('cards.cards.store');

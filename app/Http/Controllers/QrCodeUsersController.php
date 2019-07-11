@@ -79,6 +79,38 @@ class QrCodeUsersController extends Controller
         }
     }
 
+    public function storeAcception(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            DB::beginTransaction();
+            $qr_obj = new qr_code_user();
+            $data = $qr_obj->acceptQrCode($request, $user->id);
+            DB::commit();
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+            if ($data != 1) {
+                return response()->json([
+                    'data' =>  $data, 'message' =>  'notfound', 'status' => 'error',
+                ], 200);
+            } else {
+                return response()->json([
+                    'data' => "Added Successful",
+                    'message' =>  'success',
+                    'status' => 'success',
+                ], 200);
+            }
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+
+        } catch (Exception $exception) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'error',
+                'data' => $exception->getMessage(),
+                'special-data' => $exception->getLine() . ' ' . $exception->getFile(), 'status-code' => 403, 'code' => 100,
+            ], 200);
+        }
+    }
+
     /**
      * Display the specified qr code user.
      *
