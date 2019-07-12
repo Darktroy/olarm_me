@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Validator;
 use Exception;
 
 
@@ -132,10 +133,10 @@ class qr_code_user extends Model
 
         $data = $request->all();
         $rules = [
-            'qrCode' => [
-                'required|exists:qr_code_users,code'
-            ],
+            'qrCode' => 'required|exists:qr_code_users,code',
         ];
+
+        // $rules = ['countaryName' => 'required|string|min:1|exists:countaries_details,countaryName',];
 
         $messages = [
             'card.required' => 'Please Enter QR code',
