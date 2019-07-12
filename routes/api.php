@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::post('login', 'API\AuthController@login');
 //Route::post('login-by-mobile', 'API\AuthController@loginMobile');
 Route::post('register', 'API\AuthController@register');
@@ -21,16 +22,15 @@ Route::post('register-mobile', 'API\AuthController@registerMobile');
 Route::post('reset-by-email', 'ResetstepsController@requestByEmail');
 Route::post('confirm-by-SMS', 'ResetstepsController@confirmBySMS');
 Route::post('new-password', 'API\AuthController@newPassReset');
-Route::post('qr-code', function () {
-    return QrCode::size(100)->generate(md5('iessa456'));
-});
 
 Route::group(
-    ['prefix' => 'user_card_reminders'], function () {
+    ['prefix' => 'user_card_reminders'],
+    function () {
         Route::post('', 'UserCardRemindersController@store');
-    });
+    }
+);
 
-    Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
+Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
 Route::middleware('auth:api')->group(function () {
     Route::post('set-my-location', 'UserLocationsController@setMyLocation');
     Route::post('set-my-location-and-get-near-by', 'UserLocationsController@setMyLocationAndNearBy');
@@ -62,9 +62,11 @@ Route::middleware('auth:api')->group(function () {
     Route::post('update-own-card/{cards}', 'CardsController@update')->name('cards.cards.update')->where('id', '[0-9]+');
 
     Route::group(
-        ['prefix' => 'user_card_notes'], function () {
+        ['prefix' => 'user_card_notes'],
+        function () {
             Route::post('', 'UserCardNotesController@store');
-        });
+        }
+    );
 
     Route::group(['prefix' => 'requests'], function () {
         Route::post('/show-my-All-rquests', 'RequestsController@index');
@@ -88,22 +90,26 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::group(
-    ['prefix' => 'personal-card'], function () {
-        Route::post('generate-QR', 'QrCodeUsersController@store');
-        Route::post('show-card-details', 'CardsController@showOne');
-        Route::post('/', 'CardsController@store')->name('cards.cards.store');
-        Route::post('/androw', 'CardsController@storeAndrow')->name('cards.cards.store');
-        Route::get('/', 'CardsController@index')->name('cards.cards.index');
-        Route::get('/create', 'CardsController@create')->name('cards.cards.create');
-        Route::get('/show/{cards}', 'CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
-        Route::post('/show-my-card', 'CardsController@showPersonal');
-        Route::post('/search-card', 'CardsController@searching');
-        Route::post('/advanced-search-card', 'CardsController@searchingAvanced');
-        Route::post('/delete-own-card', 'CardsController@deleteOwnCard');
-        Route::post('/remove-card-from-contacts', 'CardsController@removeCard');
-        Route::get('/{cards}/edit', 'CardsController@edit')->name('cards.cards.edit')->where('id', '[0-9]+');
-        Route::delete('/cards/{cards}', 'CardsController@destroy')->name('cards.cards.destroy')->where('id', '[0-9]+');
-    });
+        ['prefix' => 'personal-card'],
+        function () {
+            Route::post('generate-QR', 'QrCodeUsersController@store');
+            Route::post('add-QR', 'QrCodeUsersController@store');
+            Route::post('Accept-QR', 'QrCodeUsersController@storeAcception');
+            Route::post('show-card-details', 'CardsController@showOne');
+            Route::post('/', 'CardsController@store')->name('cards.cards.store');
+            Route::post('/androw', 'CardsController@storeAndrow')->name('cards.cards.store');
+            Route::get('/', 'CardsController@index')->name('cards.cards.index');
+            Route::get('/create', 'CardsController@create')->name('cards.cards.create');
+            Route::get('/show/{cards}', 'CardsController@show')->name('cards.cards.show')->where('id', '[0-9]+');
+            Route::post('/show-my-card', 'CardsController@showPersonal');
+            Route::post('/search-card', 'CardsController@searching');
+            Route::post('/advanced-search-card', 'CardsController@searchingAvanced');
+            Route::post('/delete-own-card', 'CardsController@deleteOwnCard');
+            Route::post('/remove-card-from-contacts', 'CardsController@removeCard');
+            Route::get('/{cards}/edit', 'CardsController@edit')->name('cards.cards.edit')->where('id', '[0-9]+');
+            Route::delete('/cards/{cards}', 'CardsController@destroy')->name('cards.cards.destroy')->where('id', '[0-9]+');
+        }
+    );
 
     Route::group(['prefix' => 'cards-holders'], function () {
         Route::post('/', 'CardsHoldersController@store');

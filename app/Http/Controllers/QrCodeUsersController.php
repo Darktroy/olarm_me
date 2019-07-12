@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
-// use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
-
-// use QrCode;
 
 class QrCodeUsersController extends Controller
 {
@@ -57,16 +54,47 @@ class QrCodeUsersController extends Controller
             $data = $qr_obj->geberateQR($request, $user);
             DB::commit();
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-            if($data == 'notfound'){
+            if ($data == 'notfound') {
                 return response()->json([
                     'data' =>  $data,
                     'message' =>  'notfound',
                     'status' => 'notfound',
-                ], 200);    
-                
-            }else{
+                ], 200);
+            } else {
                 return response()->json([
                     'data' =>  $data,
+                    'message' =>  'success',
+                    'status' => 'success',
+                ], 200);
+            }
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+
+        } catch (Exception $exception) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'error',
+                'data' => $exception->getMessage(),
+                'special-data' => $exception->getLine() . ' ' . $exception->getFile(), 'status-code' => 403, 'code' => 100,
+            ], 200);
+        }
+    }
+
+    public function storeAcception(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            DB::beginTransaction();
+            $qr_obj = new qr_code_user();
+            $data = $qr_obj->acceptQrCode($request, $user->id);
+            DB::commit();
+            // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+            if ($data != 1) {
+                return response()->json([
+                    'data' =>  $data, 'message' =>  'notfound', 'status' => 'error',
+                ], 200);
+            } else {
+                return response()->json([
+                    'data' => "Added Successful",
                     'message' =>  'success',
                     'status' => 'success',
                 ], 200);

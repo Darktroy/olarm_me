@@ -124,7 +124,36 @@ class qr_code_user extends Model
             return 'notfound';
         }
     }
+    public function acceptQrCode(Request $request, $user_id)
+    {
 
+        $data = $request->all();
+        $rules = [
+            'qrCode' => [
+                'required', Rule::exists('qr_code_users', 'code')
+            ],
+        ];
+
+        $messages = [
+            'card.required' => 'Please Enter QR code',
+            'card.exists' => 'Invalid QR',
+        ];
+        $dataValidation = Validator::make($request->all(), $rules, $messages);
+        if ($dataValidation->fails()) {
+            throw new Exception($dataValidation->errors());
+        }
+
+        $qrinfo = self::where('code', $data['qrCode'])->first();
+        $card = cards::where('user_id', $user_id)->where('personal', 1)->first();
+        if (count($card) == 0) {
+            throw new Exception("error no personal card for scanned user");
+        }
+        user_cards::create(array('user_id' => $user_id, 'card_id' => $qrinfo['card_id'], 'card_holder_id' => 0));
+
+        user_cards::create(array('user_id' => $qrinfo['user_id'], 'card_id' => $card['card_id'], 'card_holder_id' => 0));
+
+        return 1;
+    }
     protected function getData(Request $request)
     {
         $rules = [
