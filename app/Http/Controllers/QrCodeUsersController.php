@@ -79,13 +79,13 @@ class QrCodeUsersController extends Controller
         }
     }
 
-    public function storeAcception(Request $request)
+    public function storeAcception(Request $requestParam)
     {
         try {
             $user = Auth::user();
             DB::beginTransaction();
             $qr_obj = new qr_code_user();
-            $data = $qr_obj->acceptQrCode($request, $user->id);
+            $data = $qr_obj->acceptQrCode($requestParam, $user->id);
             DB::commit();
             // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
             if ($data != 1) {
