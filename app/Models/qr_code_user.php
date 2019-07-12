@@ -133,7 +133,7 @@ class qr_code_user extends Model
         $data = $request->all();
         $rules = [
             'qrCode' => [
-                'required', Rule::exists('qr_code_users', 'code')
+                'required|exists:qr_code_users,code'
             ],
         ];
 
