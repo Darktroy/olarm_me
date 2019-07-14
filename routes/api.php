@@ -31,6 +31,12 @@ Route::group(
 );
 
 Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
+
+Route::post('show-industries-list', 'ProfilesController@showIndustriesList');
+Route::post('show-specialities-by-industry-name', 'ProfilesController@getISpeciatiesList');
+// Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
+Route::post('show-city-of-countary', 'CountariesDetailsController@getCitiesList');
+Route::post('show-district-of-city', 'CountariesDetailsController@getDistrictesList');
 Route::middleware('auth:api')->group(function () {
     Route::post('set-my-location', 'UserLocationsController@setMyLocation');
     Route::post('set-my-location-and-get-near-by', 'UserLocationsController@setMyLocationAndNearBy');
@@ -42,11 +48,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('show-my-cards', 'UserCardsController@showMyCards');
     Route::post('recommend-card', 'RecommendedCardsController@recommendCard');
 
-    Route::post('show-industries-list', 'ProfilesController@showIndustriesList');
-    Route::post('show-specialities-by-industry-name', 'ProfilesController@getISpeciatiesList');
-    // Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
-    Route::post('show-city-of-countary', 'CountariesDetailsController@getCitiesList');
-    Route::post('show-district-of-city', 'CountariesDetailsController@getDistrictesList');
 
     Route::post('email-signature', 'EmailSignaturesController@showEmailSignature');
     Route::post('getLogs', 'RecentActivitiesController@getRecentActivity');
