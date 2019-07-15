@@ -269,14 +269,14 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     {
         $user = Auth::user();
      
-        $rules = [ 'industry' => 'required|string|min:1|exists:profiles,industry', ];
-        $messages =[ 'industry.required' => 'Please Enter valid industry or existance ', ];
+        $rules = [ 'field' => 'required|string|min:1|exists:profiles,field', ];
+        $messages =[ 'field.required' => 'Please Enter valid field or existance ', ];
         $data = Validator::make($request->all(), $rules, $messages);
         if ($data->fails()) { return response()->json(['status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);}
         
         try {
             $data = $request->all();
-            $specialtyListRow = profile::select('specialty')->where('industry',$data['industry'])->distinct()->get()->toArray();
+            $specialtyListRow = profile::select('specialty')->where('field',$data['field'])->distinct()->get()->toArray();
             $data = [];
             if(count($specialtyListRow) > 0){
                 foreach ($specialtyListRow as $key => $value) {

@@ -152,11 +152,6 @@ return [
         /*
          * Package Service Providers...
          */
-<<<<<<< HEAD
-=======
-
->>>>>>> 3858eedcf82475ffd98db64c558809e029c6a28d
-
         /*
          * Application Service Providers...
          */
