@@ -34,6 +34,7 @@ Route::post('show-countary-details-list', 'CountariesDetailsController@getCountr
 
 Route::post('show-industries-list', 'ProfilesController@showIndustriesList');
 Route::post('show-specialities-by-industry-name', 'ProfilesController@getISpeciatiesList');
+Route::post('show-fields-by-industry-name', 'ProfilesController@getIFieldsList');
 // Route::post('show-countary-details-list', 'CountariesDetailsController@getCountriesList');
 Route::post('show-city-of-countary', 'CountariesDetailsController@getCitiesList');
 Route::post('show-district-of-city', 'CountariesDetailsController@getDistrictesList');
