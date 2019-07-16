@@ -272,7 +272,11 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
         $rules = [ 'field' => 'required|string|min:1|exists:profiles,field', ];
         $messages =[ 'field.required' => 'Please Enter valid field or existance ', ];
         $data = Validator::make($request->all(), $rules, $messages);
-        if ($data->fails()) { return response()->json(['status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);}
+        if ($data->fails()) { 
+//            return response()->json(['status' => 'error','error'=>$data->errors(),
+//                'status-code'=>401,'code'=>100],200);
+            
+        }
         
         try {
             $data = $request->all();
