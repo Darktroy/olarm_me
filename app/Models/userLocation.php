@@ -85,6 +85,7 @@ class userLocation extends Model
         $data = file_get_contents($url);
         $data = json_decode($data);
         $add_array  = $data->results;
+        dd($add_array);
         $add_array = $add_array[0];
         //            personal -> 1
         $thecard = cards::where('user_id', $user_id)->where('personal', 1)->first();

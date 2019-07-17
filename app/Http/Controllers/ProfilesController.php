@@ -403,7 +403,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'picture' =>'required|string|min:4',
+            'picture' =>'required|string',
             'gender' => 'required|string|min:4',
             'country' => 'required|string|min:2',
             'city' => 'required|string|min:2',
