@@ -273,8 +273,8 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
         $messages =[ 'field.required' => 'Please Enter valid field or existance ', ];
         $data = Validator::make($request->all(), $rules, $messages);
         if ($data->fails()) { 
-//            return response()->json(['status' => 'error','error'=>$data->errors(),
-//                'status-code'=>401,'code'=>100],200);
+            return response()->json(['status' => 'error','error'=>$data->errors(),
+                'status-code'=>401,'code'=>100],200);
             
         }
         
@@ -390,7 +390,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'picture' => ['file','required'],
+            'picture' =>'required|string|min:4',
             'gender' => 'required|string|min:4',
             'country' => 'required|string|min:2',
             'city' => 'required|string|min:2',
