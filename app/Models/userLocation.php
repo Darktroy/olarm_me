@@ -94,17 +94,11 @@ class userLocation extends Model
         foreach ($result as $key => $value) {
             $user_ids[] = $value->user_id;
         }
-        /*
-        dd($result);
-        $url = str_replace(" ", "%20", "https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
-        $data = file_get_contents($url);
-        $data = json_decode($data);
-        $add_array  = $data->results;
-        dd($data);
-        $add_array = $add_array[0];*/
-        //            personal -> 1
-//        dd($user_ids);
 //        dd($user_id);88
+        $thecard = cards::where('user_id', $user_id)->where('personal', 1)->first();
+        if ($thecard == NULL) {
+            throw new Exception('No card found for this nuser');
+        }
         $userLocation = userLocation::updateOrCreate(
             array('user_id' => $user_id),
             array(
@@ -112,10 +106,6 @@ class userLocation extends Model
                 'formatted_address' => "Rokybye"
             )
         );
-        $thecard = cards::where('user_id', $user_id)->where('personal', 1)->first();
-        if ($thecard == NULL) {
-            throw new Exception('No card found for this nuser');
-        }
         return $user_ids;
     }
 
