@@ -104,6 +104,7 @@ class userLocation extends Model
         $add_array = $add_array[0];*/
         //            personal -> 1
 //        dd($user_ids);
+        dd($user_id);
         $thecard = cards::where('user_id', $user_id)->where('personal', 1)->first();
         if ($thecard == NULL) {
             throw new Exception('No card found for this nuser');
