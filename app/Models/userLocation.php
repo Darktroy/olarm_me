@@ -88,7 +88,7 @@ class userLocation extends Model
         $lng = $request->long;
         
         $factor = 6371;//for killometer
-        $sqlQuery = "SELECT * , (".$factor." * 2 * ASIN(SQRT( POWER(SIN(( ".$lat." - user_locations.lat) * pi()/180 / 2), 2) +COS( ".$lat." * pi()/180) * COS(user_locations.lat * pi()/180) * POWER(SIN(( ".$lon." - user_locations.long) * pi()/180 / 2), 2) ))) as distance from user_locations having distance <= ".$distancve." order by distance";
+        $sqlQuery = "SELECT * , (".$factor." * 2 * ASIN(SQRT( POWER(SIN(( ".$lat." - `user_locations`.`lat`) * pi()/180 / 2), 2) +COS( ".$lat." * pi()/180) * COS(`user_locations`.`lat` * pi()/180) * POWER(SIN(( ".$lon." - `user_locations`.`long`) * pi()/180 / 2), 2) ))) as `distance` from `user_locations` having `distance` <= ".$distancve." ";
         $result = DB::select(DB::raw($sqlQuery));
         $user_ids = array();
         foreach ($result as $key => $value) {
