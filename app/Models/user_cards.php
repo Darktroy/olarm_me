@@ -138,18 +138,18 @@ class user_cards extends Model
         $userCardObject = new self();
         $requestData = $userCardObject->getPrivaceOrrequested($userId);
         $transferedata = self::where('transfered',1)->where('user_id',$userId)->with('theCards.theprofile')->get();
-        $transfered = FALSE;
+        $transfered = array();
         if(count($transferedata)>0){
             $transfered = $this->getDataClearlyfromusercardtable($transferedata);
         }
         $redirectdata = self::where('redirected',1)->where('user_id',$userId)->get();
-        $redirected = FALSE;
+        $redirected = array();
         if(count($redirectdata)>0){
             $redirected = $this->getDataClearlyfromusercardtable($redirectdata);
         }
         $recommendedData = recommendedCards::with('card','recommendedByUser')
                 ->where('recommended_for_user_id',$userId)->get()->toArray();
-        $recommended = FALSE;
+        $recommended = array();
         if(count($recommendedData)>0){
             foreach ($recommendedData as $key => $value) {
                 $recommended[] = array('card_id'=>$value['card']['card_id'],
