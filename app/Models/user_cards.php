@@ -197,7 +197,7 @@ class user_cards extends Model
     public function getPrivaceOrrequested($userId) {
         $isAccountPublic = cards::where('user_id',$userId)
                 ->where('create_by',$userId)->select('privacy')->first();
-        $data = FALSE;
+            $data = [];
         if($isAccountPublic['privacy']==0){
             $data = [];
             $dataRow = Requests::where('to_id',$userId)->with('card_from')->get();
