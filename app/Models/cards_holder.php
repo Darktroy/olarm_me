@@ -164,8 +164,9 @@ class cards_holder extends Model
 
     public function ShowAllCardHolder($user)
     {
-        $cardsHolder = cards_holder::where('user_id', $user->id)->with('theCards')->get();
-
+        $cardsHolder = cards_holder::where('user_id', $user->id)->orwhere('user_id',null)->get()->toArray();
+//        $cardsHolder = cards_holder::where('user_id', $user->id)->with('theCards')->get()->toArray();
+        
         return $cardsHolder;
     }
 }
