@@ -52,6 +52,9 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
      */
     public function store(Request $request)
     {
+        $st1 = str_replace(':', '', now());
+        $st2 = str_replace('-', '', $st1);
+        $st3 = str_replace(' ', '', $st2);
 //        dd(url(helperVars::$picPath));
             $user = Auth::user();
         try {
@@ -69,7 +72,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
                 }
             $data = $request->all();
             $imageName='';
-            
+            /*
             if ($request->hasFile('picture') && is_file($data['picture'])){ 
                 $file = $request->file('picture');
                 $ext = strtolower($file->getClientOriginalExtension());
@@ -78,7 +81,17 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
 //                $data['picture'] =helperVars::$picPath.$imageName;
                 $imageName = '/card_image/'.$imageName;
                 $data['picture'] =url($imageName);
-            } 
+            } */
+            
+            $imageName = 'profile_pic_'.md5($st3).md5($user->id);
+                $rowImage64 = $data['picture'];
+                $pos  = strpos($rowImage64, ';');
+                $imageName = '/logo_image/'.$imageName.'.jpg';
+
+                $dataImage = explode( ',', $data['picture'] );
+
+                $ifp = file_put_contents( public_path($imageName), base64_decode($rowImage64 )); 
+                $data['picture'] = url($imageName);
             /*
             if ($request->hasFile('logo') && is_file($data['logo'])){ 
                 $file = $request->file('logo');
@@ -269,14 +282,18 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     {
         $user = Auth::user();
      
-        $rules = [ 'industry' => 'required|string|min:1|exists:profiles,industry', ];
-        $messages =[ 'industry.required' => 'Please Enter valid industry or existance ', ];
+        $rules = [ 'field' => 'required|string|min:1|exists:profiles,field', ];
+        $messages =[ 'field.required' => 'Please Enter valid field or existance ', ];
         $data = Validator::make($request->all(), $rules, $messages);
-        if ($data->fails()) { return response()->json(['status' => 'error','error'=>$data->errors(),'status-code'=>401,'code'=>100],200);}
+        if ($data->fails()) { 
+            return response()->json(['status' => 'error','error'=>$data->errors(),
+                'status-code'=>401,'code'=>100],200);
+            
+        }
         
         try {
             $data = $request->all();
-            $specialtyListRow = profile::select('specialty')->where('industry',$data['industry'])->distinct()->get()->toArray();
+            $specialtyListRow = profile::select('specialty')->where('field',$data['field'])->distinct()->get()->toArray();
             $data = [];
             if(count($specialtyListRow) > 0){
                 foreach ($specialtyListRow as $key => $value) {
@@ -386,7 +403,7 @@ $templateLayouts = TemplateLayout::pluck('id','id')->all();
     protected function getData(Request $request)
     {
         $rules = [
-            'picture' => ['file','required'],
+            'picture' =>'required|string',
             'gender' => 'required|string|min:4',
             'country' => 'required|string|min:2',
             'city' => 'required|string|min:2',

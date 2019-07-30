@@ -77,16 +77,24 @@ class userLocation extends Model
     public function setLocation(Request $request, $user_id)
     {
         $data = $this->getData($request);
-        $lat = $request->lat;
+//        $lat = $request->lat;
+//        $lng = $request->long;
+//          30.0790561,31.2489023
+//        $sqlQuery = "SELECT * , (3956 * 2 * ASIN(SQRT( POWER(SIN(( 30.0790561 - user_locations.lat) * pi()/180 / 2), 2) +COS( 30.0790561 * pi()/180) * COS(user_locations.lat * pi()/180) * POWER(SIN(( 31.2489023 - user_locations.long) * pi()/180 / 2), 2) ))) as distance from user_locations having distance <= 0.5 order by distance";
+        
+        $distancve = 0.3;
+        $lat = $request->lat ;
+        $lon = $request->long;
         $lng = $request->long;
-        $url = str_replace(" ", "%20", "https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
-
-        // $data = file_get_contents("https://maps.google.com/maps/api/geocode/json?latlng=$lat,$lng&sensor=false&key=AIzaSyCOyVPUatwyudwfRUNMZyvSuJirXSGYvBI");
-        $data = file_get_contents($url);
-        $data = json_decode($data);
-        $add_array  = $data->results;
-        $add_array = $add_array[0];
-        //            personal -> 1
+        
+        $factor = 6371;//for killometer
+        $sqlQuery = "SELECT * , (".$factor." * 2 * ASIN(SQRT( POWER(SIN(( ".$lat." - `user_locations`.`lat`) * pi()/180 / 2), 2) +COS( ".$lat." * pi()/180) * COS(`user_locations`.`lat` * pi()/180) * POWER(SIN(( ".$lon." - `user_locations`.`long`) * pi()/180 / 2), 2) ))) as `distance` from `user_locations` having `distance` <= ".$distancve." ";
+        $result = DB::select(DB::raw($sqlQuery));
+        $user_ids = array();
+        foreach ($result as $key => $value) {
+            $user_ids[] = $value->user_id;
+        }
+//        dd($user_id);88
         $thecard = cards::where('user_id', $user_id)->where('personal', 1)->first();
         if ($thecard == NULL) {
             throw new Exception('No card found for this nuser');
@@ -95,15 +103,15 @@ class userLocation extends Model
             array('user_id' => $user_id),
             array(
                 'user_id' => $user_id, 'card_id' => $thecard->card_id, 'lat' => $lat, 'long' => $lng,
-                'formatted_address' => $add_array->formatted_address
+                'formatted_address' => "Rokybye"
             )
         );
-        return $userLocation;
+        return $user_ids;
     }
 
     public function getCardsNearBy($formatted_address)
     {
-        $dataRow = self::with('cards')->where('formatted_address', $formatted_address)->get();
+        $dataRow = self::with('cards')->whereIn('user_id', $formatted_address)->get();
         $data = array();
         foreach ($dataRow as $key => $value) {
             // dd($value['cards']);

@@ -191,8 +191,8 @@ class UserLocationsController extends Controller
         $user = Auth::user();
         try {
             DB::beginTransaction();
-            $add_array = $this->userLocationObj->setLocation($request,$user->id);
-            $data = $this->userLocationObj->getCardsNearBy($add_array->formatted_address);
+            $usersid = $this->userLocationObj->setLocation($request,$user->id);
+            $data = $this->userLocationObj->getCardsNearBy($usersid);
             DB::commit();
                     return response()->json([
 //                        'data' =>  $add_array->formatted_address,
