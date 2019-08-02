@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 12, 2019 at 06:42 PM
+-- Generation Time: Aug 02, 2019 at 04:29 PM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -91,7 +91,8 @@ INSERT INTO `activation_processes` (`id`, `activationcode`, `user_id`, `created_
 (58, 'a111', 77, '2019-05-11 13:18:08', '2019-05-11 13:18:08', NULL),
 (59, 'a111', 78, '2019-05-11 13:19:34', '2019-05-11 13:19:34', NULL),
 (60, 'a111', 79, '2019-07-01 09:36:16', '2019-07-01 09:36:16', NULL),
-(61, 'a111', 80, '2019-07-04 06:17:19', '2019-07-04 06:17:19', NULL);
+(61, 'a111', 80, '2019-07-04 06:17:19', '2019-07-04 06:17:19', NULL),
+(62, 'a111', 81, '2019-07-30 12:49:23', '2019-07-30 12:49:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -735,6 +736,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('c8b6a82acea6d484df04ebdf02eeb2a0dd0865582f2c34cb4ee6a561c68809cba3488b6fe1f54030', 47, 5, 'LaraPassport', '[]', 0, '2019-03-05 08:13:17', '2019-03-05 08:13:17', '2020-03-05 10:13:17'),
 ('c8dc38bf85abf4fd1a186c0d52ba05394f456b6b3503e0a1d96797b8c5e934e495b5b76a3a77d895', 1, 6, 'LaraPassport', '[]', 0, '2019-04-27 17:36:30', '2019-04-27 17:36:30', '2020-04-27 10:36:30'),
 ('c93698fbb32212c0d749bb9c14fdfb20380cc4cb748d2c56b3cfa606cfda510834a5e3e3de8acfda', 1, 8, 'LaraPassport', '[]', 0, '2019-04-29 16:32:23', '2019-04-29 16:32:23', '2020-04-29 09:32:23'),
+('c954d7e2add4c83f0044237ffebf5fd165e869d0dcc323591c6beb0db1998d56be2b390d536e4c3d', 81, 8, 'LaraPassport', '[]', 0, '2019-07-30 10:49:21', '2019-07-30 10:49:21', '2020-07-30 12:49:21'),
 ('caa1d8302629d273a4ac4237bb8ffc46a57443b410b7fc34296cd14d42bfbe4ee0f35d378d9de494', 1, 8, 'LaraPassport', '[]', 0, '2019-04-28 22:52:19', '2019-04-28 22:52:19', '2020-04-28 15:52:19'),
 ('cc9e2394c511e418be923e325a4518da1385abf6baee68fdfe228c4843f76f931436b4d1e6e3e72f', 1, 8, 'LaraPassport', '[]', 0, '2019-04-28 22:13:33', '2019-04-28 22:13:33', '2020-04-28 15:13:33'),
 ('cce3560162bec405ee1708440a996c0197d67b15ae5e9c1b70bb78e3107227dccfd1164e969903d6', 10, 6, 'LaraPassport', '[]', 0, '2019-04-25 15:34:43', '2019-04-25 15:34:43', '2020-04-25 08:34:43'),
@@ -1104,7 +1106,8 @@ INSERT INTO `recent_activities` (`recent_activity_id`, `created_at`, `updated_at
 (55, '2019-05-11 20:18:08', '2019-05-11 20:18:08', 77, 0, 'registered', NULL),
 (56, '2019-05-11 20:19:34', '2019-05-11 20:19:34', 78, 0, 'registered', NULL),
 (57, '2019-07-01 16:36:16', '2019-07-01 16:36:16', 79, 0, 'registered', NULL),
-(58, '2019-07-04 04:17:19', '2019-07-04 04:17:19', 80, 0, 'registered', NULL);
+(58, '2019-07-04 04:17:19', '2019-07-04 04:17:19', 80, 0, 'registered', NULL),
+(59, '2019-07-30 10:49:23', '2019-07-30 10:49:23', 81, 0, 'registered', NULL);
 
 -- --------------------------------------------------------
 
@@ -1218,7 +1221,8 @@ INSERT INTO `stagings` (`staging_id`, `created_at`, `updated_at`, `user_id`, `re
 (43, '2019-05-11 20:18:08', '2019-05-11 20:18:08', 77, 1, 0, 0, 0),
 (44, '2019-05-11 20:19:34', '2019-05-11 20:19:34', 78, 1, 0, 0, 0),
 (45, '2019-07-01 16:36:16', '2019-07-01 16:36:16', 79, 1, 0, 0, 0),
-(46, '2019-07-04 04:17:19', '2019-07-04 04:19:03', 80, 1, 0, 1, 1);
+(46, '2019-07-04 04:17:19', '2019-07-04 04:19:03', 80, 1, 0, 1, 1),
+(47, '2019-07-30 10:49:23', '2019-07-30 10:49:23', 81, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1303,7 +1307,8 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 (77, 'et', 'et', 'rf', 'er@dt.hi', '$2y$10$TolqZYEqmoWrV2m3eQ2QxepSqDOtnt8dE7KkEHmcnB.F8axQJ7AD2', NULL, '2019-05-11 20:18:08', '2019-05-11 20:18:08', 0, 3),
 (78, 't', 't', 'y', 'ry@ry.ju', '$2y$10$q42sliopKbaA3aF6d6TfT.XNVVFpU/bLeWqgxlhvOpjyLpoQxeQYi', NULL, '2019-05-11 20:19:34', '2019-05-11 20:19:34', 0, 3),
 (79, 'y', 'y', 'y', 'y@y.y', '$2y$10$fPIM2G8Pt6YZAD0nWlNrFO8f5VTLVcqxhi1f9Vh/iUfT3KKR0fR/u', NULL, '2019-07-01 16:36:16', '2019-07-01 16:36:16', 0, 3),
-(80, 'testFN', 'testFN', 'testLN', 'test@test.test', '$2y$10$3bzmkBxj8hjEzBm6DthX6eIH/dXWM/BqKb6El3x5UT0rd5sLAqPHu', NULL, '2019-07-04 04:17:17', '2019-07-04 04:17:17', 0, 3);
+(80, 'testFN', 'testFN', 'testLN', 'test@test.test', '$2y$10$3bzmkBxj8hjEzBm6DthX6eIH/dXWM/BqKb6El3x5UT0rd5sLAqPHu', NULL, '2019-07-04 04:17:17', '2019-07-04 04:17:17', 0, 3),
+(81, 'testFN', 'testFN', 'testLN', 'test12072019@test.test', '$2y$10$fKy5BeDB93Yv4vcubfwBiOH6VBH8QLjO6stxT.5ML5GOpRp2omQhi', NULL, '2019-07-30 10:49:19', '2019-07-30 10:49:19', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -1411,8 +1416,8 @@ CREATE TABLE `user_locations` (
 --
 
 INSERT INTO `user_locations` (`userLocation_id`, `user_id`, `card_id`, `created_at`, `updated_at`, `lat`, `long`, `country`, `state`, `city`, `formatted_address`) VALUES
-(5, 80, 15, '2019-07-08 13:17:39', '2019-07-08 13:17:39', '51.0791746', '31.2485775', NULL, NULL, NULL, 'Е101, Chernihivs\'ka oblast, Ukraine'),
-(8, 81, 16, '2019-07-08 13:17:39', '2019-07-08 13:17:39', '51.0791746', '31.2485775', NULL, 's2', NULL, 'Е101, Chernihivs\'ka oblast, Ukraine'),
+(5, 80, 15, '2019-07-08 13:17:39', '2019-07-08 13:17:39', '30.0812558', '31.2511902', NULL, NULL, NULL, 'Е101, Chernihivs\'ka oblast, Ukraine'),
+(8, 81, 16, '2019-07-08 13:17:39', '2019-07-08 13:17:39', '51.0891746', '31.2485775', NULL, 's2', NULL, 'Е101, Chernihivs\'ka oblast, Ukraine'),
 (9, 82, 18, '2019-07-08 13:17:39', '2019-07-08 13:17:39', '51.0791746', '31.2485775', NULL, 's2', NULL, 'Е101, Chernihivs\'ka oblast, Ukraine');
 
 -- --------------------------------------------------------
@@ -1725,7 +1730,7 @@ ALTER TABLE `user_to_companies`
 -- AUTO_INCREMENT for table `activation_processes`
 --
 ALTER TABLE `activation_processes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `activity_description`
@@ -1851,7 +1856,7 @@ ALTER TABLE `qr_code_users`
 -- AUTO_INCREMENT for table `recent_activities`
 --
 ALTER TABLE `recent_activities`
-  MODIFY `recent_activity_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `recent_activity_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `recommended_cards`
@@ -1875,7 +1880,7 @@ ALTER TABLE `resetsteps`
 -- AUTO_INCREMENT for table `stagings`
 --
 ALTER TABLE `stagings`
-  MODIFY `staging_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `staging_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `terms`
@@ -1887,7 +1892,7 @@ ALTER TABLE `terms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `user_cards`
